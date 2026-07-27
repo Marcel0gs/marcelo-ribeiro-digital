@@ -347,5 +347,6 @@ section[id] { scroll-margin-top: 84px; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  * { transition: none !important; animation: none !important; }
+  * { transition: none !important; }
+  *:not(.confianca__trilho) { animation: none !important; }
 }
