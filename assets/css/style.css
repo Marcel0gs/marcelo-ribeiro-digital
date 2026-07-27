@@ -163,15 +163,29 @@ section[id] { scroll-margin-top: 84px; }
   max-width: 34ch;
 }
 
-/* --- barra de confiança -------------------------------------------------- */
-.confianca { border-bottom: 1px solid var(--borda); background: var(--offwhite); }
-.confianca__inner {
-  display: flex; flex-wrap: wrap; align-items: center;
-  justify-content: center; gap: 1rem 2.5rem; padding: 1.5rem 0;
-  text-align: center;
+/* --- barra de confiança (rolagem automática) ----------------------------- */
+.confianca {
+  border-bottom: 1px solid var(--borda); background: var(--offwhite);
+  overflow: hidden;
 }
-.confianca__item { display: flex; align-items: center; gap: .6rem; color: var(--cinza); font-size: .95rem; }
+.confianca__trilho {
+  display: flex; width: max-content;
+  animation: confianca-rola 22s linear infinite;
+}
+.confianca__grupo {
+  display: flex; flex-shrink: 0; align-items: center;
+  gap: 2.5rem; padding: 1.5rem 2.5rem 1.5rem 0;
+}
+.confianca__item {
+  display: flex; align-items: center; gap: .6rem;
+  color: var(--cinza); font-size: .95rem; white-space: nowrap; margin: 0;
+}
 .confianca__item strong { color: var(--tinta); }
+
+@keyframes confianca-rola {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 
 /* --- seções ------------------------------------------------------------ */
 .secao { padding: clamp(3rem, 6vw, 5rem) 0; }
@@ -327,5 +341,5 @@ section[id] { scroll-margin-top: 84px; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  * { transition: none !important; }
+  * { transition: none !important; animation: none !important; }
 }
