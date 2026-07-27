@@ -96,11 +96,11 @@
     <div class="wrap hero__grid">
       <div>
         <p class="hero__olho">Serviços digitais para negócio local</p>
-        <h1>Site, redes sociais e anúncio — cuidados pela mesma pessoa, do início ao fim</h1>
+        <h1>Seu concorrente não é melhor que você. Só apareceu primeiro.</h1>
         <p class="hero__sub">
-          Criação de sites, identidade visual, redes sociais, Google Ads,
-          Facebook Ads e edição de vídeo. Sem repasse para terceiro no meio do
-          caminho: quem conversa com você é quem executa.
+          Enquanto seu negócio depende de indicação, quem tem site, perfil
+          organizado e anúncio no ar está fechando o cliente que podia ser
+          seu. Eu cuido disso — da estratégia à execução, sem intermediário.
         </p>
         <div class="hero__acoes">
           <a class="btn" href="https://wa.me/5531995045274?text=Ol%C3%A1%2C%20Marcelo%21%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener">
@@ -109,14 +109,33 @@
           <a class="btn btn--vazado" href="#servicos">Ver serviços</a>
         </div>
       </div>
-      <div class="painel" role="img" aria-label="Representação dos canais de trabalho: site, redes sociais, anúncio e vídeo">
-        <div class="painel__grade">
-          <div class="painel__item">Sites</div>
-          <div class="painel__item">Identidade visual</div>
-          <div class="painel__item">Redes sociais</div>
-          <div class="painel__item">Google Ads</div>
-          <div class="painel__item">Facebook Ads</div>
-          <div class="painel__item">Edição de vídeo</div>
+
+      <!-- Vitrine com hover: passar o mouse num serviço anima o texto letra a
+           letra e muda a cor/legenda do painel ao lado. Sem framework — só
+           CSS transition-delay por letra (--i) e um pouco de JS puro. -->
+      <div class="vitrine" data-vitrine>
+        <div class="vitrine__lista">
+          <button type="button" class="vitrine__item is-active" data-vitrine-item data-cor="#6C5CE7" data-legenda="Site que continua vendendo mesmo enquanto você atende outro cliente.">
+            <span class="vitrine__texto" data-stagger>Sites</span>
+          </button>
+          <button type="button" class="vitrine__item" data-vitrine-item data-cor="#F7B32B" data-legenda="Marca que parece a mesma em qualquer lugar que aparece.">
+            <span class="vitrine__texto" data-stagger>Identidade visual</span>
+          </button>
+          <button type="button" class="vitrine__item" data-vitrine-item data-cor="#25D366" data-legenda="Perfil que gera confiança antes da primeira mensagem.">
+            <span class="vitrine__texto" data-stagger>Redes sociais</span>
+          </button>
+          <button type="button" class="vitrine__item" data-vitrine-item data-cor="#4F86F7" data-legenda="Aparecer pra quem já está procurando o que você vende.">
+            <span class="vitrine__texto" data-stagger>Google Ads</span>
+          </button>
+          <button type="button" class="vitrine__item" data-vitrine-item data-cor="#FF6B6B" data-legenda="Alcançar quem ainda nem sabe que precisa de você.">
+            <span class="vitrine__texto" data-stagger>Facebook Ads</span>
+          </button>
+          <button type="button" class="vitrine__item" data-vitrine-item data-cor="#00C2A8" data-legenda="O vídeo parado no celular, pronto pra publicar.">
+            <span class="vitrine__texto" data-stagger>Edição de vídeo</span>
+          </button>
+        </div>
+        <div class="vitrine__painel" data-vitrine-painel style="--cor-ativa:#6C5CE7">
+          <p class="vitrine__legenda" data-vitrine-legenda>Site que continua vendendo mesmo enquanto você atende outro cliente.</p>
         </div>
       </div>
     </div>
@@ -322,7 +341,7 @@
             ao negócio.
           </p>
           <div class="hero__acoes">
-            <a class="btn btn--vazado" href="https://wa.me/5531995045274?text=Ol%C3%A1%2C%20Marcelo%21%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener">
+            <a class="btn" href="https://wa.me/5531995045274?text=Ol%C3%A1%2C%20Marcelo%21%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener">
               Falar no WhatsApp
             </a>
           </div>
@@ -426,6 +445,44 @@
 <a class="zap-flutua" href="https://wa.me/5531995045274?text=Ol%C3%A1%2C%20Marcelo%21%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 0C7.2 0 0 7.2 0 16c0 2.8.7 5.5 2.1 7.9L0 32l8.3-2.2c2.3 1.3 4.9 1.9 7.7 1.9 8.8 0 16-7.2 16-16S24.8 0 16 0zm0 29.1c-2.5 0-4.9-.7-7-1.9l-.5-.3-5 1.3 1.3-4.8-.3-.5c-1.4-2.2-2.1-4.7-2.1-7.3C2.4 8.5 8.5 2.4 16 2.4S29.6 8.5 29.6 16 23.5 29.1 16 29.1zm7.4-9.8c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.3-2-1.2-1.1-2-2.4-2.3-2.8-.2-.4 0-.6.2-.8l.6-.7c.2-.2.2-.4.4-.6.1-.2 0-.5 0-.7l-1.2-2.8c-.3-.7-.6-.6-.9-.6h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.2.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/></svg>
 </a>
+
+<script>
+/* Vitrine da hero — divide cada rótulo em letras (span com --i) pra animar
+   com transition-delay escalonado no CSS, e troca a cor/legenda do painel
+   ao lado conforme o item em foco/hover. Sem dependência externa. */
+(function () {
+  document.querySelectorAll('[data-stagger]').forEach(function (el) {
+    var texto = el.textContent;
+    el.textContent = '';
+    texto.split('').forEach(function (letra, i) {
+      var span = document.createElement('span');
+      span.className = 'letra';
+      span.style.setProperty('--i', i);
+      span.textContent = letra === ' ' ? ' ' : letra;
+      el.appendChild(span);
+    });
+  });
+
+  var vitrine = document.querySelector('[data-vitrine]');
+  if (!vitrine) return;
+  var itens = vitrine.querySelectorAll('[data-vitrine-item]');
+  var painel = vitrine.querySelector('[data-vitrine-painel]');
+  var legenda = vitrine.querySelector('[data-vitrine-legenda]');
+
+  function ativar(item) {
+    itens.forEach(function (i) { i.classList.remove('is-active'); });
+    item.classList.add('is-active');
+    painel.style.setProperty('--cor-ativa', item.dataset.cor);
+    legenda.textContent = item.dataset.legenda;
+  }
+
+  itens.forEach(function (item) {
+    item.addEventListener('mouseenter', function () { ativar(item); });
+    item.addEventListener('focus', function () { ativar(item); });
+    item.addEventListener('click', function () { ativar(item); });
+  });
+})();
+</script>
 
 </body>
 </html>

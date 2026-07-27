@@ -114,27 +114,53 @@ section[id] { scroll-margin-top: 84px; }
 .hero__sub { font-size: 1.1rem; color: #b6b8ce; max-width: 46ch; }
 .hero__acoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 
-/* Painel decorativo: gradiente + malha de pontos, no lugar de foto que não
-   existe ainda. Representa "vários canais" sem prometer nada específico. */
-.painel {
+/* Vitrine da hero: lista de serviços com stagger de texto no hover/foco, ao
+   lado de um painel que muda de cor e legenda conforme o item ativo. Troca o
+   antigo painel estático — sem foto real ainda, mas agora reage à interação
+   em vez de só decorar. */
+.vitrine {
+  display: grid; gap: 1rem;
+  grid-template-columns: auto 1fr;
+  align-items: stretch;
+}
+@media (max-width: 620px) { .vitrine { grid-template-columns: 1fr; } }
+
+.vitrine__lista { display: grid; gap: .35rem; align-content: center; }
+.vitrine__item {
+  all: unset; cursor: pointer;
+  padding: .4rem .2rem; border-radius: 4px;
+}
+.vitrine__item:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+.vitrine__texto {
+  display: inline-block; font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+  font-weight: 700; letter-spacing: -.01em; color: #6f7290;
+  white-space: nowrap;
+}
+.vitrine__texto .letra {
+  display: inline-block;
+  transition: transform .3s cubic-bezier(.25,.46,.45,.94), color .3s ease;
+  transition-delay: calc(var(--i, 0) * 25ms);
+}
+.vitrine__item:hover .letra,
+.vitrine__item:focus-visible .letra,
+.vitrine__item.is-active .letra {
+  transform: translateY(-4px);
+  color: var(--branco);
+}
+
+.vitrine__painel {
   border-radius: var(--raio); box-shadow: var(--sombra);
-  aspect-ratio: 4 / 3.4;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(108,92,231,.55), transparent 45%),
-    radial-gradient(circle at 80% 30%, rgba(37,211,102,.28), transparent 40%),
-    radial-gradient(circle at 50% 85%, rgba(108,92,231,.4), transparent 45%),
-    var(--tinta2);
+  min-height: 200px; padding: 1.75rem;
   position: relative; overflow: hidden;
-  display: grid; place-items: center;
+  display: flex; align-items: flex-end;
+  background:
+    radial-gradient(circle at 25% 20%, color-mix(in srgb, var(--cor-ativa) 55%, transparent), transparent 55%),
+    var(--tinta2);
+  transition: background .4s ease;
 }
-.painel__grade {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: .9rem;
-  padding: 2rem; width: 100%;
-}
-.painel__item {
-  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
-  border-radius: var(--raio); padding: 1rem 1.1rem;
-  color: #e3e3f0; font-size: .88rem; font-weight: 600;
+.vitrine__legenda {
+  margin: 0; color: var(--branco); font-size: 1.05rem; font-weight: 600;
+  max-width: 34ch;
 }
 
 /* --- barra de confiança -------------------------------------------------- */
