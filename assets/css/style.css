@@ -103,7 +103,7 @@ section[id] { scroll-margin-top: 84px; }
 /* --- hero -------------------------------------------------------------- */
 .hero { padding: clamp(3rem, 7vw, 5.5rem) 0; background: var(--tinta); color: var(--branco); }
 .hero__grid {
-  display: grid; grid-template-columns: 1.05fr .95fr;
+  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
   gap: clamp(2rem, 5vw, 4rem); align-items: center;
 }
 @media (max-width: 880px) { .hero__grid { grid-template-columns: 1fr; } }
@@ -119,8 +119,8 @@ section[id] { scroll-margin-top: 84px; }
    antigo painel estático — sem foto real ainda, mas agora reage à interação
    em vez de só decorar. */
 .vitrine {
-  display: grid; gap: 1rem;
-  grid-template-columns: auto 1fr;
+  display: grid; gap: 1rem; min-width: 0;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: stretch;
 }
 @media (max-width: 620px) { .vitrine { grid-template-columns: 1fr; } }
@@ -150,17 +150,32 @@ section[id] { scroll-margin-top: 84px; }
 
 .vitrine__painel {
   border-radius: var(--raio); box-shadow: var(--sombra);
-  min-height: 200px; padding: 1.75rem;
+  width: 100%; height: 100%; min-width: 0; min-height: 0;
   position: relative; overflow: hidden;
-  display: flex; align-items: flex-end;
-  background:
-    radial-gradient(circle at 25% 20%, color-mix(in srgb, var(--cor-ativa) 55%, transparent), transparent 55%),
-    var(--tinta2);
-  transition: background .4s ease;
+  display: grid;
+  background: var(--tinta2);
+}
+/* Fotos empilhadas na mesma célula do grid; a ativa revela de cima pra baixo
+   com clip-path, igual ao HoverSliderImage do componente de referência.
+   min-width/height:0 evita o bug clássico de <img> em grid empurrando a
+   coluna (o tamanho intrínseco da imagem vira o "min-content" do item). */
+.vitrine__foto {
+  grid-area: 1 / 1; min-width: 0; min-height: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+  transition: clip-path .7s cubic-bezier(.33, 1, .68, 1);
+}
+.vitrine__foto.is-active {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.vitrine__sombra {
+  grid-area: 1 / 1; align-self: stretch;
+  background: linear-gradient(to top, rgba(18,19,26,.85), rgba(18,19,26,0) 65%);
 }
 .vitrine__legenda {
-  margin: 0; color: var(--branco); font-size: 1.05rem; font-weight: 600;
-  max-width: 34ch;
+  grid-area: 1 / 1; align-self: end; z-index: 1;
+  margin: 0; padding: 1.75rem; color: var(--branco);
+  font-size: 1.05rem; font-weight: 600; max-width: 34ch;
 }
 
 /* --- barra de confiança (rolagem automática) ----------------------------- */
