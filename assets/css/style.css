@@ -1,0 +1,305 @@
+/* ==========================================================================
+   Marcelo Ribeiro — folha de estilo única
+   Paleta própria: fundo escuro no cabeçalho/hero/rodapé, seções claras
+   alternadas, acento roxo-elétrico. Sem depoimento nem portfólio fabricado —
+   ainda não existem clientes fechados.
+   ========================================================================== */
+
+:root {
+  --acento:        #6C5CE7;
+  --acento-escuro: #5346c9;
+  --acento-claro:  #ECEAFD;
+  --tinta:         #12131a;
+  --tinta2:        #1b1d27;
+  --cinza:         #5b6172;
+  --offwhite:      #f7f7fb;
+  --branco:        #ffffff;
+  --borda:         #e4e4ef;
+  --zap:           #25d366;
+
+  --largura: 1120px;
+  --raio:    8px;
+  --sombra:  0 1px 3px rgba(18, 19, 26, .06), 0 8px 24px rgba(18, 19, 26, .08);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--branco);
+  color: var(--tinta);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--acento-escuro); }
+
+h1, h2, h3 { line-height: 1.2; margin: 0 0 .75rem; letter-spacing: -.015em; }
+h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
+h3 { font-size: 1.15rem; }
+p  { margin: 0 0 1.15rem; }
+
+.wrap { max-width: var(--largura); margin: 0 auto; padding: 0 1.5rem; }
+
+section[id] { scroll-margin-top: 84px; }
+.sr {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* --- cabeçalho --------------------------------------------------------- */
+.topo {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(18, 19, 26, .92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #2a2c38;
+}
+.topo__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem; min-height: 72px;
+}
+.marca {
+  font-size: 1.2rem; font-weight: 700; letter-spacing: .01em;
+  color: var(--branco); text-decoration: none;
+  white-space: nowrap;
+}
+.marca span {
+  display: block; font-size: .58rem; letter-spacing: .28em;
+  color: #9a9cb8; font-weight: 600; margin-top: 1px; text-transform: uppercase;
+}
+.nav { display: flex; align-items: center; gap: 1.75rem; }
+.nav a { color: #d7d8e6; text-decoration: none; font-size: .95rem; }
+.nav a:hover { color: var(--branco); }
+.nav a.btn, .nav a.btn:hover { color: var(--branco); }
+@media (max-width: 860px) { .nav__links { display: none; } }
+
+@media (max-width: 430px) {
+  .wrap { padding: 0 1.15rem; }
+  .topo__inner { gap: .75rem; }
+  .marca { font-size: 1rem; }
+  .marca span { font-size: .5rem; letter-spacing: .2em; }
+  .topo .btn { padding: .7rem 1rem; font-size: .9rem; }
+}
+
+/* --- botões ------------------------------------------------------------ */
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--acento); color: var(--branco);
+  padding: .8rem 1.5rem; border-radius: var(--raio);
+  text-decoration: none; font-weight: 600; font-size: .95rem;
+  border: 1px solid var(--acento);
+  transition: background .15s ease;
+}
+.btn:hover { background: var(--acento-escuro); border-color: var(--acento-escuro); }
+.btn--vazado { background: transparent; color: var(--branco); border-color: #454761; }
+.btn--vazado:hover { background: #22232f; }
+
+/* --- hero -------------------------------------------------------------- */
+.hero { padding: clamp(3rem, 7vw, 5.5rem) 0; background: var(--tinta); color: var(--branco); }
+.hero__grid {
+  display: grid; grid-template-columns: 1.05fr .95fr;
+  gap: clamp(2rem, 5vw, 4rem); align-items: center;
+}
+@media (max-width: 880px) { .hero__grid { grid-template-columns: 1fr; } }
+.hero__olho {
+  color: #b9b3ff; font-size: .78rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; margin-bottom: 1rem;
+}
+.hero__sub { font-size: 1.1rem; color: #b6b8ce; max-width: 46ch; }
+.hero__acoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+
+/* Painel decorativo: gradiente + malha de pontos, no lugar de foto que não
+   existe ainda. Representa "vários canais" sem prometer nada específico. */
+.painel {
+  border-radius: var(--raio); box-shadow: var(--sombra);
+  aspect-ratio: 4 / 3.4;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(108,92,231,.55), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(37,211,102,.28), transparent 40%),
+    radial-gradient(circle at 50% 85%, rgba(108,92,231,.4), transparent 45%),
+    var(--tinta2);
+  position: relative; overflow: hidden;
+  display: grid; place-items: center;
+}
+.painel__grade {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: .9rem;
+  padding: 2rem; width: 100%;
+}
+.painel__item {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--raio); padding: 1rem 1.1rem;
+  color: #e3e3f0; font-size: .88rem; font-weight: 600;
+}
+
+/* --- barra de confiança -------------------------------------------------- */
+.confianca { border-bottom: 1px solid var(--borda); background: var(--offwhite); }
+.confianca__inner {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: center; gap: 1rem 2.5rem; padding: 1.5rem 0;
+  text-align: center;
+}
+.confianca__item { display: flex; align-items: center; gap: .6rem; color: var(--cinza); font-size: .95rem; }
+.confianca__item strong { color: var(--tinta); }
+
+/* --- seções ------------------------------------------------------------ */
+.secao { padding: clamp(3rem, 6vw, 5rem) 0; }
+.secao--off { background: var(--offwhite); }
+.secao__cabeca { max-width: 60ch; margin-bottom: 2.5rem; }
+.secao__olho {
+  color: var(--acento-escuro); font-size: .78rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; margin-bottom: .6rem;
+}
+
+/* --- cards de serviço --------------------------------------------------- */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+@media (max-width: 940px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .cards { grid-template-columns: 1fr; } }
+
+.card {
+  display: block; padding: 1.6rem; background: var(--branco);
+  border: 1px solid var(--borda); border-radius: var(--raio);
+  text-decoration: none; color: inherit;
+  transition: border-color .15s ease, transform .15s ease;
+}
+.card:hover { border-color: var(--acento); transform: translateY(-2px); }
+.card h3 { color: var(--tinta); }
+.card p { color: var(--cinza); font-size: .95rem; margin: 0; }
+.card__seta { color: var(--acento-escuro); font-weight: 600; font-size: .9rem; margin-top: 1rem; display: block; }
+
+/* --- como funciona -------------------------------------------------------- */
+.passos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; counter-reset: passo; }
+@media (max-width: 940px) { .passos { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .passos { grid-template-columns: 1fr; } }
+.passo { position: relative; padding: 1.5rem 1.4rem 1.4rem; background: var(--branco); border: 1px solid var(--borda); border-radius: var(--raio); }
+.passo::before {
+  counter-increment: passo; content: counter(passo);
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2rem; height: 2rem; border-radius: 50%;
+  background: var(--acento-claro); color: var(--acento-escuro);
+  font-weight: 700; font-size: .95rem; margin-bottom: .9rem;
+}
+.passo h3 { font-size: 1.02rem; }
+.passo p { color: var(--cinza); font-size: .92rem; margin: 0; }
+
+/* --- faixa de perguntas -------------------------------------------------- */
+.faixa {
+  background: var(--tinta); color: #e3e3f0;
+  padding: clamp(3rem, 6vw, 5rem) 0;
+}
+.faixa .secao__olho { color: #b9b3ff; }
+.faixa h2 { color: var(--branco); }
+.faixa .secao__cabeca p { color: #b6b8ce; }
+
+.perguntas { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+@media (max-width: 880px) { .perguntas { grid-template-columns: 1fr; } }
+
+.pergunta {
+  background: #22232f; border: 1px solid #33354a;
+  border-radius: var(--raio); padding: 1.1rem 1.35rem;
+  align-self: start;
+}
+.pergunta summary {
+  cursor: pointer; font-weight: 600; color: var(--branco);
+  list-style: none; display: flex; justify-content: space-between; gap: 1rem;
+}
+.pergunta summary::-webkit-details-marker { display: none; }
+.pergunta summary::after {
+  content: "+"; color: #b9b3ff; font-weight: 400; font-size: 1.35rem;
+  line-height: 1; flex: 0 0 auto;
+}
+.pergunta[open] summary::after { content: "−"; }
+.pergunta summary:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+.pergunta p {
+  margin: .9rem 0 0; font-size: .96rem; color: #cfd0e0;
+}
+.pergunta a { color: #cabdff; }
+.pergunta strong { color: var(--branco); }
+
+/* --- sobre --------------------------------------------------------------- */
+.sobre {
+  display: grid; grid-template-columns: 1.1fr .9fr;
+  gap: clamp(2rem, 5vw, 3.5rem); align-items: start;
+}
+@media (max-width: 880px) { .sobre { grid-template-columns: 1fr; } }
+
+.citacao {
+  margin: 0; padding: 1.75rem;
+  background: var(--offwhite); border: 1px solid var(--borda);
+  border-radius: var(--raio); border-left: 3px solid var(--acento);
+}
+.citacao blockquote { margin: 0; }
+.citacao blockquote p {
+  font-size: 1.08rem; line-height: 1.55; color: var(--tinta);
+}
+.citacao blockquote p:last-of-type { margin-bottom: 0; }
+.citacao figcaption {
+  margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--borda);
+  font-size: .88rem; color: var(--cinza); font-weight: 600;
+}
+
+/* --- contato ------------------------------------------------------------ */
+.contato__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+@media (max-width: 880px) { .contato__grid { grid-template-columns: 1fr; } }
+.dados { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
+.dados li { display: grid; grid-template-columns: auto 1fr; gap: .9rem; align-items: start; }
+.dados strong { display: block; font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; color: var(--cinza); font-weight: 600; }
+.dados .ico { color: var(--acento-escuro); font-size: 1.1rem; line-height: 1.5; }
+
+.contato__cartao {
+  background: var(--offwhite); border: 1px solid var(--borda); border-radius: var(--raio);
+  padding: 1.75rem;
+}
+.contato__cartao p:last-child { margin-bottom: 0; }
+
+/* --- rodapé -------------------------------------------------------------- */
+.rodape { background: var(--tinta); color: #b6b8ce; padding: 3rem 0 2rem; font-size: .93rem; }
+.rodape a { color: #cabdff; }
+.rodape__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; }
+@media (max-width: 760px) { .rodape__grid { grid-template-columns: 1fr; } }
+.rodape h3 { color: var(--branco); font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; }
+.rodape ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.rodape ul a { text-decoration: none; }
+.rodape ul a:hover { text-decoration: underline; }
+.rodape__fim {
+  border-top: 1px solid #2a2c38; margin-top: 2.5rem; padding-top: 1.5rem;
+  font-size: .85rem; color: #7d7f9a;
+}
+.rodape .marca { color: var(--branco); }
+.rodape .marca span { color: #7d7f9a; }
+
+/* --- botão flutuante de WhatsApp ----------------------------------------- */
+.zap-flutua {
+  position: fixed; right: 20px; bottom: 20px; z-index: 90;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: var(--zap); display: grid; place-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .22);
+  transition: transform .15s ease;
+}
+.zap-flutua:hover { transform: scale(1.06); }
+.zap-flutua svg { width: 30px; height: 30px; fill: #fff; }
+
+/* --- conteúdo de página interna ------------------------------------------ */
+.artigo { max-width: 72ch; }
+.artigo h2 { margin-top: 2.5rem; }
+.artigo ul { padding-left: 1.2rem; }
+.artigo li { margin-bottom: .5rem; }
+.migalha { font-size: .88rem; color: var(--cinza); padding: 1.25rem 0 0; }
+.migalha a { color: var(--cinza); }
+
+.chamada {
+  background: var(--offwhite); border-left: 3px solid var(--acento);
+  border-radius: 0 var(--raio) var(--raio) 0;
+  padding: 1.5rem; margin: 2.5rem 0;
+}
+.chamada p:last-child { margin-bottom: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
