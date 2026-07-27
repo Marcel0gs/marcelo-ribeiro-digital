@@ -116,22 +116,22 @@
            transition-delay por letra e um pouco de JS puro. -->
       <div class="vitrine" data-vitrine>
         <div class="vitrine__lista">
-          <button type="button" class="vitrine__item is-active" data-vitrine-item data-legenda="Site que continua vendendo mesmo enquanto você atende outro cliente.">
+          <button type="button" class="vitrine__item is-active" data-vitrine-item>
             <span class="vitrine__texto" data-stagger>Sites</span>
           </button>
-          <button type="button" class="vitrine__item" data-vitrine-item data-legenda="Marca que parece a mesma em qualquer lugar que aparece.">
+          <button type="button" class="vitrine__item" data-vitrine-item>
             <span class="vitrine__texto" data-stagger>Identidade visual</span>
           </button>
-          <button type="button" class="vitrine__item" data-vitrine-item data-legenda="Perfil que gera confiança antes da primeira mensagem.">
+          <button type="button" class="vitrine__item" data-vitrine-item>
             <span class="vitrine__texto" data-stagger>Redes sociais</span>
           </button>
-          <button type="button" class="vitrine__item" data-vitrine-item data-legenda="Aparecer pra quem já está procurando o que você vende.">
+          <button type="button" class="vitrine__item" data-vitrine-item>
             <span class="vitrine__texto" data-stagger>Google Ads</span>
           </button>
-          <button type="button" class="vitrine__item" data-vitrine-item data-legenda="Alcançar quem ainda nem sabe que precisa de você.">
+          <button type="button" class="vitrine__item" data-vitrine-item>
             <span class="vitrine__texto" data-stagger>Facebook Ads</span>
           </button>
-          <button type="button" class="vitrine__item" data-vitrine-item data-legenda="O vídeo parado no celular, pronto pra publicar.">
+          <button type="button" class="vitrine__item" data-vitrine-item>
             <span class="vitrine__texto" data-stagger>Edição de vídeo</span>
           </button>
         </div>
@@ -140,10 +140,8 @@
           <img class="vitrine__foto" data-vitrine-foto src="assets/img/photo-1688733720228-4f7a18681c4f.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
           <img class="vitrine__foto" data-vitrine-foto src="assets/img/7b7d09564f1d170af41b2e12870cb722.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
           <img class="vitrine__foto" data-vitrine-foto src="assets/img/photo-1726066012698-bb7a3abce786.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
-          <img class="vitrine__foto" data-vitrine-foto src="assets/img/photo-1624996752380-8ec242e0f85d.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
+          <img class="vitrine__foto" data-vitrine-foto src="assets/img/facebook-ads.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
           <img class="vitrine__foto" data-vitrine-foto src="assets/img/photo-1574717025058-2f8737d2e2b7.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
-          <div class="vitrine__sombra" aria-hidden="true"></div>
-          <p class="vitrine__legenda" data-vitrine-legenda>Site que continua vendendo mesmo enquanto você atende outro cliente.</p>
         </div>
       </div>
     </div>
@@ -484,7 +482,6 @@
   if (!vitrine) return;
   var itens = Array.prototype.slice.call(vitrine.querySelectorAll('[data-vitrine-item]'));
   var fotos = Array.prototype.slice.call(vitrine.querySelectorAll('[data-vitrine-foto]'));
-  var legenda = vitrine.querySelector('[data-vitrine-legenda]');
 
   function ativar(item) {
     var indice = itens.indexOf(item);
@@ -492,7 +489,6 @@
     fotos.forEach(function (f) { f.classList.remove('is-active'); });
     item.classList.add('is-active');
     if (fotos[indice]) { fotos[indice].classList.add('is-active'); }
-    legenda.textContent = item.dataset.legenda;
   }
 
   itens.forEach(function (item) {
