@@ -1,25 +1,35 @@
 /* ==========================================================================
    Marcelo Ribeiro — folha de estilo única
-   Paleta própria: fundo escuro no cabeçalho/hero/rodapé, seções claras
-   alternadas, acento roxo-elétrico. Sem depoimento nem portfólio fabricado —
-   ainda não existem clientes fechados.
+   Sistema visual cinematográfico: fundo sempre escuro, imagem real com
+   gradiente por baixo do título (mesmo padrão da capa do carrossel), glow
+   roxo/magenta, atmosfera (blobs + grade + partículas) nos blocos de
+   destaque, reveal no scroll, tilt nos cards e trace animado nos botões.
+   Reescrito em 13/09/2026 pra alinhar o site com a identidade do Instagram.
    ========================================================================== */
 
 :root {
+  /* Roxo é a cor de base (bordas, ícones, texto de destaque, sempre visível).
+     Magenta é brilho/acento — só em box-shadow, hover e trace animado, nunca
+     em área sólida grande. Regra (13/09/2026): se ficou "cor de menina", tem
+     magenta sólido demais fora de sombra/hover — trocar por roxo aqui. */
   --acento:        #6C5CE7;
   --acento-escuro: #5346c9;
   --acento-claro:  #ECEAFD;
+  --roxo-claro:    #b9a6f7;
+  --magenta:       #ff3fb0;
+  --magenta-suave: #ffb3e6;
   --tinta:         #12131a;
   --tinta2:        #1b1d27;
-  --cinza:         #5b6172;
+  --cinza:         #aeb0c8;
   --offwhite:      #f7f7fb;
   --branco:        #ffffff;
-  --borda:         #e4e4ef;
+  --borda:         rgba(255, 255, 255, .12);
   --zap:           #25d366;
+  --olho:          #c9b6ff;
 
   --largura: 1120px;
-  --raio:    8px;
-  --sombra:  0 1px 3px rgba(18, 19, 26, .06), 0 8px 24px rgba(18, 19, 26, .08);
+  --raio:    14px;
+  --sombra:  0 20px 60px rgba(0, 0, 0, .45);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -28,8 +38,8 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--branco);
-  color: var(--tinta);
+  background: var(--tinta);
+  color: #dcdde8;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 17px;
   line-height: 1.65;
@@ -37,10 +47,10 @@ body {
 }
 
 img { max-width: 100%; height: auto; display: block; }
-a { color: var(--acento-escuro); }
+a { color: var(--roxo-claro); }
 
-h1, h2, h3 { line-height: 1.2; margin: 0 0 .75rem; letter-spacing: -.015em; }
-h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); }
+h1, h2, h3 { line-height: 1.2; margin: 0 0 .75rem; letter-spacing: -.015em; color: var(--branco); }
+h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); font-weight: 800; }
 h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
 h3 { font-size: 1.15rem; }
 p  { margin: 0 0 1.15rem; }
@@ -53,12 +63,86 @@ section[id] { scroll-margin-top: 84px; }
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
 }
 
+/* --- atmosfera reutilizável (blobs + grade + partículas) ---------------- */
+/* Decorativa, nunca conteúdo — por isso aria-hidden no HTML e z-index:-1,
+   preso à seção que a contém (a seção precisa de position:relative). */
+.atmosfera { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.atmosfera__orb {
+  position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%;
+  filter: blur(80px); opacity: .32; will-change: transform;
+}
+.atmosfera__orb--1 { background: radial-gradient(circle, var(--acento), transparent 70%); top: -25vmax; left: -15vmax; opacity: .42; animation: orbita-1 26s ease-in-out infinite; }
+.atmosfera__orb--2 { background: radial-gradient(circle, var(--magenta), transparent 70%); bottom: -30vmax; right: -18vmax; opacity: .18; animation: orbita-2 32s ease-in-out infinite; }
+@keyframes orbita-1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(4vmax, 3vmax) scale(1.15); } }
+@keyframes orbita-2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-5vmax, -3vmax) scale(1.1); } }
+
+.atmosfera__grade {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 80%);
+}
+.atmosfera__particula {
+  position: absolute; width: 3px; height: 3px; border-radius: 50%;
+  background: var(--roxo-claro); box-shadow: 0 0 8px var(--acento);
+  animation: cintila 5s ease-in-out infinite;
+}
+@keyframes cintila { 0%, 100% { opacity: .15; transform: translateY(0); } 50% { opacity: .9; transform: translateY(-14px); } }
+
+/* --- selo / badge ---------------------------------------------------- */
+.selo {
+  display: inline-flex; align-items: center; gap: .5rem;
+  border: 1.5px solid var(--acento); color: var(--roxo-claro);
+  padding: .4rem 1rem; border-radius: 999px;
+  font-size: .74rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  box-shadow: 0 0 20px rgba(108, 92, 231, .25);
+}
+
+/* --- ícone circular (feature/serviço) ---------------------------------- */
+.icone-circulo {
+  width: 2.6rem; height: 2.6rem; border-radius: 50%; flex: 0 0 auto;
+  border: 1.5px solid var(--acento); color: var(--roxo-claro);
+  display: grid; place-items: center;
+  box-shadow: 0 0 16px rgba(108, 92, 231, .3);
+}
+.icone-circulo svg { width: 1.2rem; height: 1.2rem; }
+
+/* --- reveal ao rolar ----------------------------------------------------
+   Só existe estado "escondido" quando html.js está aplicado (marcado por um
+   script síncrono no <head> de cada página) — sem isso, JS desligado deixaria
+   o conteúdo invisível pra sempre. Mesma lógica de segurança do componente
+   "palco" em templates/componentes/. */
+html.js [data-reveal] {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.22, 1, .36, 1);
+  transition-delay: var(--atraso, 0ms);
+}
+html.js [data-reveal].is-visible { opacity: 1; transform: none; }
+
 /* --- cabeçalho --------------------------------------------------------- */
 .topo {
   position: sticky; top: 0; z-index: 50;
   background: rgba(18, 19, 26, .92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid #2a2c38;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--borda);
+  box-shadow: 0 1px 0 rgba(108, 92, 231, .18);
+  transition: background .35s ease, backdrop-filter .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+/* Nav transparente sobre a hero, modelo Belloni Motors: fixed (não sticky)
+   pra sair do fluxo e a foto ocupar o topo inteiro por baixo. site.js troca
+   pra .topo--solido assim que a página rola, senão o menu fica ilegível
+   em cima de seção clara. */
+.topo--transparente {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: linear-gradient(180deg, rgba(8, 9, 14, .6), transparent);
+  border-bottom-color: transparent; box-shadow: none; backdrop-filter: none;
+}
+.topo--transparente.topo--solido {
+  background: rgba(18, 19, 26, .92); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--borda); box-shadow: 0 1px 0 rgba(108, 92, 231, .18);
 }
 .topo__inner {
   display: flex; align-items: center; justify-content: space-between;
@@ -87,166 +171,240 @@ section[id] { scroll-margin-top: 84px; }
   .topo .btn { padding: .7rem 1rem; font-size: .9rem; }
 }
 
-/* --- botões ------------------------------------------------------------ */
+/* --- botões -------------------------------------------------------------
+   Sem rotação: um brilho atravessa o botão uma vez no hover/focus (::before),
+   e a borda acende em roxo/magenta fixo, sem girar. */
 .btn {
+  position: relative; isolation: isolate; overflow: hidden;
   display: inline-flex; align-items: center; gap: .5rem;
   background: var(--acento); color: var(--branco);
-  padding: .8rem 1.5rem; border-radius: var(--raio);
-  text-decoration: none; font-weight: 600; font-size: .95rem;
+  padding: .85rem 1.6rem; border-radius: 999px;
+  text-decoration: none; font-weight: 700; font-size: .95rem;
   border: 1px solid var(--acento);
-  transition: background .15s ease;
+  box-shadow: 0 8px 24px rgba(108, 92, 231, .35);
+  transition: transform .2s ease, box-shadow .3s ease, background .15s ease, border-color .3s ease;
 }
-.btn:hover { background: var(--acento-escuro); border-color: var(--acento-escuro); }
-.btn--vazado { background: transparent; color: var(--branco); border-color: #454761; }
-.btn--vazado:hover { background: #22232f; }
+.btn:hover, .btn:focus-visible { background: var(--acento-escuro); border-color: var(--magenta); transform: translateY(-2px); box-shadow: 0 14px 34px rgba(255, 63, 176, .38); }
+.btn--vazado { background: transparent; color: var(--branco); border-color: #454761; box-shadow: none; }
+.btn--vazado:hover, .btn--vazado:focus-visible { background: rgba(255, 255, 255, .06); }
+.btn::before {
+  content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; z-index: 1;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, .5), transparent);
+  transform: skewX(-20deg);
+  transition: left .65s ease;
+  pointer-events: none;
+}
+.btn:hover::before, .btn:focus-visible::before { left: 130%; }
 
-/* --- hero -------------------------------------------------------------- */
-.hero { padding: clamp(3rem, 7vw, 5.5rem) 0; background: var(--tinta); color: var(--branco); }
-.hero__grid {
-  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
-  gap: clamp(2rem, 5vw, 4rem); align-items: center;
+/* --- hero ---------------------------------------------------------------
+   Fundo em camadas: <img> real (não CSS background-image) + gradiente por
+   cima em ::after — o mesmo padrão "bg-foto" da capa do carrossel (ver
+   identidade/design-guide.md). <img> de propósito, não background-image: é
+   a imagem mais importante da página (LCP), então precisa de fetchpriority
+   alto e carregamento antecipado, que um background-image não tem — CSS
+   background-image é tratado como recurso de baixa prioridade pelo
+   navegador e pode demorar a pintar. Se o arquivo ainda não existir, o
+   onerror remove a tag e sobra só o gradiente — nunca fica quebrado. */
+/* Altura de banner cheio e conteúdo encostado embaixo, modelo Belloni Motors:
+   nav transparente sobre a foto (ver .topo--transparente) e o texto ancorado
+   no rodapé da hero, não centralizado — a foto respira em cima. */
+.hero {
+  position: relative; overflow: hidden; isolation: isolate;
+  min-height: 92vh; display: flex; align-items: flex-end;
+  padding: 7rem 0 4.5rem; color: var(--branco);
 }
-@media (max-width: 880px) { .hero__grid { grid-template-columns: 1fr; } }
-.hero__olho {
-  color: #b9b3ff; font-size: .78rem; font-weight: 600;
-  letter-spacing: .16em; text-transform: uppercase; margin-bottom: 1rem;
+@media (max-height: 620px) { .hero { min-height: 100vh; } }
+/* Celular: banner mais baixo que no desktop. Além de caber melhor, encolhe
+   o quanto a imagem precisa ampliar pra cobrir a caixa — é o que sobra de
+   largura visível da cena que decide se dá pra ver o astronauta inteiro
+   com o notebook, ou só um pedaço ampliado demais. */
+@media (max-width: 640px) { .hero { min-height: 78vh; } }
+.hero__fundo {
+  position: absolute; inset: 0; z-index: -2; overflow: hidden;
+  background-color: var(--tinta);
 }
-.hero__sub { font-size: 1.1rem; color: #b6b8ce; max-width: 46ch; }
+.hero__fundo img { width: 100%; height: 100%; object-fit: cover; object-position: 68% center; display: block; }
+/* No celular a caixa fica bem mais estreita e alta: a mesma foto, cortada no
+   centro, mostrava só perna e rocha. Empurra o corte pra direita pra pegar
+   o astronauta com o notebook, não só o chão. */
+@media (max-width: 640px) { .hero__fundo img { object-position: 69% center; } }
+.hero__fundo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(125deg, rgba(13, 14, 22, .95) 0%, rgba(13, 14, 22, .86) 36%, rgba(13, 14, 22, .5) 68%, rgba(13, 14, 22, .88) 100%);
+}
+.hero__spot {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(380px circle at var(--x, 50%) var(--y, 20%), rgba(108, 92, 231, .18), transparent 70%);
+}
+.hero__grid { position: relative; z-index: 1; max-width: 640px; }
+.hero h1 { margin-top: 1rem; }
+.hero__rola {
+  position: absolute; z-index: 1; right: 1.5rem; bottom: 2.5rem;
+  display: flex; align-items: center; gap: .6rem;
+  writing-mode: vertical-rl; color: #cfd0e0;
+  font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+}
+.hero__rola::after { content: ""; width: 1px; height: 2.5rem; background: linear-gradient(180deg, var(--roxo-claro), transparent); }
+@media (max-width: 700px) { .hero__rola { display: none; } }
+.hero__gradiente {
+  background: linear-gradient(100deg, var(--roxo-claro), var(--acento) 60%, var(--magenta) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero__sub { font-size: 1.1rem; color: #cfd0e0; max-width: 46ch; }
 .hero__acoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 
-/* Vitrine da hero: lista de serviços com stagger de texto no hover/foco, ao
-   lado de um painel que muda de cor e legenda conforme o item ativo. Troca o
-   antigo painel estático — sem foto real ainda, mas agora reage à interação
-   em vez de só decorar. */
-.vitrine {
-  display: grid; gap: 1rem; min-width: 0;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: stretch;
+/* Anotação estilo "nota à mão" — italico + cantinho de seta, sem depender de
+   fonte externa (a identidade trava a tipografia em Inter/system-ui). É o elo
+   visual com as anotações do carrossel, sem copiar a imagem 1:1. */
+.anotacao {
+  display: inline-block; margin-top: 1.4rem; padding-left: 1.6rem;
+  position: relative; font-style: italic; font-weight: 600;
+  color: var(--roxo-claro); font-size: .92rem; transform: rotate(-3deg);
+  max-width: 30ch;
 }
-@media (max-width: 620px) { .vitrine { grid-template-columns: 1fr; } }
-
-.vitrine__lista { display: grid; gap: .35rem; align-content: center; }
-.vitrine__item {
-  all: unset; cursor: pointer;
-  padding: .4rem .2rem; border-radius: 4px;
-}
-.vitrine__item:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
-.vitrine__texto {
-  display: inline-block; font-size: clamp(1.15rem, 2.6vw, 1.6rem);
-  font-weight: 700; letter-spacing: -.01em; color: #6f7290;
-  white-space: nowrap;
-}
-.vitrine__texto .letra {
-  display: inline-block;
-  transition: transform .3s cubic-bezier(.25,.46,.45,.94), color .3s ease;
-  transition-delay: calc(var(--i, 0) * 25ms);
-}
-.vitrine__item:hover .letra,
-.vitrine__item:focus-visible .letra,
-.vitrine__item.is-active .letra {
-  transform: translateY(-4px);
-  color: var(--branco);
-}
-
-.vitrine__painel {
-  border-radius: var(--raio); box-shadow: var(--sombra);
-  width: 100%; height: 100%; min-width: 0; min-height: 0;
-  position: relative; overflow: hidden;
-  display: grid;
-  background: var(--tinta2);
-}
-/* Fotos empilhadas na mesma célula do grid; a ativa revela de cima pra baixo
-   com clip-path, igual ao HoverSliderImage do componente de referência.
-   min-width/height:0 evita o bug clássico de <img> em grid empurrando a
-   coluna (o tamanho intrínseco da imagem vira o "min-content" do item). */
-.vitrine__foto {
-  grid-area: 1 / 1; min-width: 0; min-height: 0;
-  width: 100%; height: 100%; object-fit: cover;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
-  transition: clip-path .7s cubic-bezier(.33, 1, .68, 1);
-}
-.vitrine__foto.is-active {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-}
-
-/* --- barra de confiança (rolagem automática) ----------------------------- */
-.confianca {
-  border-bottom: 1px solid var(--borda); background: var(--offwhite);
-  overflow: hidden;
-}
-.confianca__trilho {
-  display: flex; width: max-content; will-change: transform;
-  animation: confianca-rola 22s linear infinite;
-}
-.confianca__grupo {
-  display: flex; flex-shrink: 0; align-items: center;
-  gap: 2.5rem; padding: 1.5rem 2.5rem 1.5rem 0;
-}
-.confianca__item {
-  display: flex; align-items: center; gap: .6rem;
-  color: var(--cinza); font-size: .95rem; white-space: nowrap; margin: 0;
-}
-.confianca__item strong { color: var(--tinta); }
-
-@keyframes confianca-rola {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+.anotacao::before {
+  content: ""; position: absolute; left: 0; top: .25em; width: 1.05rem; height: 1.05rem;
+  border-left: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  border-radius: 0 0 0 6px; transform: rotate(-42deg);
 }
 
 /* --- seções ------------------------------------------------------------ */
-.secao { padding: clamp(3rem, 6vw, 5rem) 0; }
-.secao--off { background: var(--offwhite); }
+.secao { position: relative; padding: clamp(3rem, 6vw, 5rem) 0; background: var(--tinta); overflow: hidden; }
+.secao--off { background: var(--tinta2); }
 .secao__cabeca { max-width: 60ch; margin-bottom: 2.5rem; }
 .secao__olho {
-  color: var(--acento-escuro); font-size: .78rem; font-weight: 600;
+  color: var(--olho); font-size: .78rem; font-weight: 600;
   letter-spacing: .16em; text-transform: uppercase; margin-bottom: .6rem;
 }
 
-/* --- cards de serviço --------------------------------------------------- */
-.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-@media (max-width: 940px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 620px) { .cards { grid-template-columns: 1fr; } }
-
+/* --- cards de serviço -----------------------------------------------------
+   Painel de vidro escuro com o mesmo ícone real usado antes no painel
+   holográfico (Google, Instagram/Facebook coloridos; os demais em traço
+   neon), sem depender de foto por serviço, então nunca fica quebrado. */
 .card {
-  display: block; padding: 1.6rem; background: var(--branco);
+  position: relative; isolation: isolate; overflow: hidden;
+  display: block; padding: 1.75rem; background: var(--tinta2);
   border: 1px solid var(--borda); border-radius: var(--raio);
   text-decoration: none; color: inherit;
-  transition: border-color .15s ease, transform .15s ease;
+  transition: border-color .3s ease, transform .15s ease, box-shadow .3s ease, opacity .4s ease, filter .4s ease;
 }
-.card:hover { border-color: var(--acento); transform: translateY(-2px); }
-.card h3 { color: var(--tinta); }
+.card::before {
+  content: ""; position: absolute; top: -30%; right: -30%; z-index: -1;
+  width: 70%; height: 70%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 63, 176, .22), transparent 70%);
+  opacity: 0; transition: opacity .4s ease;
+}
+.card:hover { border-color: var(--magenta); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(255, 63, 176, .18); }
+.card:hover::before { opacity: 1; }
+.card .icone-circulo { margin-bottom: 1.1rem; }
+.card h3 { color: var(--branco); }
 .card p { color: var(--cinza); font-size: .95rem; margin: 0; }
-.card__seta { color: var(--acento-escuro); font-weight: 600; font-size: .9rem; margin-top: 1rem; display: block; }
+.card__seta { color: var(--roxo-claro); font-weight: 600; font-size: .9rem; margin-top: 1rem; display: block; }
+
+/* --- carrossel de serviços (coverflow com foto) --------------------------
+   Modelo: pilha de cards com posição absoluta (não scroll nativo), pra dar
+   igual à referência: card do centro grande e por cima, os vizinhos menores,
+   inclinados e ATRÁS dele, quase encostando. Índice atual e a foto de
+   ambiente são controlados em JS (ver site.js: posicionar()). */
+.carrossel { position: relative; padding: 3rem 0 1rem; }
+.carrossel__ambiente {
+  position: absolute; inset: -1px; z-index: -1; overflow: hidden;
+}
+.carrossel__ambiente img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(.32) blur(40px) saturate(1.3);
+  transform: scale(1.2);
+}
+.carrossel__ambiente::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(13, 14, 22, .35) 0%, rgba(13, 14, 22, .93) 75%);
+}
+.carrossel__palco {
+  position: relative; max-width: 1040px; margin: 0 auto;
+  height: min(420px, 60vh); perspective: 1400px;
+}
+.carrossel__item {
+  position: absolute; top: 0; left: 50%; isolation: isolate; overflow: hidden;
+  width: min(300px, 74vw); height: 100%;
+  border-radius: var(--raio); border: 1px solid var(--borda);
+  text-decoration: none; color: inherit;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .5);
+  transition: transform .7s cubic-bezier(.25, 1, .5, 1), opacity .5s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.carrossel__foto {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.carrossel__veu {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10, 11, 17, .1) 0%, rgba(10, 11, 17, .25) 45%, rgba(10, 11, 17, .95) 100%);
+}
+.carrossel__conteudo {
+  position: absolute; inset: 0; z-index: 2; padding: 1.5rem;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: .4rem;
+  opacity: 0; transition: opacity .4s ease; pointer-events: none;
+}
+.carrossel__conteudo h3 { color: var(--branco); margin: 0; }
+.carrossel__conteudo p { color: #d9dae8; font-size: .9rem; margin: 0; }
+.carrossel__item.is-centro {
+  border-color: var(--magenta); cursor: default;
+  box-shadow: 0 25px 55px rgba(0, 0, 0, .6), 0 0 40px rgba(255, 63, 176, .3);
+}
+.carrossel__item.is-centro .carrossel__conteudo { opacity: 1; pointer-events: auto; }
+.carrossel__item:not(.is-centro) { cursor: pointer; }
+.carrossel__seta {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 40;
+  width: 2.6rem; height: 2.6rem; border-radius: 50%;
+  background: rgba(18, 19, 26, .75); border: 1px solid var(--borda); color: var(--branco);
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  backdrop-filter: blur(6px); transition: border-color .2s ease, background .2s ease;
+}
+.carrossel__seta svg { width: 1.05rem; height: 1.05rem; }
+.carrossel__seta:hover { border-color: var(--acento); background: rgba(108, 92, 231, .3); }
+.carrossel__seta--esq { left: .75rem; }
+.carrossel__seta--dir { right: .75rem; }
+@media (max-width: 560px) { .carrossel__seta { width: 2.2rem; height: 2.2rem; } }
+@media (prefers-reduced-motion: reduce) { .carrossel__item { transition: none !important; } }
 
 /* --- como funciona -------------------------------------------------------- */
-.passos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; counter-reset: passo; }
+.passos { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; counter-reset: passo; }
 @media (max-width: 940px) { .passos { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .passos { grid-template-columns: 1fr; } }
-.passo { position: relative; padding: 1.5rem 1.4rem 1.4rem; background: var(--branco); border: 1px solid var(--borda); border-radius: var(--raio); }
+/* linha conectando os passos, só no layout de 4 colunas — o mesmo "diagrama
+   vivo" que liga etapas de um processo, versão estática (sem JS de posição
+   dinâmica: com só 4 nós fixos em grade, a régua com % fixo já basta). */
+@media (min-width: 941px) {
+  .passos::before {
+    content: ""; position: absolute; top: 1.5rem; left: 12.5%; right: 12.5%; height: 2px; z-index: 0;
+    background: linear-gradient(90deg, transparent, var(--acento) 15%, var(--magenta) 50%, var(--acento) 85%, transparent);
+    opacity: .55;
+  }
+}
+.passo { position: relative; z-index: 1; padding: 1.5rem 1.4rem 1.4rem; background: var(--tinta2); border: 1px solid var(--borda); border-radius: var(--raio); }
 .passo::before {
   counter-increment: passo; content: counter(passo);
   display: inline-flex; align-items: center; justify-content: center;
-  width: 2rem; height: 2rem; border-radius: 50%;
-  background: var(--acento-claro); color: var(--acento-escuro);
-  font-weight: 700; font-size: .95rem; margin-bottom: .9rem;
+  width: 2.3rem; height: 2.3rem; border-radius: 50%;
+  background: var(--tinta); border: 1.5px solid var(--acento); color: var(--branco);
+  font-weight: 800; font-size: .95rem; margin-bottom: .9rem;
+  box-shadow: 0 0 16px rgba(108, 92, 231, .35);
 }
 .passo h3 { font-size: 1.02rem; }
 .passo p { color: var(--cinza); font-size: .92rem; margin: 0; }
 
 /* --- faixa de perguntas -------------------------------------------------- */
-.faixa {
-  background: var(--tinta); color: #e3e3f0;
-  padding: clamp(3rem, 6vw, 5rem) 0;
-}
-.faixa .secao__olho { color: #b9b3ff; }
-.faixa h2 { color: var(--branco); }
+/* isolation:isolate obrigatório: sem isso, o z-index:-1 do .atmosfera e do
+   .perguntas__icones escapa pro stacking context da página inteira e some
+   atrás do próprio background desta seção (mesma causa do bug já visto no
+   .secao--cta). */
+.faixa { position: relative; isolation: isolate; overflow: hidden; background: var(--tinta); color: #e3e3f0; padding: clamp(3rem, 6vw, 5rem) 0; }
 .faixa .secao__cabeca p { color: #b6b8ce; }
 
 .perguntas { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
 @media (max-width: 880px) { .perguntas { grid-template-columns: 1fr; } }
 
 .pergunta {
-  background: #22232f; border: 1px solid #33354a;
+  background: rgba(27, 29, 39, .5); backdrop-filter: blur(8px);
+  border: 1px solid var(--borda);
   border-radius: var(--raio); padding: 1.1rem 1.35rem;
   align-self: start;
 }
@@ -256,56 +414,105 @@ section[id] { scroll-margin-top: 84px; }
 }
 .pergunta summary::-webkit-details-marker { display: none; }
 .pergunta summary::after {
-  content: "+"; color: #b9b3ff; font-weight: 400; font-size: 1.35rem;
+  content: "+"; color: var(--roxo-claro); font-weight: 400; font-size: 1.35rem;
   line-height: 1; flex: 0 0 auto;
 }
 .pergunta[open] summary::after { content: "−"; }
-.pergunta summary:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+.pergunta summary:focus-visible { outline: 2px solid var(--magenta); outline-offset: 3px; }
 .pergunta p {
   margin: .9rem 0 0; font-size: .96rem; color: #cfd0e0;
 }
-.pergunta a { color: #cabdff; }
+.pergunta a { color: var(--roxo-claro); }
 .pergunta strong { color: var(--branco); }
 
-/* --- sobre --------------------------------------------------------------- */
-.sobre {
-  display: grid; grid-template-columns: 1.1fr .9fr;
-  gap: clamp(2rem, 5vw, 3.5rem); align-items: start;
+/* ícones flutuando em volta dos tópicos inteiros do FAQ (cabeçalho +
+   perguntas), não só atrás do título. Dois níveis de movimento, igual ao
+   modelo de referência: o de fora (.ico-flutua) recua do cursor quando o
+   mouse passa perto (JS, ver site.js); o de dentro (.ico-flutua__miolo)
+   balança sozinho o tempo todo, sem parar. Ficam atrás do conteúdo
+   (z-index:-1) e desaparecem por trás dos cards de pergunta, que têm fundo
+   opaco — só aparecem nos vãos entre eles. */
+.perguntas__icones { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.ico-flutua {
+  position: absolute; display: grid; place-items: center;
+  width: 3rem; height: 3rem;
+  transition: transform .35s cubic-bezier(.25, 1, .5, 1);
+  will-change: transform;
 }
-@media (max-width: 880px) { .sobre { grid-template-columns: 1fr; } }
+.ico-flutua__miolo {
+  display: grid; place-items: center; width: 100%; height: 100%;
+  border-radius: .9rem; border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .4);
+  opacity: .92;
+  animation-name: icone-flutua; animation-timing-function: ease-in-out; animation-iteration-count: infinite;
+}
+.ico-flutua__miolo svg { width: 1.5rem; height: 1.5rem; }
+@keyframes icone-flutua {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
+@media (max-width: 720px) {
+  .ico-flutua { width: 2.3rem; height: 2.3rem; }
+  .ico-flutua__miolo svg { width: 1.15rem; height: 1.15rem; }
+}
 
-.citacao {
-  margin: 0; padding: 1.75rem;
-  background: var(--offwhite); border: 1px solid var(--borda);
-  border-radius: var(--raio); border-left: 3px solid var(--acento);
+/* --- contato / cta final ---------------------------------------------------
+   Layout dividido, no modelo pedido: conteúdo escuro à esquerda, foto à
+   direita com corte diagonal (clip-path) — não é mais foto de fundo cheia
+   com texto por cima. Por isso a imagem não precisa de escurecer pra não
+   brigar com texto: ela fica na própria metade, limpa.
+   isolation:isolate é obrigatório aqui: sem isso o z-index:-2 de qualquer
+   camada decorativa escapa pro stacking context da página inteira (ver
+   memória "isolation:isolate pra z-index negativo" — já aconteceu 2x). */
+.secao--cta { position: relative; isolation: isolate; background: var(--tinta2); padding: 0; overflow: hidden; }
+.cta__split { display: flex; flex-wrap: wrap; min-height: 640px; }
+.cta__conteudo {
+  flex: 1 1 480px; min-width: 300px;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 6vw, 4.5rem);
+  display: flex; flex-direction: column; justify-content: center; gap: 2rem;
 }
-.citacao blockquote { margin: 0; }
-.citacao blockquote p {
-  font-size: 1.08rem; line-height: 1.55; color: var(--tinta);
+.cta__imagem {
+  flex: 1 1 380px; position: relative; overflow: hidden;
 }
-.citacao blockquote p:last-of-type { margin-bottom: 0; }
-.citacao figcaption {
-  margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--borda);
-  font-size: .88rem; color: var(--cinza); font-weight: 600;
+.cta__imagem img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% center; display: block;
+}
+/* a imagem entra crescendo até o corte diagonal final, em vez do fade
+   padrão do [data-reveal] — mesmo efeito do modelo de referência (clip-path
+   colapsado até uma fresta na borda direita, depois abre até o formato
+   diagonal de repouso). Especificidade alta de propósito, pra vencer a
+   regra genérica de [data-reveal]. */
+html.js .cta__imagem[data-reveal] {
+  opacity: 1; transform: none;
+  transition: clip-path 1.1s cubic-bezier(.25, 1, .5, 1);
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+}
+html.js .cta__imagem[data-reveal].is-visible {
+  clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%);
+}
+@media (max-width: 860px) {
+  .cta__split { flex-direction: column; min-height: 0; }
+  .cta__imagem { height: 260px; }
+  html.js .cta__imagem[data-reveal],
+  html.js .cta__imagem[data-reveal].is-visible { clip-path: none; }
 }
 
-/* --- contato ------------------------------------------------------------ */
-.contato__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-@media (max-width: 880px) { .contato__grid { grid-template-columns: 1fr; } }
 .dados { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
 .dados li { display: grid; grid-template-columns: auto 1fr; gap: .9rem; align-items: start; }
 .dados strong { display: block; font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; color: var(--cinza); font-weight: 600; }
-.dados .ico { color: var(--acento-escuro); font-size: 1.1rem; line-height: 1.5; }
+.dados .ico { color: var(--roxo-claro); font-size: 1.1rem; line-height: 1.5; }
 
 .contato__cartao {
-  background: var(--offwhite); border: 1px solid var(--borda); border-radius: var(--raio);
+  background: rgba(27, 29, 39, .65); backdrop-filter: blur(10px);
+  border: 1px solid var(--borda); border-radius: var(--raio);
+  border-left: 3px solid var(--acento);
   padding: 1.75rem;
 }
 .contato__cartao p:last-child { margin-bottom: 0; }
 
 /* --- rodapé -------------------------------------------------------------- */
-.rodape { background: var(--tinta); color: #b6b8ce; padding: 3rem 0 2rem; font-size: .93rem; }
-.rodape a { color: #cabdff; }
+.rodape { background: var(--tinta); color: #b6b8ce; padding: 3rem 0 2rem; font-size: .93rem; border-top: 1px solid var(--borda); }
+.rodape a { color: var(--roxo-claro); }
 .rodape__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; }
 @media (max-width: 760px) { .rodape__grid { grid-template-columns: 1fr; } }
 .rodape h3 { color: var(--branco); font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; }
@@ -313,7 +520,7 @@ section[id] { scroll-margin-top: 84px; }
 .rodape ul a { text-decoration: none; }
 .rodape ul a:hover { text-decoration: underline; }
 .rodape__fim {
-  border-top: 1px solid #2a2c38; margin-top: 2.5rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--borda); margin-top: 2.5rem; padding-top: 1.5rem;
   font-size: .85rem; color: #7d7f9a;
 }
 .rodape .marca { color: var(--branco); }
@@ -324,11 +531,36 @@ section[id] { scroll-margin-top: 84px; }
   position: fixed; right: 20px; bottom: 20px; z-index: 90;
   width: 58px; height: 58px; border-radius: 50%;
   background: var(--zap); display: grid; place-items: center;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .22);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
   transition: transform .15s ease;
 }
 .zap-flutua:hover { transform: scale(1.06); }
-.zap-flutua svg { width: 30px; height: 30px; fill: #fff; }
+.zap-flutua svg { width: 30px; height: 30px; fill: #fff; position: relative; z-index: 1; }
+.zap-flutua::after {
+  content: ""; position: absolute; inset: -6px; border-radius: 50%;
+  border: 2px solid var(--zap); opacity: .6;
+  animation: pulso-zap 2.2s ease-out infinite;
+}
+@keyframes pulso-zap { 0% { transform: scale(.9); opacity: .6; } 100% { transform: scale(1.5); opacity: 0; } }
+
+/* --- hero das páginas de serviço ------------------------------------------
+   Banner no topo de cada /servicos/*: sem depender de foto por serviço (só
+   a hero principal e o fechamento têm imagem real) — atmosfera + gradiente
+   já sustentam o clima cinematográfico, igual o hero do site de referência
+   do mentor faz sem precisar de uma foto atrás de cada seção. */
+.hero-servico {
+  position: relative; overflow: hidden; isolation: isolate;
+  padding: clamp(3rem, 7vw, 4.5rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--branco); background: var(--tinta);
+}
+.hero-servico::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(ellipse 60% 55% at 15% 15%, rgba(108, 92, 231, .3), transparent 60%),
+    radial-gradient(ellipse 55% 60% at 85% 100%, rgba(255, 63, 176, .22), transparent 60%);
+}
+.hero-servico__sub { max-width: 58ch; color: #dcdde8; font-size: 1.05rem; margin-bottom: 0; }
+.hero-servico h1 { max-width: 28ch; margin-top: .8rem; }
 
 /* --- conteúdo de página interna ------------------------------------------ */
 .artigo { max-width: 72ch; }
@@ -339,14 +571,19 @@ section[id] { scroll-margin-top: 84px; }
 .migalha a { color: var(--cinza); }
 
 .chamada {
-  background: var(--offwhite); border-left: 3px solid var(--acento);
+  background: rgba(27, 29, 39, .65); backdrop-filter: blur(10px);
+  border: 1px solid var(--borda); border-left: 3px solid var(--acento);
   border-radius: 0 var(--raio) var(--raio) 0;
   padding: 1.5rem; margin: 2.5rem 0;
 }
 .chamada p:last-child { margin-bottom: 0; }
 
+/* --- blog ----------------------------------------------------------------- */
+.card__data { font-size: .82rem; color: var(--roxo-claro); font-weight: 600; display: block; margin-bottom: .5rem; }
+.artigo__meta { font-size: .88rem; color: var(--cinza); margin: -.5rem 0 2rem; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  * { transition: none !important; }
-  *:not(.confianca__trilho) { animation: none !important; }
+  *, *::before, *::after { transition: none !important; }
+  *, *::before, *::after { animation: none !important; }
 }
