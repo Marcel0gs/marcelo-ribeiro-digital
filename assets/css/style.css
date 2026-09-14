@@ -473,28 +473,27 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
 }
 .cta__imagem {
   flex: 1 1 380px; position: relative; overflow: hidden;
+  clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%);
 }
 .cta__imagem img {
   width: 100%; height: 100%; object-fit: cover; object-position: 50% center; display: block;
 }
-/* a imagem entra crescendo até o corte diagonal final, em vez do fade
-   padrão do [data-reveal] — mesmo efeito do modelo de referência (clip-path
-   colapsado até uma fresta na borda direita, depois abre até o formato
-   diagonal de repouso). Especificidade alta de propósito, pra vencer a
-   regra genérica de [data-reveal]. */
-html.js .cta__imagem[data-reveal] {
-  opacity: 1; transform: none;
-  transition: clip-path 1.1s cubic-bezier(.25, 1, .5, 1);
-  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+/* corte diagonal sempre presente (não depende mais de is-visible via scroll:
+   em 14/09/2026 a imagem ficou invisível em navegador real porque o reveal
+   por IntersectionObserver não chegou a marcar o elemento, e o corte de
+   repouso era um polígono zerado — sem JS nenhum, sem imagem nenhuma.
+   Corte fixo + entrada por @keyframes no carregamento resolve isso: mesmo
+   que a animação não rode, a imagem já nasce no formato final visível). */
+@media (prefers-reduced-motion: no-preference) {
+  .cta__imagem { animation: cta-imagem-abre 1.1s cubic-bezier(.25, 1, .5, 1) both; }
 }
-html.js .cta__imagem[data-reveal].is-visible {
-  clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%);
+@keyframes cta-imagem-abre {
+  from { clip-path: polygon(46% 0, 100% 0, 100% 100%, 26% 100%); }
+  to { clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%); }
 }
 @media (max-width: 860px) {
   .cta__split { flex-direction: column; min-height: 0; }
-  .cta__imagem { height: 260px; }
-  html.js .cta__imagem[data-reveal],
-  html.js .cta__imagem[data-reveal].is-visible { clip-path: none; }
+  .cta__imagem { height: 260px; clip-path: none; animation: none; }
 }
 
 .dados { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
