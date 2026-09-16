@@ -47,6 +47,19 @@
     }
   }
 
+  /* ---- vídeo de fundo da hero: só entra se puder tocar de verdade.
+     Sem autoplay no HTML de propósito — assim quem tem "reduzir movimento"
+     ligado no sistema nunca chega a receber o play(), e fica só na imagem
+     parada que já está por baixo (mesmo poster do vídeo). */
+  var heroVideo = document.querySelector("[data-hero-video]");
+  if (heroVideo && !reduzido) {
+    heroVideo.addEventListener("playing", function () {
+      heroVideo.classList.add("is-tocando");
+    });
+    var tocar = heroVideo.play();
+    if (tocar && tocar.catch) { tocar.catch(function () {}); }
+  }
+
   /* ---- spotlight do cursor nos blocos escuros de destaque ---- */
   if (!reduzido) {
     document.querySelectorAll(".hero, .hero-servico, .secao--cta").forEach(function (bloco) {

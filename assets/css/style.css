@@ -223,11 +223,16 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
   position: absolute; inset: 0; z-index: -2; overflow: hidden;
   background-color: var(--tinta);
 }
-.hero__fundo img { width: 100%; height: 100%; object-fit: cover; object-position: 68% center; display: block; }
+.hero__fundo img, .hero__fundo video { width: 100%; height: 100%; object-fit: cover; object-position: 68% center; display: block; }
+/* Vídeo sobra por cima da imagem parada (mesma posição, absolute inset:0) e
+   só é revelado depois que o JS confirma que pode tocar — enquanto isso, ou
+   se o JS não rodar, a imagem por baixo já resolve a cena sozinha. */
+.hero__fundo video { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease; }
+.hero__fundo video.is-tocando { opacity: 1; }
 /* No celular a caixa fica bem mais estreita e alta: a mesma foto, cortada no
    centro, mostrava só perna e rocha. Empurra o corte pra direita pra pegar
    o astronauta com o notebook, não só o chão. */
-@media (max-width: 640px) { .hero__fundo img { object-position: 69% center; } }
+@media (max-width: 640px) { .hero__fundo img, .hero__fundo video { object-position: 69% center; } }
 .hero__fundo::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(125deg, rgba(13, 14, 22, .95) 0%, rgba(13, 14, 22, .86) 36%, rgba(13, 14, 22, .5) 68%, rgba(13, 14, 22, .88) 100%);
