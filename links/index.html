@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marcelo Ribeiro | Links</title>
+<meta name="description" content="Fale comigo no WhatsApp ou veja os serviços: sites, Google Ads, Meta Ads e redes sociais pra negócio local.">
+<!-- Página de bio do Instagram: não entra no sitemap nem no Google,
+     pra não competir com a home. -->
+<meta name="robots" content="noindex, follow">
+<meta property="og:title" content="Marcelo Ribeiro | Serviços digitais">
+<meta property="og:image" content="https://marcel0gs.github.io/marcelo-ribeiro-digital/assets/img/hero-showcase.png">
+<meta name="theme-color" content="#07080d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;1,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fundo: #07080d; --fundo2: #0c0d15; --texto: #efeee9; --mudo: #8d90a6;
+    --linha: rgba(255, 255, 255, .1); --acento: #7f6ff5; --acento-2: #b4aaff;
+    --acento-escuro: #5346c9; --magenta: #ff3fb0; --zap: #25d366;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: var(--fundo); color: var(--texto);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(60% 40% at 50% 0%, rgba(127, 111, 245, .22), transparent 70%);
+    background-repeat: no-repeat;
+  }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--acento-2); outline-offset: 4px; border-radius: 14px; }
+
+  .bio { max-width: 460px; margin: 0 auto; padding: 3rem 1rem 2.5rem; text-align: center; }
+  .bio__foto {
+    width: 104px; height: 104px; margin: 0 auto 1.1rem; border-radius: 50%;
+    object-fit: cover; border: 2px solid var(--acento);
+    box-shadow: 0 0 0 6px rgba(127, 111, 245, .14);
+  }
+  .bio h1 { margin: 0; font-size: 1.6rem; font-weight: 700; letter-spacing: -.03em; }
+  .bio h1 em { font-style: italic; font-weight: 800; color: var(--acento); }
+  .bio__linha { margin: .5rem auto 2rem; max-width: 30ch; color: var(--mudo); font-size: .98rem; }
+
+  .links { display: grid; gap: .75rem; margin: 0; padding: 0; list-style: none; }
+  .link {
+    position: relative; isolation: isolate; overflow: hidden;
+    display: flex; align-items: center; gap: .9rem;
+    padding: 1rem 1.1rem; border-radius: 16px; text-align: left;
+    background: var(--fundo2); border: 1px solid var(--linha);
+    font-weight: 600; font-size: 1rem;
+    transition: transform .2s ease, border-color .3s ease, background .15s ease;
+  }
+  .link svg { flex: none; width: 22px; height: 22px; }
+  .link__seta { margin-left: auto; opacity: .45; }
+  .link small { display: block; font-weight: 400; font-size: .82rem; color: var(--mudo); }
+  .link:hover, .link:focus-visible { transform: translateY(-2px); border-color: var(--acento); }
+  /* brilho que atravessa uma vez no hover, sem animação em repouso
+     (templates/componentes/botao-brilho-hover.html) */
+  .link::before {
+    content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; z-index: -1;
+    background: linear-gradient(115deg, transparent, rgba(255, 255, 255, .14), transparent);
+    transform: skewX(-20deg); transition: left .65s ease; pointer-events: none;
+  }
+  .link:hover::before, .link:focus-visible::before { left: 130%; }
+
+  .link--zap { background: var(--zap); border-color: var(--zap); color: #06210f; }
+  .link--zap small { color: #0b3a1c; }
+  .link--zap:hover, .link--zap:focus-visible { border-color: var(--magenta); }
+  .link--zap::before { background: linear-gradient(115deg, transparent, rgba(255, 255, 255, .5), transparent); }
+
+  .rodape { margin-top: 2.5rem; font-size: .78rem; color: var(--mudo); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link, .link::before { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<main class="bio">
+  <img class="bio__foto" src="../assets/img/marcelo-retrato.webp" alt="Marcelo Ribeiro" width="104" height="104">
+  <h1>Marcelo <em>Ribeiro</em></h1>
+  <p class="bio__linha">Site, anúncio e rede social pra negócio local ser encontrado e chamado no WhatsApp.</p>
+
+  <ul class="links">
+    <li>
+      <a class="link link--zap" href="https://wa.me/5531995045274?text=Ol%C3%A1%2C%20Marcelo%21%20Vim%20pelo%20Instagram%20e%20quero%20conversar." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>
+        <span>Falar no WhatsApp<small>Resposta rápida, sem compromisso</small></span>
+      </a>
+    </li>
+    <li>
+      <a class="link" href="../">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <span>Conhecer o trabalho<small>Site completo, como funciona</small></span>
+        <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="link" href="../servicos/criacao-de-sites/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+        <span>Criação de sites</span>
+        <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="link" href="../servicos/google-ads/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg>
+        <span>Anúncios no Google</span>
+        <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="link" href="../servicos/redes-sociais/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        <span>Gestão de redes sociais</span>
+        <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="link" href="../blog/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v16"/><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z"/></svg>
+        <span>Blog</span>
+        <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+      </a>
+    </li>
+  </ul>
+
+  <p class="rodape">Atendimento em todo o Brasil · Minas Gerais</p>
+</main>
+
+</body>
+</html>
