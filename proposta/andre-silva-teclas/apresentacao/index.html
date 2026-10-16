@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seu site no Google · André Silva Teclas</title>
+<meta name="description" content="Apresentação: o passo a passo pra colocar o andresilvateclas.com.br no Google.">
+<meta name="theme-color" content="#1A110F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap">
+<style>
+  html, body { margin: 0; height: 100%; background: #1A110F; overflow: hidden; }
+  body { font-family: "Inter Tight", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  .palco { position: fixed; inset: 0; touch-action: pan-y; }
+  .tela { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+  /* o formato do deck não tem margem nenhuma e mede tudo com borda incluída */
+  .slide { position: absolute; inset: 0; width: 1920px; height: 1080px; box-sizing: border-box; overflow: hidden;
+    opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s; }
+  .slide.ativo { opacity: 1; visibility: visible; }
+  .slide * { margin: 0; box-sizing: border-box; }
+  .slide h1 { line-height: 1.1; } .slide h2 { line-height: 1.15; } .slide h3 { line-height: 1.2; } .slide p { line-height: 1.4; }
+  .slide svg { display: block; }
+  .barra { position: fixed; right: 16px; bottom: 16px; z-index: 5; display: flex; align-items: center; gap: 6px;
+    padding: 6px; border-radius: 999px; background: rgba(26, 17, 15, .72); color: #F7ECE0; font-size: 14px;
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  .barra button { width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; color: inherit; cursor: pointer;
+    display: grid; place-items: center; }
+  .barra button:hover, .barra button:focus-visible { background: rgba(247, 236, 224, .14); outline: none; }
+  .barra svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .barra span { min-width: 54px; text-align: center; font-variant-numeric: tabular-nums; }
+  .girar { display: none; position: fixed; left: 16px; right: 16px; top: 16px; z-index: 5; padding: 10px 14px; border-radius: 14px;
+    background: #E0A144; color: #1A110F; font-size: 14px; font-weight: 600; text-align: center; }
+  @media (orientation: portrait) and (max-width: 700px) { .girar { display: block; } }
+  @media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+</style>
+</head>
+<body>
+<p class="girar">Vire o celular de lado pra ver maior.</p>
+<main class="palco" aria-label="Seu site no Google">
+<div class="tela">
+<section class="slide" id="cover" aria-roledescription="slide" data-transition="fade" style="background:#1A110F;color:#F7ECE0;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<svg aria-label="Teclas de piano" width="420" height="1080" viewBox="0 0 420 1080" style="position:absolute;left:1500px;top:0px;width:420px;height:1080px"><rect x="0" y="0" width="420" height="1080" fill="#2A1B17"/><rect x="0" y="0" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="90" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="180" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="270" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="360" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="450" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="540" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="630" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="720" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="810" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="900" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="990" width="420" height="90" fill="#F7ECE0"/><rect x="0" y="62" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="152" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="332" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="422" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="512" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="692" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="782" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="962" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="0" width="6" height="1080" fill="#E0A144"/></svg>
+<p style="font-size:26px;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:#E0A144">André Silva Teclas · Guia</p>
+<div style="display:flex;flex-direction:column;gap:40px;width:1240px">
+<h1 style="font-family:'Instrument Serif', Georgia, serif;font-size:220px;font-weight:400;line-height:0.95;color:#F7ECE0">Seu site<br><span style="color:#E0A144"><i>no Google.</i></span></h1>
+<p style="font-size:44px;line-height:1.35;color:#C2AB99;width:1100px">O passo a passo pra colocar o andresilvateclas.com.br nas buscas e acompanhar quem chega por lá.</p>
+</div>
+<p style="font-size:26px;color:#C2AB99">Preparado por Marcelo Ribeiro · 16 de outubro de 2026</p>
+</section>
+<section class="slide" id="endereco" aria-roledescription="slide" data-transition="fade" style="background:#F8F2E9;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Endereço novo</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:150px;font-weight:400;line-height:1;color:#24150F">andresilvateclas<span style="color:#7A1F2B">.com.br</span></h2>
+<p style="font-size:44px;line-height:1.4;color:#6B5647;width:1300px">Com cadeado de segurança. O endereço antigo continua funcionando e passa a levar direto pro novo: nenhum link que você já mandou se perde.</p>
+<div style="display:flex;flex-direction:row;gap:24px">
+<p style="font-size:28px;font-weight:600;color:#7A1F2B;background:#F1DCD8;padding:16px 32px;border-radius:999px">Domínio seu, renovado todo ano</p>
+<p style="font-size:28px;font-weight:600;color:#7A1F2B;background:#F1DCD8;padding:16px 32px;border-radius:999px">Link antigo leva pro novo</p>
+</div>
+</section>
+<section class="slide" id="pronto" aria-roledescription="slide" data-transition="fade" style="background:#EFE7DC;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:80px;font-weight:400;line-height:1.05">O que já deixei pronto</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#F8F2E9;padding:40px;border-radius:20px;border:1px solid #E2CFC5"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#7A1F2B">Mapa do site</h3><p style="font-size:26px;line-height:1.4;color:#6B5647">A lista de todas as páginas e cursos, no formato que o Google lê.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#F8F2E9;padding:40px;border-radius:20px;border:1px solid #E2CFC5"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#7A1F2B">Mapa do blog automático</h3><p style="font-size:26px;line-height:1.4;color:#6B5647">Publicou um texto no painel, ele já entra na lista que o Google confere.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#F8F2E9;padding:40px;border-radius:20px;border:1px solid #E2CFC5"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#7A1F2B">Título e descrição</h3><p style="font-size:26px;line-height:1.4;color:#6B5647">Em cada página. É o que aparece no resultado da busca.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#F8F2E9;padding:40px;border-radius:20px;border:1px solid #E2CFC5"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#7A1F2B">Endereço oficial</h3><p style="font-size:26px;line-height:1.4;color:#6B5647">Marcado em cada página, pro Google não confundir o site novo com o provisório.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#F8F2E9;padding:40px;border-radius:20px;border:1px solid #E2CFC5"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#7A1F2B">Data e autor nos textos</h3><p style="font-size:26px;line-height:1.4;color:#6B5647">O Google pode mostrar isso no resultado da busca.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#F8F2E9;padding:40px;border-radius:20px;border:1px solid #E2CFC5"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#7A1F2B">Foto na prévia do link</h3><p style="font-size:26px;line-height:1.4;color:#6B5647">Quando o site é mandado no WhatsApp, chega com capa.</p></div>
+</div>
+</section>
+<section class="slide" id="console" aria-roledescription="slide" data-transition="fade" data-section="O passo a passo no Google Search Console" style="background:#F8F2E9;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Google Search Console</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:80px;font-weight:400;line-height:1.05;width:1500px">A ferramenta gratuita do Google pra avisar que o site existe.</h2>
+<p style="font-size:36px;line-height:1.4;color:#6B5647;width:1400px">E pra ver como ele aparece nas buscas. São seis passos, e na primeira vez leva uns 15 minutos.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;gap:20px">
+<div style="display:flex;flex-direction:column;gap:8px;border-top:3px solid #7A1F2B;padding:24px 0px 0px 0px"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:72px;line-height:1;color:#7A1F2B">1</p><p style="font-size:26px;font-weight:600;line-height:1.3">Entrar</p></div>
+<div style="display:flex;flex-direction:column;gap:8px;border-top:3px solid #7A1F2B;padding:24px 0px 0px 0px"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:72px;line-height:1;color:#7A1F2B">2</p><p style="font-size:26px;font-weight:600;line-height:1.3">Adicionar o site</p></div>
+<div style="display:flex;flex-direction:column;gap:8px;border-top:3px solid #7A1F2B;padding:24px 0px 0px 0px"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:72px;line-height:1;color:#7A1F2B">3</p><p style="font-size:26px;font-weight:600;line-height:1.3">Provar que é seu</p></div>
+<div style="display:flex;flex-direction:column;gap:8px;border-top:3px solid #7A1F2B;padding:24px 0px 0px 0px"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:72px;line-height:1;color:#7A1F2B">4</p><p style="font-size:26px;font-weight:600;line-height:1.3">Enviar o mapa</p></div>
+<div style="display:flex;flex-direction:column;gap:8px;border-top:3px solid #7A1F2B;padding:24px 0px 0px 0px"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:72px;line-height:1;color:#7A1F2B">5</p><p style="font-size:26px;font-weight:600;line-height:1.3">Pedir pra indexar</p></div>
+<div style="display:flex;flex-direction:column;gap:8px;border-top:3px solid #7A1F2B;padding:24px 0px 0px 0px"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:72px;line-height:1;color:#7A1F2B">6</p><p style="font-size:26px;font-weight:600;line-height:1.3">Acompanhar</p></div>
+</div>
+</section>
+<section class="slide" id="passo1" aria-roledescription="slide" data-transition="fade" style="background:#EFE7DC;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start">
+<p style="font-family:'Instrument Serif', Georgia, serif;font-size:340px;line-height:0.9;color:#7A1F2B">1</p>
+<div style="display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Passo 1 de 6</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:96px;font-weight:400;line-height:1.05">Entre no Search Console</h2>
+<p style="font-size:40px;line-height:1.4;color:#6B5647;width:1100px">Abra o endereço abaixo e entre com a sua conta do Google. Pode ser a mesma do YouTube.</p>
+<p style="font-family:'Courier New', monospace;font-size:40px;font-weight:700;color:#24150F;background:#F8F2E9;border:1px solid #E2CFC5;border-radius:16px;padding:28px 36px;width:960px">search.google.com/search-console</p>
+</div>
+</section>
+<section class="slide" id="passo2" aria-roledescription="slide" data-transition="fade" style="background:#EFE7DC;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start">
+<p style="font-family:'Instrument Serif', Georgia, serif;font-size:340px;line-height:0.9;color:#7A1F2B">2</p>
+<div style="display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Passo 2 de 6</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:96px;font-weight:400;line-height:1.05">Adicione o seu site</h2>
+<p style="font-size:40px;line-height:1.4;color:#6B5647;width:1100px">Clique em <b>“Adicionar propriedade”</b>, escolha <b>“Prefixo do URL”</b>, digite o endereço abaixo e clique em <b>“Continuar”</b>.</p>
+<p style="font-family:'Courier New', monospace;font-size:40px;font-weight:700;color:#24150F;background:#F8F2E9;border:1px solid #E2CFC5;border-radius:16px;padding:28px 36px;width:960px">https://andresilvateclas.com.br/</p>
+</div>
+</section>
+<section class="slide" id="passo3" aria-roledescription="slide" data-transition="fade" style="background:#EFE7DC;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start">
+<p style="font-family:'Instrument Serif', Georgia, serif;font-size:340px;line-height:0.9;color:#7A1F2B">3</p>
+<div style="display:flex;flex-direction:column;gap:36px">
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Passo 3 de 6</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:96px;font-weight:400;line-height:1.05">Prove que o site é seu</h2>
+<p style="font-size:40px;line-height:1.4;color:#6B5647;width:1150px">Escolha o método <b>“Tag HTML”</b> e copie o código que aparece. Me mande pelo WhatsApp: eu coloco no site e te aviso. Aí é só voltar e clicar em <b>“Verificar”</b>.</p>
+<p style="font-family:'Courier New', monospace;font-size:30px;color:#24150F;background:#F8F2E9;border:1px solid #E2CFC5;border-radius:16px;padding:24px 32px;width:1150px">&lt;meta name="google-site-verification" content="…"&gt;</p>
+<p style="font-size:28px;font-weight:600;color:#24150F;background:#F3E3C6;padding:14px 28px;border-radius:999px;width:520px">O único passo que passa por mim</p>
+</div>
+</section>
+<section class="slide" id="passo4" aria-roledescription="slide" data-transition="fade" style="background:#EFE7DC;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start">
+<p style="font-family:'Instrument Serif', Georgia, serif;font-size:340px;line-height:0.9;color:#7A1F2B">4</p>
+<div style="display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Passo 4 de 6</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:96px;font-weight:400;line-height:1.05">Envie o mapa do site</h2>
+<p style="font-size:40px;line-height:1.4;color:#6B5647;width:1150px">No menu da esquerda, clique em <b>“Sitemaps”</b>. No campo <b>“Adicionar um novo sitemap”</b>, digite o nome abaixo e clique em <b>“Enviar”</b>.</p>
+<p style="font-family:'Courier New', monospace;font-size:40px;font-weight:700;color:#24150F;background:#F8F2E9;border:1px solid #E2CFC5;border-radius:16px;padding:28px 36px;width:560px">sitemap.xml</p>
+<p style="font-size:32px;line-height:1.4;color:#6B5647;width:1150px">Em alguns dias aparece <b>“Sucesso”</b>, com o número de páginas encontradas.</p>
+</div>
+</section>
+<section class="slide" id="passo5" aria-roledescription="slide" data-transition="fade" style="background:#EFE7DC;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start">
+<p style="font-family:'Instrument Serif', Georgia, serif;font-size:340px;line-height:0.9;color:#7A1F2B">5</p>
+<div style="display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Passo 5 · a cada texto novo</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:96px;font-weight:400;line-height:1.05">Peça pro Google indexar</h2>
+<p style="font-size:40px;line-height:1.4;color:#6B5647;width:1150px">Publicou no blog? Copie o link do texto, cole na barra <b>“Inspecionar qualquer URL”</b>, lá no alto da tela, espere a análise e clique em:</p>
+<p style="font-size:36px;font-weight:600;color:#F7ECE0;background:#7A1F2B;border-radius:999px;padding:22px 44px;width:480px">Solicitar indexação</p>
+<p style="font-size:32px;line-height:1.4;color:#6B5647;width:1150px">O Google libera poucos pedidos por dia: use nos textos novos e nas páginas que mudaram.</p>
+</div>
+</section>
+<section class="slide" id="passo6" aria-roledescription="slide" data-transition="fade" style="background:#EFE7DC;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start">
+<p style="font-family:'Instrument Serif', Georgia, serif;font-size:340px;line-height:0.9;color:#7A1F2B">6</p>
+<div style="display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Passo 6 · uma vez por semana</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:96px;font-weight:400;line-height:1.05">Acompanhe os números</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#F8F2E9;padding:40px;border-radius:20px;border:1px solid #E2CFC5"><h3 style="font-size:40px;font-weight:600;line-height:1.2;color:#7A1F2B">Desempenho</h3><p style="font-size:30px;line-height:1.4;color:#6B5647">Quantas vezes o site apareceu, quantos clicaram e quais buscas trouxeram gente.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#F8F2E9;padding:40px;border-radius:20px;border:1px solid #E2CFC5"><h3 style="font-size:40px;font-weight:600;line-height:1.2;color:#7A1F2B">Páginas</h3><p style="font-size:30px;line-height:1.4;color:#6B5647">O que já está no Google e, se alguma ficou de fora, o motivo.</p></div>
+</div>
+</div>
+</section>
+<section class="slide" id="tempo" aria-roledescription="slide" data-transition="fade" style="background:#7A1F2B;color:#F7ECE0;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#F3E3C6">Quanto tempo leva</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:240px;font-weight:400;line-height:0.95;color:#F7ECE0">2 a 7 dias</h2>
+<p style="font-size:44px;line-height:1.4;color:#F1DCD8;width:1400px">pros primeiros números aparecerem, depois do mapa enviado. Subir nas buscas leva semanas e depende de publicar com frequência.</p>
+<p style="font-size:30px;line-height:1.4;color:#F3E3C6;width:1400px">No começo é normal ver páginas como “Descoberta, mas não indexada”: é o Google na fila.</p>
+</section>
+<section class="slide" id="textos" aria-roledescription="slide" data-transition="fade" style="background:#F8F2E9;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:80px;font-weight:400;line-height:1.05">Textos que o Google gosta de mostrar</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;gap:28px">
+<div style="grid-column:span 2;display:flex;flex-direction:column;gap:14px;background:#EFE7DC;padding:36px;border-radius:20px"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#7A1F2B">Título com a dúvida do aluno</h3><p style="font-size:26px;line-height:1.4;color:#6B5647">Do jeito que ele digitaria: “Como tirar música de ouvido no teclado”.</p></div>
+<div style="grid-column:span 2;display:flex;flex-direction:column;gap:14px;background:#EFE7DC;padding:36px;border-radius:20px"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#7A1F2B">Subtítulos dividindo o texto</h3><p style="font-size:26px;line-height:1.4;color:#6B5647">É o botão de subtítulo do painel. Ajuda quem lê no celular e o Google a entender o assunto.</p></div>
+<div style="grid-column:span 2;display:flex;flex-direction:column;gap:14px;background:#EFE7DC;padding:36px;border-radius:20px"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#7A1F2B">O vídeo do canal no começo</h3><p style="font-size:26px;line-height:1.4;color:#6B5647">Quem prefere vídeo assiste ali mesmo, fica mais na página, e o canal ganha visualização.</p></div>
+<div style="grid-column:span 3;display:flex;flex-direction:column;gap:14px;background:#EFE7DC;padding:36px;border-radius:20px"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#7A1F2B">O curso no meio e no fim</h3><p style="font-size:26px;line-height:1.4;color:#6B5647">Uma frase chamando pro curso do tema no meio do texto, e o “curso recomendado” do painel no final.</p></div>
+<div style="grid-column:span 3;display:flex;flex-direction:column;gap:14px;background:#F3E3C6;padding:36px;border-radius:20px"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#24150F">Um vídeo vira um texto</h3><p style="font-size:26px;line-height:1.4;color:#5A4536">Não precisa inventar assunto: pegue uma aula que já foi bem no YouTube e resuma em tópicos curtos, de 3 a 5 minutos de leitura.</p></div>
+</div>
+</section>
+<section class="slide" id="divulgar" aria-roledescription="slide" data-transition="fade" style="background:#EFE7DC;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Publicou? Divulgue no mesmo dia</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:80px;font-weight:400;line-height:1.05">Cada texto passa por quatro lugares</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:28px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#F8F2E9;padding:40px;border-radius:20px;border-top:6px solid #7A1F2B"><h3 style="font-size:36px;font-weight:600;line-height:1.2">YouTube</h3><p style="font-size:28px;line-height:1.4;color:#6B5647">O link do texto na descrição do vídeo e num comentário fixado.</p></div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#F8F2E9;padding:40px;border-radius:20px;border-top:6px solid #C0562A"><h3 style="font-size:36px;font-weight:600;line-height:1.2">Instagram</h3><p style="font-size:28px;line-height:1.4;color:#6B5647">Stories com o link, ou um carrossel de 3 a 5 dicas com “texto completo no link da bio”.</p></div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#F8F2E9;padding:40px;border-radius:20px;border-top:6px solid #E0A144"><h3 style="font-size:36px;font-weight:600;line-height:1.2">Grupos do Facebook</h3><p style="font-size:28px;line-height:1.4;color:#6B5647">Um texto útil que responda a dúvida do grupo, e o link no final. Só o link vira spam.</p></div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#F8F2E9;padding:40px;border-radius:20px;border-top:6px solid #24150F"><h3 style="font-size:36px;font-weight:600;line-height:1.2">Grupo do WhatsApp</h3><p style="font-size:28px;line-height:1.4;color:#6B5647">Um aviso curto: “Liberei no blog um guia de campo harmônico, 3 minutos de leitura”.</p></div>
+</div>
+</section>
+<section class="slide" id="semana" aria-roledescription="slide" data-transition="fade" style="background:#F8F2E9;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:80px;font-weight:400;line-height:1.05">Uma semana no ritmo certo</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:24px">
+<div style="display:flex;flex-direction:column;gap:20px;background:#EFE7DC;padding:36px;border-radius:20px"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:88px;line-height:1;color:#7A1F2B">Seg</p><p style="font-size:28px;line-height:1.4;color:#24150F">Escolher o vídeo da semana e a busca que ele responde.</p></div>
+<div style="display:flex;flex-direction:column;gap:20px;background:#EFE7DC;padding:36px;border-radius:20px"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:88px;line-height:1;color:#7A1F2B">Ter</p><p style="font-size:28px;line-height:1.4;color:#24150F">Escrever o texto no painel, com subtítulos e o vídeo no começo.</p></div>
+<div style="display:flex;flex-direction:column;gap:20px;background:#EFE7DC;padding:36px;border-radius:20px"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:88px;line-height:1;color:#7A1F2B">Qua</p><p style="font-size:28px;line-height:1.4;color:#24150F">Publicar e pedir a indexação no Search Console.</p></div>
+<div style="display:flex;flex-direction:column;gap:20px;background:#EFE7DC;padding:36px;border-radius:20px"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:88px;line-height:1;color:#7A1F2B">Qui</p><p style="font-size:28px;line-height:1.4;color:#24150F">Divulgar no YouTube, no Instagram e nos grupos do Facebook.</p></div>
+<div style="display:flex;flex-direction:column;gap:20px;background:#EFE7DC;padding:36px;border-radius:20px"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:88px;line-height:1;color:#7A1F2B">Sex</p><p style="font-size:28px;line-height:1.4;color:#24150F">Mandar no grupo do WhatsApp e responder quem comentou.</p></div>
+</div>
+</section>
+<section class="slide" id="ajustes" aria-roledescription="slide" data-transition="fade" style="background:#EFE7DC;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:80px;font-weight:400;line-height:1.05">Dois ajustes que valem a pena agora</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:20px;background:#F8F2E9;padding:48px;border-radius:24px;border:1px solid #E2CFC5"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:96px;line-height:1;color:#7A1F2B">1</p><h3 style="font-size:40px;font-weight:600;line-height:1.2">Trocar os links pelo endereço novo</h3><p style="font-size:30px;line-height:1.4;color:#6B5647">Bio do Instagram, Linktree e descrição do canal do YouTube. Cada link que aponta pro site ajuda ele no Google.</p></div>
+<div style="display:flex;flex-direction:column;gap:20px;background:#F8F2E9;padding:48px;border-radius:24px;border:1px solid #E2CFC5"><p style="font-family:'Instrument Serif', Georgia, serif;font-size:96px;line-height:1;color:#7A1F2B">2</p><h3 style="font-size:40px;font-weight:600;line-height:1.2">Não renovar o endereço do Canva</h3><p style="font-size:30px;line-height:1.4;color:#6B5647">São R$ 120 por ano que não precisam mais sair. O site novo faz tudo o que ele fazia, e mais.</p></div>
+</div>
+</section>
+<section class="slide" id="cuido" aria-roledescription="slide" data-transition="fade" style="background:#1A110F;color:#F7ECE0;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#E0A144">Se preferir</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:110px;font-weight:400;line-height:1.02">Você grava e publica.<br><span style="color:#E0A144"><i>O Google fica comigo.</i></span></h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #E0A144;padding:8px 0px 8px 32px"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#F7ECE0">Search Console conferido toda semana</h3><p style="font-size:26px;line-height:1.4;color:#C2AB99">Mapa enviado e qualquer erro do Google corrigido no site.</p></div>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #E0A144;padding:8px 0px 8px 32px"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#F7ECE0">Cada texto novo enviado pro Google</h3><p style="font-size:26px;line-height:1.4;color:#C2AB99">E cada página que mudar, como preço ou curso novo.</p></div>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #E0A144;padding:8px 0px 8px 32px"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#F7ECE0">Relatório todo mês, no WhatsApp</h3><p style="font-size:26px;line-height:1.4;color:#C2AB99">Quem achou o site e por quais buscas, e quantos chamaram ou foram pro checkout.</p></div>
+<div style="display:flex;flex-direction:column;gap:10px;border-left:4px solid #E0A144;padding:8px 0px 8px 32px"><h3 style="font-size:34px;font-weight:600;line-height:1.2;color:#F7ECE0">Site sempre no ar</h3><p style="font-size:26px;line-height:1.4;color:#C2AB99">Endereço, cadeado e pequenos ajustes de texto, preço e link.</p></div>
+</div>
+</section>
+<section class="slide" id="fim" aria-roledescription="slide" data-transition="fade" style="background:#1A110F;color:#F7ECE0;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:44px">
+<svg aria-label="Teclas de piano" width="420" height="1080" viewBox="0 0 420 1080" style="position:absolute;left:1500px;top:0px;width:420px;height:1080px"><rect x="0" y="0" width="420" height="1080" fill="#2A1B17"/><rect x="0" y="0" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="90" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="180" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="270" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="360" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="450" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="540" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="630" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="720" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="810" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="900" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="990" width="420" height="90" fill="#F7ECE0"/><rect x="0" y="62" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="152" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="332" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="422" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="512" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="692" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="782" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="962" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="0" width="6" height="1080" fill="#E0A144"/></svg>
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#E0A144">Próximo passo</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:130px;font-weight:400;line-height:1.02;width:1240px">Qualquer dúvida no caminho, <span style="color:#E0A144"><i>é só me chamar.</i></span></h2>
+<p style="font-size:40px;line-height:1.4;color:#C2AB99">Marcelo Ribeiro · WhatsApp (31) 99504-5274</p>
+</section>
+</div>
+</main>
+<nav class="barra" aria-label="Navegação">
+  <button type="button" data-ir="-1" aria-label="Slide anterior"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+  <span data-contador aria-live="polite"></span>
+  <button type="button" data-ir="1" aria-label="Próximo slide"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+  <button type="button" data-tela-cheia aria-label="Tela cheia"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
+</nav>
+<script>
+(function () {
+  "use strict";
+  var palco = document.querySelector(".palco");
+  var tela = document.querySelector(".tela");
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var contador = document.querySelector("[data-contador]");
+  var atual = 0;
+
+  function escalar() {
+    var s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    var x = (innerWidth - 1920 * s) / 2, y = (innerHeight - 1080 * s) / 2;
+    tela.style.transform = "translate(" + x + "px," + y + "px) scale(" + s + ")";
+  }
+  function mostrar(n, semHistorico) {
+    atual = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (sl, i) { sl.classList.toggle("ativo", i === atual); sl.setAttribute("aria-hidden", i === atual ? "false" : "true"); });
+    contador.textContent = (atual + 1) + " / " + slides.length;
+    if (!semHistorico) history.replaceState(null, "", "#" + (atual + 1));
+  }
+  function ir(d) { mostrar(atual + d); }
+
+  addEventListener("resize", escalar);
+  addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") { e.preventDefault(); ir(1); }
+    else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); ir(-1); }
+    else if (e.key === "Home") mostrar(0);
+    else if (e.key === "End") mostrar(slides.length - 1);
+  });
+  document.querySelectorAll("[data-ir]").forEach(function (b) {
+    b.addEventListener("click", function (e) { e.stopPropagation(); ir(+b.getAttribute("data-ir")); });
+  });
+  var cheia = document.querySelector("[data-tela-cheia]");
+  if (!document.documentElement.requestFullscreen) cheia.hidden = true;
+  cheia.addEventListener("click", function (e) {
+    e.stopPropagation();
+    if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(function () {});
+  });
+  // toque: arrastar pro lado troca; tocar na metade direita avança, na esquerda volta
+  var x0 = null, y0 = null;
+  palco.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  palco.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) ir(dx < 0 ? 1 : -1);
+    x0 = null;
+  });
+  palco.addEventListener("click", function (e) {
+    if (e.target.closest("a")) return;
+    ir(e.clientX > innerWidth / 2 ? 1 : -1);
+  });
+
+  escalar();
+  var n = parseInt(location.hash.slice(1), 10);
+  mostrar(isNaN(n) ? 0 : n - 1, true);
+})();
+</script>
+</body>
+</html>
