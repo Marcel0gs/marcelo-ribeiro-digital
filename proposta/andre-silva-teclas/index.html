@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<title>Seu site no Google | André Silva Teclas</title>
+<!-- Guia do Search Console + oferta mensal, mandado direto pro André: fora do
+     sitemap e fora do Google. Base: o "Guia Prático" do Google Docs que o
+     Marcelo mandou em 16/10/2026, já com o domínio próprio e o que o painel faz. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Passo a passo pra colocar o site do André Silva Teclas no Google: Search Console, mapa do site, indexação e acompanhamento.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Seu site no Google, passo a passo">
+<meta property="og:description" content="Search Console, mapa do site e indexação dos textos do blog. Ou eu cuido de tudo por R$ 150 por mês.">
+<meta property="og:image" content="https://andresilvateclas.com.br/assets/img/og-capa.jpg">
+<meta name="theme-color" content="#EFE7DC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Guia de uma página com a identidade do site do André (vinho, laranja
+   queimado, âmbar e creme; Instrument Serif + Inter Tight). Mesmo esqueleto
+   da proposta da Bem Viver: uma coluna, sempre no tema claro. */
+:root{
+  --bg:#EFE7DC; --papel:#F8F2E9; --tinta:#24150F; --suave:#6B5647; --linha:rgba(122,31,43,.16);
+  --vinho:#7A1F2B; --laranja:#C0562A; --ambar:#E0A144; --escuro:#1A110F; --sobre-escuro:#F7ECE0; --sobre-escuro-suave:#C2AB99;
+  --ambar-fundo:#F3E3C6; --vinho-fundo:#F1DCD8;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --sans:"Inter Tight",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tinta);font:400 1.02rem/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+.pagina{max-width:760px;margin:0 auto;padding-inline:20px;padding-block:44px 64px;display:grid;gap:30px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--tinta);margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+a{color:var(--vinho)}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--ambar);outline-offset:3px;border-radius:999px}
+code{font:600 .9em var(--sans);color:var(--tinta);background:var(--ambar-fundo);padding:1px 7px;border-radius:6px;word-break:break-word}
+
+/* cabeçalho */
+.olho{display:flex;align-items:center;gap:10px;font-size:.76rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--vinho)}
+.teclas{display:inline-flex;gap:2px;align-items:flex-start}
+.teclas i{width:8px;height:16px;border-radius:0 0 3px 3px;background:var(--papel);border:1.5px solid var(--vinho)}
+.teclas i:nth-child(2){width:6px;height:10px;background:var(--vinho);margin:0 -4px;position:relative;z-index:1}
+.cab{display:grid;gap:14px}
+.cab h1{font-size:clamp(2.5rem,7.5vw,3.6rem);line-height:1.02}
+.cab h1 em{font-style:italic;color:var(--vinho)}
+.cab p{color:var(--suave);max-width:60ch}
+.ver-site{display:inline-flex;align-items:center;gap:8px;font-weight:700;text-decoration:none;justify-self:start;border-bottom:2px solid var(--ambar);padding-bottom:2px}
+.ver-site svg{width:16px;height:16px}
+
+/* cartões de destaque (endereço novo, tempo) */
+.cartao{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:center;background:var(--papel);border:1px solid var(--linha);border-radius:20px;padding:20px 22px}
+.cartao__ico{grid-row:span 2;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--ambar-fundo);color:var(--vinho)}
+.cartao__ico svg{width:22px;height:22px}
+.cartao h2{font-size:1.45rem;line-height:1.15}
+.cartao h2 b{font-family:var(--sans);font-weight:800;font-size:.78em;color:var(--vinho);word-break:break-word}
+.cartao p{color:var(--suave);font-size:.95rem}
+.cartao--tempo .cartao__ico{background:var(--vinho-fundo)}
+
+/* seções */
+.secao{display:grid;gap:16px}
+.secao h2{font-size:clamp(1.8rem,5vw,2.2rem);line-height:1.08}
+.secao__sub{color:var(--suave);margin-top:-6px}
+.lista{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+@media (min-width:640px){.lista--2{grid-template-columns:1fr 1fr;gap:12px 22px}}
+.lista li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;min-width:0}
+.lista svg{width:20px;height:20px;margin-top:3px;color:var(--vinho)}
+.lista b{color:var(--tinta)}
+.lista span{color:var(--suave)}
+
+/* o passo a passo: é sequência de verdade, por isso os números */
+.passos{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:p}
+.passos li{counter-increment:p;display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;background:var(--papel);border:1px solid var(--linha);border-radius:18px;padding:16px 18px}
+.passos li::before{content:counter(p);width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--vinho);color:var(--sobre-escuro);font-weight:800;font-size:.95rem}
+.passos p > b{display:block;color:var(--tinta);font-size:1.04rem;margin-bottom:2px}
+.passos span{color:var(--suave);font-size:.96rem}
+.passos span b{color:var(--tinta);font-weight:700}
+.passos .comigo{display:block}
+.passos .comigo{display:inline-block;margin-top:8px;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--laranja)}
+
+/* rotina da semana */
+.semana{display:grid;gap:8px}
+.semana div{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;padding:12px 16px;background:var(--papel);border:1px solid var(--linha);border-radius:14px}
+.semana dt{font-weight:800;color:var(--vinho);font-size:.92rem;padding-top:1px}
+.semana dd{margin:0;color:var(--suave);font-size:.95rem}
+.semana dd b{color:var(--tinta)}
+
+/* a oferta */
+.oferta{background:var(--escuro);color:var(--sobre-escuro);border-radius:26px;padding:30px 26px;display:grid;gap:18px;position:relative;overflow:hidden}
+.oferta::after{content:"";position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;border:28px solid rgba(224,161,68,.13);pointer-events:none}
+.oferta__rotulo{font-size:.78rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ambar)}
+.oferta h2{color:var(--sobre-escuro);font-size:clamp(1.9rem,5.5vw,2.4rem);line-height:1.05}
+.oferta__valor{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px}
+.oferta__valor b{font:400 clamp(3.4rem,13vw,4.8rem)/1 var(--serif);letter-spacing:-.01em;color:var(--sobre-escuro)}
+.oferta__valor span{font-size:1.1rem;font-weight:700;color:var(--sobre-escuro-suave)}
+.oferta__frase{font-size:1.08rem}
+.oferta .lista svg{color:var(--ambar)}
+.oferta .lista b{color:var(--sobre-escuro)}
+.oferta .lista span{color:var(--sobre-escuro-suave)}
+
+/* fecho */
+.fecho{display:grid;gap:14px;justify-items:start;padding-top:8px;border-top:1px solid var(--linha)}
+.acoes{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:#1E8F4E;color:#fff;font-weight:800;text-decoration:none;padding:14px 22px;border-radius:999px;box-shadow:0 12px 26px -12px rgba(30,143,78,.55);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:20px;height:20px}
+.btn--linha{background:transparent;color:var(--tinta);box-shadow:none;border:1.5px solid var(--linha);font-weight:700}
+.contato{color:var(--suave);font-size:.95rem}
+.contato b{color:var(--tinta);user-select:all}
+.assina{font-size:.86rem;color:var(--suave)}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<main class="pagina">
+
+  <header class="cab">
+    <p class="olho"><span class="teclas" aria-hidden="true"><i></i><i></i><i></i></span>Guia · André Silva Teclas</p>
+    <h1>Seu site no Google, <em>passo a passo.</em></h1>
+    <p>Preparado por Marcelo Ribeiro para o André, em 16 de outubro de 2026. O site agora mora no seu endereço próprio. Este guia mostra como colocar ele no Google e acompanhar quem chega por lá. Se preferir não mexer com isso, eu cuido de tudo: está no fim da página.</p>
+    <a class="ver-site" href="https://andresilvateclas.com.br/" target="_blank" rel="noopener">andresilvateclas.com.br
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+  </header>
+
+  <section class="cartao" aria-labelledby="t-endereco">
+    <span class="cartao__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span>
+    <h2 id="t-endereco">Endereço novo: <b>andresilvateclas.com.br</b></h2>
+    <p>Com cadeado de segurança. O endereço antigo do site continua funcionando e leva direto pro novo, então nenhum link que você já mandou se perde.</p>
+  </section>
+
+  <section class="secao" aria-labelledby="t-pronto">
+    <h2 id="t-pronto">O que já deixei pronto</h2>
+    <ul class="lista lista--2">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Mapa do site.</b> <span>A lista de todas as páginas e cursos, no formato que o Google lê.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Mapa do blog que se atualiza sozinho.</b> <span>Publicou um texto no painel, ele já entra na lista que o Google confere.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Título e descrição em cada página.</b> <span>É o que aparece no resultado da busca.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Endereço oficial de cada página.</b> <span>Pro Google não confundir o site novo com o provisório.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Data e autor nos textos do blog.</b> <span>O Google pode mostrar isso no resultado.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Foto na prévia do link.</b> <span>Quando o site é mandado no WhatsApp, chega com capa.</span></p></li>
+    </ul>
+  </section>
+
+  <section class="secao" aria-labelledby="t-passos">
+    <h2 id="t-passos">Passo a passo no Google Search Console</h2>
+    <p class="secao__sub">O Search Console é a ferramenta gratuita do Google pra avisar que o site existe e ver como ele aparece nas buscas. Leva uns 15 minutos na primeira vez.</p>
+    <ol class="passos">
+      <li><p><b>Entre no Search Console</b><span>Abra <code>search.google.com/search-console</code> e entre com a sua conta do Google. Pode ser a mesma do YouTube.</span></p></li>
+      <li><p><b>Adicione o seu site</b><span>Clique em "Adicionar propriedade", escolha <b>"Prefixo do URL"</b>, digite <code>https://andresilvateclas.com.br/</code> e clique em "Continuar".</span></p></li>
+      <li><p><b>Prove que o site é seu</b><span>Escolha o método "Tag HTML" e copie o código que aparece (começa com <code>&lt;meta name="google-site-verification"</code>). Me mande pelo WhatsApp: eu coloco no site e te aviso. Aí é só voltar e clicar em "Verificar".</span><span class="comigo">Único passo que passa por mim</span></p></li>
+      <li><p><b>Envie o mapa do site</b><span>No menu da esquerda, clique em "Sitemaps". No campo "Adicionar um novo sitemap", digite <code>sitemap.xml</code> e clique em "Enviar". Em alguns dias aparece "Sucesso", com o número de páginas encontradas.</span></p></li>
+      <li><p><b>A cada texto novo, peça pra indexar</b><span>Publicou no blog? Copie o link do texto, cole na barra "Inspecionar qualquer URL", lá no alto da tela, espere a análise e clique em "Solicitar indexação". O Google libera poucos pedidos por dia, então use nos textos novos e nas páginas que mudaram.</span></p></li>
+      <li><p><b>Acompanhe uma vez por semana</b><span>Em "Desempenho": quantas vezes o site apareceu, quantos clicaram e quais buscas trouxeram gente. Em "Páginas": o que já está no Google e, se alguma ficou de fora, o motivo.</span></p></li>
+    </ol>
+  </section>
+
+  <section class="cartao cartao--tempo" aria-labelledby="t-tempo">
+    <span class="cartao__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+    <h2 id="t-tempo">Quanto tempo leva</h2>
+    <p>Os primeiros números aparecem de 2 a 7 dias depois do mapa enviado. Subir nas buscas leva semanas e depende de publicar com frequência. No começo é normal ver páginas como "Descoberta, mas não indexada": é o Google na fila.</p>
+  </section>
+
+  <section class="secao" aria-labelledby="t-textos">
+    <h2 id="t-textos">Textos que o Google gosta de mostrar</h2>
+    <ul class="lista">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><p><b>Título com a dúvida do aluno,</b> <span>do jeito que ele digitaria no Google: "Como tirar música de ouvido no teclado", "Campo harmônico para iniciantes".</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><p><b>Subtítulos dividindo o texto.</b> <span>É o botão de subtítulo do painel. Ajuda quem lê no celular e o Google a entender o assunto.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><p><b>O vídeo do canal logo no começo.</b> <span>Quem prefere vídeo assiste ali mesmo, fica mais tempo na página, e o canal ganha visualização.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><p><b>O curso no meio e no fim.</b> <span>Uma frase chamando pro curso do tema no meio do texto, e o "curso recomendado" do painel no final.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><p><b>Um vídeo vira um texto.</b> <span>Não precisa inventar assunto: pegue uma aula que já foi bem no YouTube e resuma em tópicos curtos, de 3 a 5 minutos de leitura.</span></p></li>
+    </ul>
+  </section>
+
+  <section class="secao" aria-labelledby="t-divulgar">
+    <h2 id="t-divulgar">Publicou? Divulgue no mesmo dia</h2>
+    <ul class="lista lista--2">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><p><b>YouTube.</b> <span>O link do texto na descrição do vídeo e num comentário fixado.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><p><b>Instagram.</b> <span>Stories com o link, ou um carrossel de 3 a 5 dicas com "texto completo no link da bio".</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><p><b>Grupos do Facebook.</b> <span>Um texto útil que responda a dúvida do grupo e o link no final. Só o link vira spam.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><p><b>Grupo do WhatsApp.</b> <span>Um aviso curto: "Liberei no blog um guia de campo harmônico, 3 minutos de leitura".</span></p></li>
+    </ul>
+  </section>
+
+  <section class="secao" aria-labelledby="t-semana">
+    <h2 id="t-semana">Uma semana no ritmo certo</h2>
+    <dl class="semana">
+      <div><dt>Seg</dt><dd><b>Escolher</b> o vídeo da semana e a busca que ele responde.</dd></div>
+      <div><dt>Ter</dt><dd><b>Escrever</b> o texto no painel, com subtítulos e o vídeo no começo.</dd></div>
+      <div><dt>Qua</dt><dd><b>Publicar</b> e pedir a indexação no Search Console.</dd></div>
+      <div><dt>Qui</dt><dd><b>Divulgar</b> no YouTube, no Instagram e nos grupos do Facebook.</dd></div>
+      <div><dt>Sex</dt><dd><b>Mandar</b> no grupo do WhatsApp e responder quem comentou.</dd></div>
+    </dl>
+  </section>
+
+  <section class="secao" aria-labelledby="t-agora">
+    <h2 id="t-agora">Dois ajustes que valem a pena agora</h2>
+    <ul class="lista">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><p><b>Trocar os links pelo endereço novo:</b> <span>bio do Instagram, Linktree e descrição do canal do YouTube. Cada link que aponta pro site ajuda ele no Google.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><p><b>Não renovar o endereço do Canva</b> <span>(R$ 120 por ano). O site novo faz tudo o que ele fazia e mais.</span></p></li>
+    </ul>
+  </section>
+
+  <section class="oferta" aria-labelledby="t-oferta">
+    <p class="oferta__rotulo">Se preferir</p>
+    <h2 id="t-oferta">Você grava e publica. O Google fica comigo.</h2>
+    <div class="oferta__valor"><b>R$ 150</b><span>por mês</span></div>
+    <ul class="lista">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Search Console configurado e conferido toda semana.</b> <span>Mapa do site enviado, erros do Google corrigidos no site.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Cada texto novo enviado pro Google.</b> <span>E cada página que mudar, como preço ou curso novo.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Relatório todo mês, no WhatsApp.</b> <span>Quem achou o site no Google e por quais buscas, e quantos chamaram no WhatsApp ou foram pro checkout.</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Site sempre no ar.</b> <span>Endereço, cadeado e pequenos ajustes de texto, preço e link.</span></p></li>
+    </ul>
+  </section>
+
+  <footer class="fecho">
+    <div class="acoes">
+      <a class="btn" href="https://wa.me/5531995045274?text=Fala%2C%20Marcelo!%20Quero%20que%20voc%C3%AA%20cuide%20do%20meu%20site%20no%20Google%20(R%24%20150%20por%20m%C3%AAs)." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1s-.8 1-.9 1.2c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5v-.5c0-.2-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>
+        Quero que você cuide</a>
+      <a class="btn btn--linha" href="https://wa.me/5531995045274?text=Fala%2C%20Marcelo!%20Vou%20fazer%20o%20Search%20Console%20eu%20mesmo.%20Segue%20a%20tag%20de%20verifica%C3%A7%C3%A3o%3A" target="_blank" rel="noopener">Vou fazer eu mesmo</a>
+    </div>
+    <p class="contato">Marcelo Ribeiro · WhatsApp <b>(31) 99504-5274</b></p>
+    <p class="assina">Sites para profissionais e negócios da região · <a href="https://marcel0gs.github.io/marcelo-ribeiro-digital/" target="_blank" rel="noopener">conheça o meu trabalho</a></p>
+  </footer>
+
+</main>
+</body>
+</html>
