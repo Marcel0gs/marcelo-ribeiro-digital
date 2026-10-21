@@ -20,8 +20,9 @@
   (clientes/BrunoRepoles/site/), pedido dele ("gostei demais do modelo do Bruno"). O CSS
   base e copiado de la pelo script de montagem; o que e so daqui fica no segundo <style>.
   O painel em crm/ e uma clinica de estetica FICTICIA (Clinica Bella Vita).
-  Sem preco aberto: o valor so aparece no fim do quiz (#plano), que monta a mensagem do
-  WhatsApp com o movimento da empresa. PRECOS: so no objeto PLANOS, no fim do arquivo.
+  Sem preco em lugar nenhum, nem no codigo: o quiz (#plano) indica o plano e manda a pessoa
+  pro WhatsApp com os dados do negocio, pra marcar a reuniao onde o valor e apresentado.
+  Tabela de precos: no CLAUDE.md do projeto, fora do site/.
   Cliente usa a API oficial da Meta (decisao dele, 21/10/2026), nunca Baileys.
 -->
 <style>
@@ -476,6 +477,7 @@ footer img{width:64px;background:#0e0e13;border-radius:10px;padding:4px}
 .opcao[aria-pressed="true"]{background:var(--gold-soft);border-color:var(--gold)}
 .opcao[aria-pressed="true"]::after{content:"";margin-left:auto;width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0}
 .campo{display:block;margin-top:14px}
+.campo[hidden]{display:none}
 .campo span{display:block;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
 .campo input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:14px;font:inherit;font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s}
 .campo input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(217,150,43,.15)}
@@ -761,7 +763,7 @@ footer a{text-decoration:none;border-bottom:1px solid currentColor}
   <div class="wrap centro revela">
     <span class="rotulo">Seu plano</span>
     <h2 class="titulo">Descubra o plano certo <span class="destaque">em 30 segundos</span>.</h2>
-    <p class="sub">O valor depende do movimento do seu WhatsApp. Responda quatro perguntas e veja quanto fica pra sua empresa.</p>
+    <p class="sub">Responda quatro perguntas sobre o movimento do seu WhatsApp. No fim, a gente marca uma conversa e eu te apresento a proposta completa.</p>
   </div>
   <div class="wrap">
     <div class="quiz revela" id="quiz">
@@ -1028,18 +1030,19 @@ setInterval(() => {
 /* Pontuação colada na palavra nos títulos grandes */
 document.querySelectorAll('h1,h2').forEach(h => h.innerHTML = h.innerHTML.replace(/([.,!?])(?=\s|<|$)/g, '<span class="pont">$1</span>'));
 
-/* ---------- Quiz: o único lugar com preço ---------- */
+/* ---------- Quiz: indica o plano, sem preço ---------- */
+/* Preço não aparece nem no código (pedido dele, 21/10/2026): o valor é apresentado na
+   reunião, pra não virar comparação com concorrente mais barato. Tabela no CLAUDE.md do projeto. */
 const PLANOS = [
-  { ate: 5,  nome: 'Essencial',    mensal: 197,  implantacao: 697,  conversas: 150 },
-  { ate: 15, nome: 'Profissional', mensal: 497,  implantacao: 997,  conversas: 450 },
-  { ate: 30, nome: 'Avançado',     mensal: 997,  implantacao: 997,  conversas: 900 },
-  { ate: 60, nome: 'Empresa',      mensal: 1997, implantacao: 1497, conversas: 1800 },
+  { ate: 5,  nome: 'Essencial',    conversas: 150 },
+  { ate: 15, nome: 'Profissional', conversas: 450 },
+  { ate: 30, nome: 'Avançado',     conversas: 900 },
+  { ate: 60, nome: 'Empresa',      conversas: 1800 },
 ];
 const WHATS = '5531995045274', DIAS_MES = 30;
 const $ = s => document.querySelector(s);
 const ic = (n, c = '') => `<svg class="ic ${c}"><use href="#i-${n}"/></svg>`;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const reais = v => 'R$ ' + v.toLocaleString('pt-BR');
 const Q = { etapa: 1, nicho: null, outro: '', dia: 10, extras: [], nome: '', empresa: '' };
 const OP_NICHO = [['Clínica ou estética', 'hand-heart', 'estetica'], ['Consultório ou odonto', 'heart-pulse', 'estetica'], ['Imobiliária', 'house', 'imobiliaria'], ['Loja ou comércio', 'store', 'loja'], ['Restaurante ou delivery', 'utensils', 'loja'], ['Oficina ou serviços', 'wrench', 'oficina'], ['Academia ou estúdio', 'dumbbell', 'estetica'], ['Outro', 'briefcase', null]];
 const OP_EXTRA = [['Site profissional', 'globe'], ['Ficha do Google', 'map-pin'], ['Captar clientes novos', 'search'], ['Painel de gestão', 'layout-dashboard'], ['Lembrete de horário', 'bell-ring'], ['Só o atendimento mesmo', 'message-circle']];
@@ -1059,6 +1062,7 @@ function grupo(alvo, ops, multi, cb) {
 grupo($('#q-nicho'), OP_NICHO, false, o => {
   Q.nicho = o[0]; $('#q-erro').textContent = '';
   $('#q-outro-box').hidden = o[0] !== 'Outro';
+  if (o[0] === 'Outro') $('#q-outro').focus();
 });
 grupo($('#q-extras'), OP_EXTRA, true, (o, on) => {
   const bts = [...$('#q-extras').querySelectorAll('.opcao')];
@@ -1110,27 +1114,21 @@ function resultado() {
   if (Q.nome) L.push('Nome: ' + Q.nome);
   L.push('Empresa: ' + (Q.empresa ? Q.empresa + ' (' + nicho + ')' : nicho));
   L.push(Q.mais ? 'Movimento: ' + MAX_DIA + ' pessoas por dia ou mais, mais de ' + mes.toLocaleString('pt-BR') + ' por mês' : 'Movimento: cerca de ' + Q.dia + ' pessoas por dia, umas ' + mes.toLocaleString('pt-BR') + ' por mês');
-  L.push(p ? 'Plano indicado: ' + p.nome + ', ' + (Q.mais ? 'a partir de ' : '') + reais(p.mensal) + ' por mês' : 'Plano: sob medida (mais de 60 pessoas por dia)');
+  L.push('Plano indicado: ' + (p ? p.nome : 'sob medida (mais de 60 pessoas por dia)'));
   if (ex.length) L.push('Também quero ver: ' + ex.join(', '));
-  L.push('Quero entender como funciona.');
+  L.push('Quero agendar uma conversa pra ver a proposta.');
   const link = 'https://wa.me/' + WHATS + '?text=' + encodeURIComponent(L.join('\n'));
   const chips = '<div class="resumo-q"><span>' + esc(nicho) + '</span><span>' + (Q.mais ? MAX_DIA + '+' : '~' + Q.dia) + ' por dia</span><span>' + (Q.mais ? '+' : '~') + mes.toLocaleString('pt-BR') + ' por mês</span>' + ex.map(x => '<span>' + esc(x) + '</span>').join('') + '</div>';
-  let h;
-  if (p) {
-    h = `<span class="plano">${Q.nome ? esc(Q.nome) + ', seu plano é o ' : 'Seu plano: '}${p.nome}</span>
-      <div class="valor">${Q.mais ? '<small style="margin:0 6px 0 0">a partir de</small>' : ''}${reais(p.mensal)}<small>/mês</small></div>
-      <p class="impl">+ implantação única de ${reais(p.implantacao)}</p>${chips}
-      <ul><li>${ic('circle-check-big')}<span>Assistente com IA no seu WhatsApp, 24 horas</span></li>
-      <li>${ic('circle-check-big')}<span>Painel de atendimento com as etapas da sua empresa</span></li>
-      <li>${ic('circle-check-big')}<span>Até cerca de ${p.conversas.toLocaleString('pt-BR')} conversas por mês, com as mensagens da Meta inclusas</span></li>
-      <li>${ic('circle-check-big')}<span>Ajustes e relatório todo mês</span></li></ul>
-      <p class="obs">${Q.mais ? 'Com ' + MAX_DIA + ' ou mais pessoas por dia, o valor final sai do volume real de vocês. ' : ''}Depois do primeiro mês, o plano é revisto pelo número real de conversas. Se vocês atenderem menos, o valor desce.${ex.length ? ' Os itens extras que você marcou entram na conversa.' : ''}</p>`;
-  } else {
-    h = `<span class="plano">Plano sob medida</span><div class="valor" style="font-size:clamp(32px,5vw,44px)">Movimento de empresa grande</div>
-      <p class="impl">Com mais de 60 pessoas por dia, o plano é montado com você, pelo volume real.</p>${chips}
-      <p class="obs" style="margin-top:18px">Me chama no WhatsApp que eu te mostro como fica pra sua operação.</p>`;
-  }
-  h += `<a class="btn btn-zap" href="${link}" target="_blank" rel="noopener">${ic('message-circle', 'ic-sm')}Falar com o Marcelo no WhatsApp</a><button class="refazer" type="button" id="q-refazer">Refazer o simulador</button>`;
+  const quem = Q.nome ? esc(Q.nome) + ', seu plano é ' : 'Seu plano: ';
+  let h = `<span class="plano">${quem}${p ? (Q.nome ? 'o ' : '') + p.nome : 'sob medida'}</span>
+    <div class="valor" style="font-size:clamp(30px,4.6vw,42px)">A proposta sai numa conversa rápida</div>
+    <p class="impl">Eu te mostro a assistente funcionando no seu tipo de negócio, o CRM completo e a proposta montada pelo movimento real de vocês.</p>${chips}
+    <ul><li>${ic('circle-check-big')}<span>Assistente com IA no seu WhatsApp, 24 horas</span></li>
+    <li>${ic('circle-check-big')}<span>CRM completo pra gestão da empresa e dos atendimentos</span></li>
+    <li>${ic('circle-check-big')}<span>${p ? 'Até cerca de ' + p.conversas.toLocaleString('pt-BR') + ' conversas por mês' : 'Volume de empresa grande'}, com as mensagens da Meta inclusas</span></li>
+    <li>${ic('circle-check-big')}<span>Ajustes e relatório todo mês</span></li></ul>
+    <p class="obs">Manda a mensagem que eu te respondo pra marcar o melhor horário. Sem compromisso.${ex.length ? ' Os itens extras que você marcou entram na proposta.' : ''}</p>`;
+  h += `<a class="btn btn-zap" href="${link}" target="_blank" rel="noopener">${ic('message-circle', 'ic-sm')}Agendar a conversa no WhatsApp</a><button class="refazer" type="button" id="q-refazer">Refazer o simulador</button>`;
   $('#resultado').innerHTML = h;
   $('#q-refazer').onclick = () => mostra(1);
 }
