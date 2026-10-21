@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Logo FICTICIO da Alto Padrao Imoveis (demonstracao da pagina de automacao, 21/10/2026). -->
+  <title>Alto Padrão Imóveis</title>
+  <defs><linearGradient id="ap-fundo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3f74bd"/><stop offset="1" stop-color="#1b3a6b"/></linearGradient></defs>
+  <rect width="64" height="64" rx="16" fill="url(#ap-fundo)"/>
+  <path d="M13 31L32 15L51 31" fill="none" stroke="#fff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M19 28V48H45V28" fill="none" stroke="#fff" stroke-width="4.2" stroke-linejoin="round"/>
+  <rect x="28" y="35" width="8" height="13" rx="1.5" fill="#ebb455"/>
+  <rect x="41" y="13" width="5" height="9" rx="1" fill="#fff"/>
+</svg>

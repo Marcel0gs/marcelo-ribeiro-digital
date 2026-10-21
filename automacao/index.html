@@ -431,6 +431,7 @@ footer img{width:64px;background:#0e0e13;border-radius:10px;padding:4px}
 .hero .pill .tile .ic{width:15px;height:15px}
 .wa-topo .foto{color:var(--gold-2);font-weight:800;font-size:13px}
 .wa-topo .foto img.logo{width:38px;height:38px}
+.wm .aud .fotinho img.logo{width:28px;height:28px}
 .wm .aud .fotinho{color:var(--gold-2);font-size:10px;font-weight:800}
 .wm .card-serv{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:8px;padding:8px;margin:2px -4px 4px;width:236px}
 .wm .card-serv .tile{width:54px;height:54px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#fbf3e2,#f1dcb3);color:var(--gold-deep);flex-shrink:0}
@@ -613,7 +614,7 @@ footer a{text-decoration:none;border-bottom:1px solid currentColor}
     </div>
     <div class="celular">
       <div class="tela">
-        <div class="wa-topo"><span class="foto" id="wa-foto">BV</span><div><b id="wa-nome">Clínica Bella Vita</b><small id="wa-status">online</small></div></div>
+        <div class="wa-topo"><span class="foto" id="wa-foto"><img class="logo" src="crm/img/logo-bella-vita.svg" alt=""></span><div><b id="wa-nome">Clínica Bella Vita</b><small id="wa-status">online</small></div></div>
         <div class="wa-msgs" id="wa-msgs"></div>
         <div class="wa-base"><span>Mensagem</span><i><svg class="ic ic-sm"><use href="#i-mic"/></svg></i></div>
       </div>
@@ -866,7 +867,7 @@ const passos = [...document.querySelectorAll('.passo')];
 const esp = ms => new Promise(r => setTimeout(r, ms));
 const ondas = n => Array.from({ length: n }, (_, i) => `<i style="height:${5 + ((i * 7) % 15)}px;animation-delay:${(i % 5) * .12}s"></i>`).join('');
 let NI = 'estetica';
-const audio = (dur, tr, dela) => `<span class="aud">${dela ? `<span class="fotinho">${NICHOS[NI].sigla}</span>` : ''}<svg class="ic"><use href="#i-play"/></svg><span class="ondas">${ondas(22)}</span><small style="font-size:10.5px;color:#667781">${dur}</small></span><span class="tr">${tr}</span>`;
+const audio = (dur, tr, dela) => `<span class="aud">${dela ? `<span class="fotinho">${NICHOS[NI].logo ? `<img class="logo" src="${NICHOS[NI].logo}" alt="">` : NICHOS[NI].sigla}</span>` : ''}<svg class="ic"><use href="#i-play"/></svg><span class="ondas">${ondas(22)}</span><small style="font-size:10.5px;color:#667781">${dur}</small></span><span class="tr">${tr}</span>`;
 const card = (icone, titulo, info, valor) => `<span class="card-serv"><span class="tile"><svg class="ic"><use href="#i-${icone}"/></svg></span><span><b>${titulo}</b><small>${info}</small><i>${valor}</i></span></span>`;
 const NICHOS = {
   estetica: { rotulo: 'Clínica e estética', icone: 'hand-heart', nome: 'Clínica Bella Vita', sigla: 'BV', logo: 'crm/img/logo-bella-vita.svg', hora: 'Domingo, 22h47',
@@ -884,7 +885,7 @@ const NICHOS = {
       { p: 3, de: 'ela', t: 'Combinado! Quinta às 18h30 com a Paula. Na quarta eu te mando um lembrete.', h: '22:50' },
       { p: 3, de: 'eu', t: 'Perfeito, obrigada!', h: '22:51' },
     ] },
-  imobiliaria: { rotulo: 'Imobiliária', icone: 'house', nome: 'Alto Padrão Imóveis', sigla: 'AP', hora: 'Sábado, 21h40',
+  imobiliaria: { rotulo: 'Imobiliária', icone: 'house', nome: 'Alto Padrão Imóveis', sigla: 'AP', logo: 'assets/img/logo-alto-padrao.svg', hora: 'Sábado, 21h40',
     ficha: [['Cliente', 'Roberto'], ['Procura', 'Casa 3 quartos, aluguel'], ['Região', 'Centro'], ['Até', 'R$ 2.000, 2 vagas'], ['Visita', 'Sábado, 10h']],
     equipe: '<b>Visita sábado, 10h.</b> O corretor da vez recebeu o cliente com o resumo. É só confirmar.',
     roteiro: () => [
@@ -897,7 +898,7 @@ const NICHOS = {
       { p: 3, de: 'ela', t: 'Dá sim! Sábado às 10h. O corretor te confirma amanhã cedo.', h: '21:42' },
       { p: 3, de: 'eu', t: 'Fechado, obrigado', h: '21:43' },
     ] },
-  loja: { rotulo: 'Loja e comércio', icone: 'store', nome: 'Passo Certo Calçados', sigla: 'PC', hora: 'Segunda, 12h05',
+  loja: { rotulo: 'Loja e comércio', icone: 'store', nome: 'Passo Certo Calçados', sigla: 'PC', logo: 'assets/img/logo-passo-certo.svg', hora: 'Segunda, 12h05',
     ficha: [['Cliente', 'Júlia'], ['Quer', 'Tênis de corrida leve'], ['Número', '38'], ['Valor', 'R$ 349'], ['Retira', 'Amanhã à tarde']],
     equipe: '<b>Produto separado.</b> A vendedora vê no painel quem vem buscar e a que horas.',
     roteiro: () => [
@@ -910,7 +911,7 @@ const NICHOS = {
       { p: 3, de: 'ela', t: 'Separado no seu nome até amanhã às 18h! Estamos na Rua Principal, 120, no centro.', h: '12:07' },
       { p: 3, de: 'eu', t: 'Obrigada!', h: '12:08' },
     ] },
-  oficina: { rotulo: 'Oficina e serviços', icone: 'wrench', nome: 'Auto Center Prime', sigla: 'AC', hora: 'Terça, 7h52',
+  oficina: { rotulo: 'Oficina e serviços', icone: 'wrench', nome: 'Auto Center Prime', sigla: 'AC', logo: 'assets/img/logo-auto-center.svg', hora: 'Terça, 7h52',
     ficha: [['Cliente', 'André'], ['Carro', 'Gol 2016'], ['Problema', 'Barulho ao frear'], ['Quer', 'Estimativa de valor'], ['Horário', 'Hoje, 14h']],
     equipe: '<b>Agendado às 14h.</b> O pedido de valor veio pro Carlos, com o resumo. A assistente não inventa preço.',
     roteiro: () => [

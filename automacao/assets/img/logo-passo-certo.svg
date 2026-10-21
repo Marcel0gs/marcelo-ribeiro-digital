@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Logo FICTICIO da Passo Certo Calcados (demonstracao da pagina de automacao, 21/10/2026). -->
+  <title>Passo Certo Calçados</title>
+  <defs><linearGradient id="pc-fundo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ef8048"/><stop offset="1" stop-color="#b9461d"/></linearGradient></defs>
+  <rect width="64" height="64" rx="16" fill="url(#pc-fundo)"/>
+  <path d="M11 39.5C11 36 13 34 16.5 34H25C27 29.5 29.5 25.5 33.5 23L38.5 30C43 32 48.5 33 51.5 36C53.5 38 53.5 41.5 51.5 43.5H14.5C12.5 43.5 11 42 11 39.5Z" fill="#fff"/>
+  <path d="M11.5 47H52.5" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M29 31.5L33.5 33.5M32 27.5L36.5 29.5" stroke="#b9461d" stroke-width="2.2" stroke-linecap="round"/>
+</svg>
