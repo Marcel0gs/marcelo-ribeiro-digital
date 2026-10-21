@@ -267,6 +267,17 @@ html.js.site-pronto [data-entra] { opacity: 1; transform: none; }
 /* a primeira seção que cobre ganha canto arredondado e sombra, pra ler como
    uma folha passando por cima, não como um corte seco */
 #sobre { border-radius: 1.75rem 1.75rem 0 0; box-shadow: 0 -24px 60px rgba(0, 0, 0, .55); margin-top: -1.75rem; }
+/* O "espaço vazio" ao rolar logo na primeira abertura (21/10/2026): o
+   navegador do celular pinta a página em blocos e, se o dedo chega antes do
+   bloco ficar pronto, mostra o bloco TRANSPARENTE, e o hero travado aparecia
+   pelo buraco. Seção em camada própria, recortada e de fundo sólido, conta
+   como opaca: bloco atrasado sai na cor da seção. O #sobre não pode (canto
+   redondo e sombra não são opacos), então ganha por trás do conteúdo uma placa
+   opaca da mesma cor, em camada própria, abaixo da faixa do canto. */
+@media (hover: none) {
+  main > section:not(.hero):not(#sobre) { will-change: transform; }
+  #sobre::after { content: ""; position: absolute; inset: 1.75rem 0 0; z-index: -10; background: inherit; will-change: transform; pointer-events: none; }
+}
 .hero__fundo { position: absolute; inset: 0; z-index: -1; background: var(--fundo); }
 /* brightness .85: pedido de 21/09/2026, a cena estava clara demais atrás do texto */
 .hero__fundo img, .hero__fundo video { width: 100%; height: 100%; object-fit: cover; object-position: 68% center; filter: brightness(.85); }
