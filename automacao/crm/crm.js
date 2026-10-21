@@ -22,6 +22,13 @@ const SERV = {
   peeling:      { nome: 'Peeling químico',        cat: 'Facial',    preco: 220, dur: '1h',     ic: 'flower-2',   extra: 'Avaliação antes',          procuras: 17, agendados: 11 },
   micro:        { nome: 'Microagulhamento',       cat: 'Facial',    preco: 350, dur: '1h30',   ic: 'target',     extra: 'Sessões definidas na avaliação', procuras: 14, agendados: 9 },
 };
+/* Fotos ilustrativas (21/10/2026), Unsplash, licença livre, as mesmas já licenciadas pra
+   Ana Flávia (Fotos e Imagens/unsplash/ dela). Em img/serv-<chave>.webp, 640x480:
+   limpeza photo-1761718210089-ba3bb5ccb54f · drenagem photo-1712638932314-e2b185ca0930 ·
+   redutora photo-1745327883508-b6cd32e5dde5 · laser photo-1700760933574-9f0f4ea9aa3b ·
+   harmonizacao photo-1731355774353-4131a8e13e55 · peeling photo-1625243436522-19071f005a39 ·
+   micro photo-1731355773301-ebbf3457e877 */
+for (const [k, s] of Object.entries(SERV)) s.foto = 'img/serv-' + k + '.webp';
 const precoTxt = s => s.preco ? 'R$ ' + s.preco.toLocaleString('pt-BR') : 'Na avaliação';
 
 const ETAPAS = [
@@ -404,12 +411,12 @@ const AGENDA = [
   ['Luciana Dias', 'Sábado, 9h', 'harmonizacao', 'clara'],
 ];
 function renderVisitas() {
-  $('#visitas').innerHTML = AGENDA.map(([n, q, sv, r]) => { const s = SERV[sv], p = EQUIPE[r]; return `<div class="feed-item"><span class="mini">${ic(s.ic)}</span><div><b>${n}</b> · ${s.nome}<small>${q} com ${p.nome}</small></div></div>`; }).join('');
+  $('#visitas').innerHTML = AGENDA.map(([n, q, sv, r]) => { const s = SERV[sv], p = EQUIPE[r]; return `<div class="feed-item"><img src="${s.foto}" alt="" style="width:44px;height:34px;object-fit:cover;border-radius:7px"><div><b>${n}</b> · ${s.nome}<small>${q} com ${p.nome}</small></div></div>`; }).join('');
 }
 
 function renderTopImoveis() {
   const lista = Object.values(SERV).sort((a, b) => b.procuras - a.procuras).slice(0, 5);
-  $('#top-imoveis').innerHTML = lista.map(s => `<div class="top-imovel"><span class="mini">${ic(s.ic)}</span><div><b>${s.nome}</b><small>${s.cat} · ${precoTxt(s)}</small></div><div class="n">${s.procuras}<small>pedidos</small></div></div>`).join('');
+  $('#top-imoveis').innerHTML = lista.map(s => `<div class="top-imovel"><img src="${s.foto}" alt=""><div><b>${s.nome}</b><small>${s.cat} · ${precoTxt(s)}</small></div><div class="n">${s.procuras}<small>pedidos</small></div></div>`).join('');
 }
 
 /* ---------- Conversas ---------- */
@@ -442,7 +449,7 @@ function htmlMsg(m) {
   let corpo;
   if (m.serv) {
     const s = SERV[m.serv];
-    corpo = `<div class="imovel-msg"><div class="serv-foto">${ic(s.ic)}</div><div><b>${s.nome}</b><small>${s.cat} · ${s.dur}</small><small><b style="color:#111;display:inline">${precoTxt(s)}</b></small><span>${ic('calendar-check', 'ic-sm')}Agende por aqui mesmo</span></div></div>`;
+    corpo = `<div class="imovel-msg"><img src="${s.foto}" alt=""><div><b>${s.nome}</b><small>${s.cat} · ${s.dur}</small><small><b style="color:#111;display:inline">${precoTxt(s)}</b></small><span>${ic('calendar-check', 'ic-sm')}Agende por aqui mesmo</span></div></div>`;
   } else if (m.audio) {
     const r = semente(m.txt.length), ondas = Array.from({ length: 28 }, () => `<i style="height:${4 + Math.round(r() * 18)}px;animation-delay:${(r() * .8).toFixed(2)}s"></i>`).join('');
     corpo = `<div class="audio" data-dur="${m.audio}"><button class="play" aria-label="Tocar áudio">${ic('play')}</button><span class="ondas">${ondas}</span><span class="dur">${m.audio}</span>${m.de === 'ia' ? '<span class="foto">BV</span>' : ''}</div><div class="transc"><b>${m.de === 'cli' ? 'Transcrição' : 'Texto falado'}:</b> ${m.txt}</div>`;
@@ -574,7 +581,7 @@ function renderFollowups() {
 /* ---------- Serviços ---------- */
 function renderImoveis() {
   $('#imo-grade').innerHTML = Object.values(SERV).map(s => `
-    <div class="card imo"><div class="foto serv-foto">${ic(s.ic)}<span class="chip chip-ok">${ic('check')}Ativo</span><span class="ref">${s.cat}</span></div>
+    <div class="card imo"><div class="foto"><img src="${s.foto}" alt="${s.nome}" loading="lazy"><span class="chip chip-ok">${ic('check')}Ativo</span><span class="ref">${s.cat}</span></div>
     <div class="info"><b>${s.nome}</b><div class="preco">${precoTxt(s)}</div>
     <div class="specs"><span>${ic('clock-3', 'ic-sm')}${s.dur}</span></div>
     <div class="specs" style="margin-top:6px"><span>${ic('tag', 'ic-sm')}${s.extra}</span></div>
