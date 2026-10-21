@@ -430,6 +430,7 @@ footer img{width:64px;background:#0e0e13;border-radius:10px;padding:4px}
 .hero .pill .tile{width:28px;height:28px;border-radius:99px;background:var(--ink);display:grid;place-items:center;color:var(--gold-2)}
 .hero .pill .tile .ic{width:15px;height:15px}
 .wa-topo .foto{color:var(--gold-2);font-weight:800;font-size:13px}
+.wa-topo .foto img.logo{width:38px;height:38px}
 .wm .aud .fotinho{color:var(--gold-2);font-size:10px;font-weight:800}
 .wm .card-serv{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:8px;padding:8px;margin:2px -4px 4px;width:236px}
 .wm .card-serv .tile{width:54px;height:54px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#fbf3e2,#f1dcb3);color:var(--gold-deep);flex-shrink:0}
@@ -868,7 +869,7 @@ let NI = 'estetica';
 const audio = (dur, tr, dela) => `<span class="aud">${dela ? `<span class="fotinho">${NICHOS[NI].sigla}</span>` : ''}<svg class="ic"><use href="#i-play"/></svg><span class="ondas">${ondas(22)}</span><small style="font-size:10.5px;color:#667781">${dur}</small></span><span class="tr">${tr}</span>`;
 const card = (icone, titulo, info, valor) => `<span class="card-serv"><span class="tile"><svg class="ic"><use href="#i-${icone}"/></svg></span><span><b>${titulo}</b><small>${info}</small><i>${valor}</i></span></span>`;
 const NICHOS = {
-  estetica: { rotulo: 'Clínica e estética', icone: 'hand-heart', nome: 'Clínica Bella Vita', sigla: 'BV', hora: 'Domingo, 22h47',
+  estetica: { rotulo: 'Clínica e estética', icone: 'hand-heart', nome: 'Clínica Bella Vita', sigla: 'BV', logo: 'crm/img/logo-bella-vita.svg', hora: 'Domingo, 22h47',
     ficha: [['Cliente', 'Mariana'], ['Quer', 'Limpeza de pele'], ['Motivo', 'Casamento dia 15'], ['Pele', 'Oleosa, primeira vez'], ['Horário', 'Quinta, 18h30']],
     equipe: '<b>Agendada com a Paula.</b> A conversa e o resumo já estão no painel, e o lembrete sai sozinho na quarta.',
     roteiro: () => [
@@ -932,7 +933,7 @@ function preparaNicho() {
   const n = NICHOS[NI];
   ROTEIRO = n.roteiro();
   document.getElementById('wa-nome').textContent = n.nome;
-  document.getElementById('wa-foto').textContent = n.sigla;
+  document.getElementById('wa-foto').innerHTML = n.logo ? '<img class="logo" src="' + n.logo + '" alt="">' : n.sigla;
   document.getElementById('atend-hora').textContent = n.hora;
   document.getElementById('eq1-linhas').innerHTML = n.ficha.map(([a, b]) => `<div class="linha"><span>${a}</span><b>${b}</b></div>`).join('');
   document.getElementById('eq2-txt').innerHTML = n.equipe;

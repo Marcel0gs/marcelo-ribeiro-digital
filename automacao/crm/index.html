@@ -421,6 +421,7 @@ table.eq td.nome small{display:block;color:var(--muted);font-weight:600}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 .logo-demo{width:40px;height:40px;line-height:40px;text-align:center;border-radius:11px;background:linear-gradient(135deg,#ebb455,#b97a16);color:#0e0e13;font-weight:800;font-size:14px;flex-shrink:0}
 .marca .logo-demo{width:46px;height:46px;line-height:46px}
+img.logo-demo{background:none;padding:0;object-fit:contain}
 .serv-foto{position:relative;height:120px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fbf3e2,#f1dcb3);color:#8f5c0c}
 .serv-foto>.ic{width:46px;height:46px;stroke-width:1.6}
 .imovel-msg .serv-foto{height:84px}
@@ -435,7 +436,7 @@ table.eq td.nome small{display:block;color:var(--muted);font-weight:600}
 <div class="app">
   <aside class="lateral">
     <div class="marca">
-      <span class="logo-demo">BV</span>
+      <img class="logo-demo" src="img/logo-bella-vita.svg" alt="Clínica Bella Vita">
       <div><b>Clínica Bella Vita</b><small>Central de atendimento</small></div>
     </div>
     <a class="nav-item" href="#painel" data-v="painel"><svg class="ic"><use href="#i-layout-dashboard"/></svg>Painel</a>
@@ -454,7 +455,7 @@ table.eq td.nome small{display:block;color:var(--muted);font-weight:600}
 
   <div class="principal">
     <header class="topo">
-      <span class="marca-movel logo-demo">BV</span>
+      <img class="marca-movel logo-demo" src="img/logo-bella-vita.svg" alt="Clínica Bella Vita">
       <h1 id="titulo">Painel</h1>
       <span class="selo-demo">Dados de demonstração</span>
       <label class="busca"><svg class="ic ic-sm"><use href="#i-search"/></svg><input placeholder="Buscar cliente, serviço ou conversa"></label>
@@ -635,6 +636,6 @@ Se a cliente disser que já é cliente da casa, chamar pelo nome e perguntar com
 <div class="avisos" id="avisos"></div>
 
 <script src="../assets/icones.js?v=2"></script>
-<script src="crm.js?v=2"></script>
+<script src="crm.js?v=3"></script>
 </body>
 </html>
