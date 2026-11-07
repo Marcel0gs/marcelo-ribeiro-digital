@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sua plataforma de cursos · André Silva Teclas</title>
+<meta name="description" content="Apresentação: como montar a área de membros do André Silva Teclas, com checkout, aviso e video, no preço que ele pediu.">
+<meta name="theme-color" content="#1A110F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap">
+<style>
+  html, body { margin: 0; height: 100%; background: #1A110F; overflow: hidden; }
+  body { font-family: "Inter Tight", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  .palco { position: fixed; inset: 0; touch-action: pan-y; }
+  .tela { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+  /* o formato do deck não tem margem nenhuma e mede tudo com borda incluída */
+  .slide { position: absolute; inset: 0; width: 1920px; height: 1080px; box-sizing: border-box; overflow: hidden;
+    opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s; }
+  .slide.ativo { opacity: 1; visibility: visible; }
+  .slide * { margin: 0; box-sizing: border-box; }
+  .slide h1 { line-height: 1.1; } .slide h2 { line-height: 1.15; } .slide h3 { line-height: 1.2; } .slide p { line-height: 1.4; }
+  .slide svg { display: block; }
+  .barra { position: fixed; right: 16px; bottom: 16px; z-index: 5; display: flex; align-items: center; gap: 6px;
+    padding: 6px; border-radius: 999px; background: rgba(26, 17, 15, .72); color: #F7ECE0; font-size: 14px;
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  .barra button { width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; color: inherit; cursor: pointer;
+    display: grid; place-items: center; }
+  .barra button:hover, .barra button:focus-visible { background: rgba(247, 236, 224, .14); outline: none; }
+  .barra svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .barra span { min-width: 54px; text-align: center; font-variant-numeric: tabular-nums; }
+  .girar { display: none; position: fixed; left: 16px; right: 16px; top: 16px; z-index: 5; padding: 10px 14px; border-radius: 14px;
+    background: #E0A144; color: #1A110F; font-size: 14px; font-weight: 600; text-align: center; }
+  @media (orientation: portrait) and (max-width: 700px) { .girar { display: block; } }
+  @media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+</style>
+</head>
+<body>
+<p class="girar">Vire o celular de lado pra ver maior.</p>
+<main class="palco" aria-label="Sua plataforma de cursos">
+<div class="tela">
+<section class="slide" id="cover" aria-roledescription="slide" aria-roledescription="slide" data-transition="fade" style="background:#1A110F;color:#F7ECE0;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<svg aria-label="Teclas de piano" width="420" height="1080" viewBox="0 0 420 1080" style="position:absolute;left:1500px;top:0px;width:420px;height:1080px"><rect x="0" y="0" width="420" height="1080" fill="#2A1B17"/><rect x="0" y="0" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="90" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="180" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="270" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="360" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="450" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="540" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="630" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="720" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="810" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="900" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="990" width="420" height="90" fill="#F7ECE0"/><rect x="0" y="62" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="152" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="332" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="422" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="512" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="692" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="782" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="962" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="0" width="6" height="1080" fill="#E0A144"/></svg>
+<p style="font-size:26px;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:#E0A144">André Silva Teclas · Plataforma</p>
+<div style="display:flex;flex-direction:column;gap:40px;width:1240px">
+<h1 style="font-family:'Instrument Serif', Georgia, serif;font-size:190px;font-weight:400;line-height:0.95;color:#F7ECE0">Sua plataforma<br><span style="color:#E0A144"><i>de cursos.</i></span></h1>
+<p style="font-size:44px;line-height:1.35;color:#C2AB99;width:1100px">Um lugar só com os seus cursos, os seus avisos e os seus vídeos. Na sua marca, no seu endereço.</p>
+</div>
+<p style="font-size:26px;color:#C2AB99">Preparado por Marcelo Ribeiro · 7 de novembro de 2026</p>
+</section>
+<section class="slide" id="mapa" aria-roledescription="slide" aria-roledescription="slide" data-transition="fade" style="background:#EFE7DC;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:72px 100px;display:flex;flex-direction:column;gap:26px">
+<div style="display:flex;align-items:baseline;justify-content:space-between">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Como funciona</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:68px;font-weight:400;line-height:1.05">Do clique do aluno até o vídeo</h2>
+</div>
+<p style="font-size:23px;color:#6B5647;width:500px;line-height:1.4">A pessoa compra, o sistema libera o acesso, o aluno entra e assiste. Só isso.</p>
+</div>
+
+<div style="flex:1;display:flex;flex-direction:column;gap:18px">
+
+<div style="flex:1;display:flex;align-items:stretch;gap:14px">
+
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF9;border:2px solid #7A1F2B;border-radius:20px;padding:26px 28px">
+<div style="display:flex;align-items:center;gap:14px"><div style="width:48px;height:48px;border-radius:999px;background:#7A1F2B;display:flex;align-items:center;justify-content:center;flex-shrink:0"><p style="font-size:25px;font-weight:700;line-height:1;color:#F7ECE0">1</p></div><h3 style="font-size:29px;font-weight:600;line-height:1.2;color:#24150F">O aluno compra</h3></div>
+<p style="font-size:21px;line-height:1.4;color:#6B5647">Ele clica no curso no seu site e paga no checkout. Vem do seu anúncio, do seu Instagram ou do link que você mandou.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5"><p style="font-size:20px;color:#7A1F2B;font-weight:600">No seu site, no seu link</p></div>
+</div>
+
+<div style="display:flex;align-items:center;justify-content:center;width:34px;flex-shrink:0"><svg aria-label="Seta" width="32" height="22" viewBox="0 0 40 24" fill="none" stroke="#7A1F2B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h34"/><path d="m28 4 8 8-8 8"/></svg></div>
+
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF9;border:2px solid #7A1F2B;border-radius:20px;padding:26px 28px">
+<div style="display:flex;align-items:center;gap:14px"><div style="width:48px;height:48px;border-radius:999px;background:#7A1F2B;display:flex;align-items:center;justify-content:center;flex-shrink:0"><p style="font-size:25px;font-weight:700;line-height:1;color:#F7ECE0">2</p></div><h3 style="font-size:29px;font-weight:600;line-height:1.2;color:#24150F">O checkout cobra</h3></div>
+<p style="font-size:21px;line-height:1.4;color:#6B5647">Pix, boleto ou cartão. A plataforma avisa o seu sistema na hora que o pagamento cai.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5"><p style="font-size:20px;color:#7A1F2B;font-weight:600">O dinheiro entra na sua conta</p></div>
+</div>
+
+<div style="display:flex;align-items:center;justify-content:center;width:34px;flex-shrink:0"><svg aria-label="Seta" width="32" height="22" viewBox="0 0 40 24" fill="none" stroke="#7A1F2B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h34"/><path d="m28 4 8 8-8 8"/></svg></div>
+
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF9;border:1px solid #E2CFC5;border-radius:20px;padding:26px 28px">
+<div style="display:flex;align-items:center;gap:14px"><div style="width:48px;height:48px;border-radius:999px;background:#F1DCD8;display:flex;align-items:center;justify-content:center;flex-shrink:0"><p style="font-size:25px;font-weight:700;line-height:1;color:#7A1F2B">3</p></div><h3 style="font-size:29px;font-weight:600;line-height:1.2;color:#7A1F2B">Libera o acesso</h3></div>
+<p style="font-size:21px;line-height:1.4;color:#6B5647">Seu sistema cria o login do aluno e marca qual curso ele comprou. Ele recebe o e-mail com o código de entrada.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5"><svg aria-label="E-mail" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7A1F2B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;flex-shrink:0"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><p style="font-size:20px;color:#7A1F2B;font-weight:600">O único passo programado</p></div>
+</div>
+</div>
+
+<div style="flex:1;display:flex;align-items:stretch;gap:14px">
+
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF9;border:1px solid #E2CFC5;border-radius:20px;padding:26px 28px">
+<div style="display:flex;align-items:center;gap:14px"><div style="width:48px;height:48px;border-radius:999px;background:#F1DCD8;display:flex;align-items:center;justify-content:center;flex-shrink:0"><p style="font-size:25px;font-weight:700;line-height:1;color:#7A1F2B">4</p></div><h3 style="font-size:29px;font-weight:600;line-height:1.2;color:#7A1F2B">O aluno entra</h3></div>
+<p style="font-size:21px;line-height:1.4;color:#6B5647">Ele digita o e-mail e o código. A área abre na sua marca, no seu endereço, com o seu logo em cima.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5"><svg aria-label="Entrar" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7A1F2B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;flex-shrink:0"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/></svg><p style="font-size:20px;color:#7A1F2B;font-weight:600">No seu endereço, com o seu logo</p></div>
+</div>
+
+<div style="display:flex;align-items:center;justify-content:center;width:34px;flex-shrink:0"><svg aria-label="Seta" width="32" height="22" viewBox="0 0 40 24" fill="none" stroke="#7A1F2B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h34"/><path d="m28 4 8 8-8 8"/></svg></div>
+
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF9;border:1px solid #E2CFC5;border-radius:20px;padding:26px 28px">
+<div style="display:flex;align-items:center;gap:14px"><div style="width:48px;height:48px;border-radius:999px;background:#F1DCD8;display:flex;align-items:center;justify-content:center;flex-shrink:0"><p style="font-size:25px;font-weight:700;line-height:1;color:#7A1F2B">5</p></div><h3 style="font-size:29px;font-weight:600;line-height:1.2;color:#7A1F2B">O vídeo abre</h3></div>
+<p style="font-size:21px;line-height:1.4;color:#6B5647">A aula toca dentro da sua área. O aluno assiste na hora, sem sair da tela e sem abrir outro site.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5"><svg aria-label="Play" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7A1F2B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;flex-shrink:0"><polygon points="6 3 20 12 6 21 6 3"/></svg><p style="font-size:20px;color:#7A1F2B;font-weight:600">No player que ele já conhece</p></div>
+</div>
+
+<div style="display:flex;align-items:center;justify-content:center;width:34px;flex-shrink:0"><svg aria-label="Seta" width="32" height="22" viewBox="0 0 40 24" fill="none" stroke="#7A1F2B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h34"/><path d="m28 4 8 8-8 8"/></svg></div>
+
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#F3E3C6;border:1px solid #E0A144;border-radius:20px;padding:26px 28px">
+<div style="display:flex;align-items:center;gap:14px"><div style="width:48px;height:48px;border-radius:999px;background:#E0A144;display:flex;align-items:center;justify-content:center;flex-shrink:0"><p style="font-size:25px;font-weight:700;line-height:1;color:#1A110F">6</p></div><h3 style="font-size:29px;font-weight:600;line-height:1.2;color:#24150F">Você posta</h3></div>
+<p style="font-size:21px;line-height:1.4;color:#5A4536">Avise de aula nova, de live, de material novo. Na mesma tela em que o aluno assiste.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E0A144"><svg aria-label="Sino" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A110F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;flex-shrink:0"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg><p style="font-size:20px;color:#5A4536;font-weight:600">Você escreve, o aluno vê</p></div>
+</div>
+</div>
+</div>
+
+<p style="font-size:23px;line-height:1.4;color:#5A4536;background:#FFFDF9;border-left:5px solid #7A1F2B;padding:18px 26px;border-radius:0 16px 16px 0">O passo 3 é o único que precisa de programação. Se você já usa Hotmart, ele já faz esse passo sozinho.</p>
+</section>
+<section class="slide" id="checkouts" aria-roledescription="slide" aria-roledescription="slide" data-transition="fade" style="background:#F8F2E9;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:80px 100px;display:flex;flex-direction:column;gap:34px">
+<div style="display:flex;align-items:baseline;justify-content:space-between">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Onde o dinheiro entra</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:68px;font-weight:400;line-height:1.05">Checkout: quem cobra e quanto fica</h2>
+</div>
+<p style="font-size:23px;color:#6B5647;width:520px;line-height:1.4">A taxa é só por venda aprovada. Hotmart, Eduzz, Kirvano e Kiwify não cobram assinatura nenhuma.</p>
+</div>
+<div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:20px">
+
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF9;border:2px solid #7A1F2B;border-radius:18px;padding:26px 30px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px"><h3 style="font-size:32px;font-weight:600;line-height:1.2">Yampi</h3><p style="font-size:24px;font-weight:600;color:#7A1F2B;background:#F1DCD8;padding:6px 18px;border-radius:999px">2,5%</p></div>
+<p style="font-size:21px;color:#6B5647;line-height:1.4">Plano Basic é grátis. Cartão transparente, checkout na sua marca.</p>
+<p style="font-size:21px;color:#6B5647;line-height:1.4">Uma venda aprovada de R$ 49,90 sai R$ 1,25. Se não vende, não sai nada da conta.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5"><svg aria-label="Certo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7A1F2B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><p style="font-size:21px;color:#5A4536">O mais barato de todos</p></div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF9;border:2px solid #7A1F2B;border-radius:18px;padding:26px 30px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px"><h3 style="font-size:32px;font-weight:600;line-height:1.2">Hotmart</h3><p style="font-size:24px;font-weight:600;color:#7A1F2B;background:#F1DCD8;padding:6px 18px;border-radius:999px">9,9% + R$ 2,49</p></div>
+<p style="font-size:21px;color:#6B5647;line-height:1.4">Você já usa. Traz o Hotmart Player e a área de membros inclusa.</p>
+<p style="font-size:21px;color:#6B5647;line-height:1.4">A mesma venda de R$ 49,90 sai R$ 7,44. Sem mensalidade, mas a taxa é a mais alta da lista.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5"><svg aria-label="Certo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7A1F2B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><p style="font-size:21px;color:#5A4536">Seu checkout hoje já é esse</p></div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF9;border:1px solid #E2CFC5;border-radius:18px;padding:26px 30px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px"><h3 style="font-size:32px;font-weight:600;line-height:1.2">Eduzz</h3><p style="font-size:24px;font-weight:600;color:#7A1F2B">4,90% + R$ 2,49</p></div>
+<p style="font-size:21px;color:#6B5647;line-height:1.4">Em venda de até R$ 30 a taxa percentual some e sobra só o R$ 2,49 fixo.</p>
+<p style="font-size:21px;color:#6B5647;line-height:1.4">Seu curso de R$ 29,90 entra nessa regra. O de R$ 49,99 paga a taxa cheia.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5"><p style="font-size:21px;color:#5A4536">Cai no seu orçamento de hoje</p></div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF9;border:1px solid #E2CFC5;border-radius:18px;padding:26px 30px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px"><h3 style="font-size:32px;font-weight:600;line-height:1.2">Kirvano</h3><p style="font-size:24px;font-weight:600;color:#7A1F2B">7,49% + R$ 2,00</p></div>
+<p style="font-size:21px;color:#6B5647;line-height:1.4">Área de membros com vídeo, turmas e certificado. O comprador paga R$ 0,99 de taxa de serviço.</p>
+<p style="font-size:21px;color:#6B5647;line-height:1.4">É a mais completa em comunidade e a que mais atrasa o repasse: 80% só chega 15 dias depois.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5"><p style="font-size:21px;color:#5A4536">Comunidade e venda de curso</p></div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF9;border:1px solid #E2CFC5;border-radius:18px;padding:26px 30px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px"><h3 style="font-size:32px;font-weight:600;line-height:1.2">Kiwify</h3><p style="font-size:24px;font-weight:600;color:#7A1F2B">8,99% + R$ 2,49</p></div>
+<p style="font-size:21px;color:#6B5647;line-height:1.4">Vídeo hospedado de graça na área de membros. Saque custa R$ 3,67.</p>
+<p style="font-size:21px;color:#6B5647;line-height:1.4">Você monta a página de venda e a área sai pronta, sem mexer em código.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5"><p style="font-size:21px;color:#5A4536">Área pronta, com vídeo incluso</p></div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px;background:#F3E3C6;border:1px solid #E0A144;border-radius:18px;padding:26px 30px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px"><h3 style="font-size:32px;font-weight:600;line-height:1.2">Cartpanda</h3><p style="font-size:24px;font-weight:600;color:#24150F">2,5% + R$ 4,99/mês</p></div>
+<p style="font-size:21px;color:#5A4536;line-height:1.4">Mesma taxa da Yampi no plano Light, mas com assinatura. E não tem área de membros de curso: precisa do Memberkit, a partir de R$ 197 por mês.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #E0A144"><p style="font-size:21px;color:#5A4536">Fora da conta pra esse caso</p></div>
+</div>
+</div>
+<p style="font-size:22px;line-height:1.4;color:#5A4536;background:#FFFDF9;border-left:5px solid #E0A144;padding:16px 24px;border-radius:0 14px 14px 0">Nas suas vendas de R$ 29,90 a R$ 79,99, o Yampi tira R$ 0,75 a R$ 2,00. A Hotmart tira R$ 5,45 a R$ 10,41.</p>
+</section>
+<section class="slide" id="custo" aria-roledescription="slide" aria-roledescription="slide" data-transition="fade" style="background:#7A1F2B;color:#F7ECE0;font-family:'Inter Tight', Arial, sans-serif;padding:88px 110px;display:flex;flex-direction:column;justify-content:space-between;gap:40px">
+<p style="font-size:24px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#F3E3C6">A conta de verdade</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:84px;font-weight:400;line-height:1.05">O que sai do seu bolso todo mês</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#F7ECE0;color:#24150F;border-radius:20px;padding:34px 36px">
+<p style="font-size:22px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#7A1F2B">A área</p>
+<p style="font-family:'Instrument Serif', Georgia, serif;font-size:76px;line-height:1;color:#7A1F2B">R$ 0</p>
+<p style="font-size:24px;line-height:1.4;color:#5A4536">Servidor, banco e login no plano grátis do Cloudflare. O mesmo que roda o seu painel hoje.</p>
+<p style="font-size:24px;line-height:1.4;color:#5A4536">A área de membros, o login por código e os avisos saem de graça.</p>
+<div style="margin-top:auto;padding-top:16px;border-top:1px solid #E2CFC5"><p style="font-size:21px;color:#7A1F2B;font-weight:600">Nunca vai pra conta</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#F7ECE0;color:#24150F;border-radius:20px;padding:34px 36px">
+<p style="font-size:22px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#7A1F2B">O vídeo</p>
+<p style="font-family:'Instrument Serif', Georgia, serif;font-size:76px;line-height:1;color:#7A1F2B">R$ 0</p>
+<p style="font-size:24px;line-height:1.4;color:#5A4536">No YouTube, em vídeo que só aparece pra quem tem o link. Ou no Bunny, com trava de verdade e um servidor no Brasil.</p>
+<p style="font-size:24px;line-height:1.4;color:#5A4536">Se um dia a venda subir e o curso virar R$ 500, aí sim compensa travar.</p>
+<div style="margin-top:auto;padding-top:16px;border-top:1px solid #E2CFC5"><p style="font-size:21px;color:#7A1F2B;font-weight:600">Só o Bunny cobra</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#F3E3C6;color:#24150F;border-radius:20px;padding:34px 36px">
+<p style="font-size:22px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#7A1F2B">A venda</p>
+<p style="font-family:'Instrument Serif', Georgia, serif;font-size:76px;line-height:1;color:#7A1F2B">2,5%</p>
+<p style="font-size:24px;line-height:1.4;color:#5A4536">Só a taxa do checkout, e só quando alguém compra. Nenhuma mensalidade.</p>
+<p style="font-size:24px;line-height:1.4;color:#5A4536">Numa venda de R$ 49,99, isso dá R$ 1,25. Numa de R$ 29,90, R$ 0,75.</p>
+<div style="margin-top:auto;padding-top:16px;border-top:1px solid #E0A144"><p style="font-size:21px;color:#5A4536;font-weight:600">Só quando vende</p></div>
+</div>
+</div>
+<p style="font-size:34px;line-height:1.45;color:#F1DCD8;width:1340px">O plano todo sai de graça, tirando a taxa do checkout. Você não paga nada por ter a plataforma no ar.</p>
+</section>
+<section class="slide" id="video" aria-roledescription="slide" aria-roledescription="slide" data-transition="fade" style="background:#EFE7DC;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:76px 100px;display:flex;flex-direction:column;gap:30px">
+<div style="display:flex;align-items:baseline;justify-content:space-between">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">Onde o vídeo mora</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:66px;font-weight:400;line-height:1.05">Quatro maneiras de guardar suas aulas</h2>
+</div>
+<p style="font-size:23px;color:#6B5647;width:500px;line-height:1.4">O vídeo não fica no seu site. Ele fica em um serviço de vídeo, e o seu site só mostra.</p>
+</div>
+<div style="flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+
+<div style="display:flex;flex-direction:column;gap:14px;background:#7A1F2B;color:#F7ECE0;border-radius:20px;padding:28px 26px">
+<p style="font-size:20px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#F3E3C6">Recomendado</p>
+<h3 style="font-size:34px;font-weight:600;line-height:1.15">YouTube</h3>
+<p style="font-size:21px;line-height:1.45;color:#F1DCD8">Você sobe cada aula no seu canal e marca como "não listado". O aluno assiste pelo player do YouTube, dentro da sua área.</p>
+<p style="font-size:21px;line-height:1.45;color:#F1DCD8">O canal já é seu, já tem 7,79 mil inscritos e já publica. Não é começar do zero.</p>
+<p style="font-size:21px;line-height:1.45;color:#F1DCD8">Uma playlist por curso. O aluno entra pelo módulo 1 e não precisa procurar link nenhum.</p>
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:14px;border-top:1px solid rgba(247,236,224,.28)">
+<p style="font-size:21px;color:#F3E3C6">R$ 0 por mês</p>
+<p style="font-size:20px;color:#E8B4B4;line-height:1.4">Sem limite de quantidade nem de tempo</p>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px;background:#FFFDF9;border:1px solid #E2CFC5;border-radius:20px;padding:28px 26px">
+<p style="font-size:20px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#6B5647">Se quiser travar</p>
+<h3 style="font-size:34px;font-weight:600;line-height:1.15">Bunny Stream</h3>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">Vídeo só abre com o seu sistema autorizando. Não sai do domínio e não baixa. Servido de São Paulo, sem custo extra de banda.</p>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">Serve quando o curso passa de R$ 300 e a cópia vira prejuízo maior que a mensalidade.</p>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">O player só abre depois que o seu sistema confirma a compra. Repassar o link não abre nada.</p>
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5">
+<p style="font-size:21px;font-weight:600;color:#24150F">US$ 1 por mês + o uso</p>
+<p style="font-size:20px;color:#6B5647;line-height:1.4">Dá uns US$ 8 a US$ 27 com 50 a 200 alunos</p>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px;background:#FFFDF9;border:1px solid #E2CFC5;border-radius:20px;padding:28px 26px">
+<p style="font-size:20px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#6B5647">Junto do checkout</p>
+<h3 style="font-size:34px;font-weight:600;line-height:1.15">Hotmart, Kiwify, Kirvano</h3>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">Você sobe o vídeo no painel da plataforma e ele aparece na área de membros delas. Só que a área não fica na sua marca.</p>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">Nada é zerado: a plataforma já cobra a taxa e já entrega o vídeo. Você só não manda na aparência.</p>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">O aluno entra no endereço da plataforma. O endereço é deles, não o seu.</p>
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:14px;border-top:1px solid #E2CFC5">
+<p style="font-size:21px;font-weight:600;color:#24150F">Incluído na taxa</p>
+<p style="font-size:20px;color:#6B5647;line-height:1.4">Você não controla o visual</p>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px;background:#F3E3C6;border:1px solid #E0A144;border-radius:20px;padding:28px 26px">
+<p style="font-size:20px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#8A6420">Se o vídeo for grande</p>
+<h3 style="font-size:34px;font-weight:600;line-height:1.15">Cloudflare R2</h3>
+<p style="font-size:21px;line-height:1.45;color:#5A4536">Guardo o arquivo você mesmo e sirvo pelo seu servidor, com senha. Saída de banda não cobra nada.</p>
+<p style="font-size:21px;line-height:1.45;color:#5A4536">As suas 150 aulas de 15 minutos ocupam 22,5 GB. O plano grátis tem 10 GB, então passa um pouco.</p>
+<p style="font-size:21px;line-height:1.45;color:#5A4536">O custo é sempre o mesmo, não importa quantos alunos assistem nem quantas vezes.</p>
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:14px;border-top:1px solid #E0A144">
+<p style="font-size:21px;font-weight:600;color:#24150F">10 GB de graça, o resto US$ 0,19</p>
+<p style="font-size:20px;color:#5A4536;line-height:1.4">Passa de 10 GB, aparece uma mensalidade pequena</p>
+</div>
+</div>
+</div>
+<p style="font-size:22px;line-height:1.4;color:#5A4536;background:#FFFDF9;border-left:5px solid #7A1F2B;padding:16px 24px;border-radius:0 14px 14px 0">Com 5 cursos e 150 aulas de 15 minutos, o Cloudflare dá conta de sobra. O limite de 100 mil requisições por dia aguenta 200 alunos assistindo tudo no mesmo dia, desde que o vídeo venha direto do armazenamento e passe só pelo seu sistema a hora de liberar a aula.</p>
+</section>
+<section class="slide" id="risco" aria-roledescription="slide" aria-roledescription="slide" data-transition="fade" style="background:#1A110F;color:#F7ECE0;font-family:'Inter Tight', Arial, sans-serif;padding:88px 110px;display:flex;flex-direction:column;justify-content:space-between;gap:40px">
+<svg aria-label="Teclas de piano" width="420" height="1080" viewBox="0 0 420 1080" style="position:absolute;left:1500px;top:0px;width:420px;height:1080px"><rect x="0" y="0" width="420" height="1080" fill="#2A1B17"/><rect x="0" y="0" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="90" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="180" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="270" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="360" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="450" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="540" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="630" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="720" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="810" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="900" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="990" width="420" height="90" fill="#F7ECE0"/><rect x="0" y="62" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="152" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="332" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="422" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="512" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="692" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="782" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="962" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="0" width="6" height="1080" fill="#E0A144"/></svg>
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#E0A144">Sem rodear</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:76px;font-weight:400;line-height:1.05;width:1340px">Se o vídeo fica no YouTube, ele <span style="color:#E0A144"><i>pode ser copiado.</i></span></h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1340px">
+<div style="display:flex;flex-direction:column;gap:20px;background:#2A1B17;border:1px solid #4A322A;border-radius:20px;padding:34px 36px">
+<h3 style="font-size:32px;font-weight:600;line-height:1.2;color:#E0A144">O que dá pra fazer com o vídeo</h3>
+<div style="display:flex;align-items:flex-start;gap:14px"><svg aria-label="Aviso" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E0A144" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px;flex-shrink:0"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><p style="font-size:25px;line-height:1.45;color:#C2AB99">Baixar o arquivo do vídeo é fácil. Existe ferramenta pra isso e sempre vai existir.</p></div>
+<div style="display:flex;align-items:flex-start;gap:14px"><svg aria-label="Aviso" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E0A144" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px;flex-shrink:0"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><p style="font-size:25px;line-height:1.45;color:#C2AB99">Aluno pode repassar o link. "Não listado" não impede, só esconde da busca.</p></div>
+<div style="display:flex;align-items:flex-start;gap:14px"><svg aria-label="Aviso" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E0A144" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px;flex-shrink:0"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><p style="font-size:25px;line-height:1.45;color:#C2AB99">Alguém pode vender a aula por fora, mais barato, e você não recebe nada disso.</p></div>
+<div style="margin-top:auto;padding-top:18px;border-top:1px solid #4A322A"><p style="font-size:22px;line-height:1.4;color:#8A6E5E">Isso não se resolve com senha no vídeo. Nenhuma trava no player segura um arquivo que já chegou no computador.</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;background:#F3E3C6;color:#24150F;border-radius:20px;padding:34px 36px">
+<h3 style="font-size:32px;font-weight:600;line-height:1.2">O que a trava resolve</h3>
+<div style="display:flex;align-items:flex-start;gap:14px"><svg aria-label="Certo" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7A1F2B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px;flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><p style="font-size:25px;line-height:1.45;color:#5A4536">O vídeo não aparece pra quem não comprou. Sem o código, não tem link.</p></div>
+<div style="display:flex;align-items:flex-start;gap:14px"><svg aria-label="Certo" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7A1F2B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px;flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><p style="font-size:25px;line-height:1.45;color:#5A4536">Cada aluno vê só os cursos que comprou. Isso não tem como furar.</p></div>
+<div style="display:flex;align-items:flex-start;gap:14px"><svg aria-label="Certo" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7A1F2B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px;flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><p style="font-size:25px;line-height:1.45;color:#5A4536">Sua marca, seu endereço, seus avisos. Isso é seu de todo jeito.</p></div>
+<div style="margin-top:auto;padding-top:18px;border-top:1px solid #E0A144"><p style="font-size:22px;line-height:1.4;color:#5A4536">A trava não impede o aluno de gravar a tela. Ela impede o link de circular, que é o que estraga a venda.</p></div>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.45;color:#C2AB99;width:1340px">A escolha é sua. Se o curso vale R$ 29,90, o YouTube é a conta certa. Se um dia valer R$ 300, o Bunny resolve. Dá pra trocar depois sem refazer nada.</p>
+</section>
+<section class="slide" id="plano" aria-roledescription="slide" aria-roledescription="slide" data-transition="fade" style="background:#F8F2E9;color:#24150F;font-family:'Inter Tight', Arial, sans-serif;padding:80px 100px;display:flex;flex-direction:column;gap:34px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#7A1F2B">O que eu sugiro</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:70px;font-weight:400;line-height:1.05">A rota mais barata que já está testada</h2>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+
+<div style="display:flex;flex-direction:column;gap:14px;background:#FFFDF9;border:1px solid #E2CFC5;border-radius:20px;padding:28px 26px">
+<div style="width:46px;height:46px;border-radius:999px;background:#7A1F2B;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;font-weight:700;line-height:1;color:#F7ECE0">1</p></div>
+<h3 style="font-size:29px;font-weight:600;line-height:1.2">Checkout no Yampi</h3>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">Plano Basic, 2,5%, sem mensalidade. Cartão com a sua cara e o seu endereço.</p>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">Você só paga a taxa quando vende. Sem venda, não sai nada.</p>
+<p style="font-size:20px;color:#7A1F2B;margin-top:auto;padding-top:12px">Custa R$ 0 pra começar</p>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px;background:#FFFDF9;border:1px solid #E2CFC5;border-radius:20px;padding:28px 26px">
+<div style="width:46px;height:46px;border-radius:999px;background:#7A1F2B;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;font-weight:700;line-height:1;color:#F7ECE0">2</p></div>
+<h3 style="font-size:29px;font-weight:600;line-height:1.2">Aulas no YouTube</h3>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">Cada aula como "não listado" no seu canal. Uma playlist por curso.</p>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">O canal que você já tem, sem criar conta nova nem mexer no que está publicado.</p>
+<p style="font-size:20px;color:#7A1F2B;margin-top:auto;padding-top:12px">Custa R$ 0 pra sempre</p>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px;background:#FFFDF9;border:1px solid #E2CFC5;border-radius:20px;padding:28px 26px">
+<div style="width:46px;height:46px;border-radius:999px;background:#7A1F2B;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;font-weight:700;line-height:1;color:#F7ECE0">3</p></div>
+<h3 style="font-size:29px;font-weight:600;line-height:1.2">Área no seu domínio</h3>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">Login por e-mail e código, lista de cursos, avisos e posts. Mesmo servidor do seu painel.</p>
+<p style="font-size:21px;line-height:1.45;color:#6B5647">O mesmo painel de hoje, com uma aba a mais. Nada de sistema novo pra aprender.</p>
+<p style="font-size:20px;color:#7A1F2B;margin-top:auto;padding-top:12px">Custa R$ 0 pra sempre</p>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px;background:#F3E3C6;border:1px solid #E0A144;border-radius:20px;padding:28px 26px">
+<div style="width:46px;height:46px;border-radius:999px;background:#E0A144;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;font-weight:700;line-height:1;color:#1A110F">4</p></div>
+<h3 style="font-size:29px;font-weight:600;line-height:1.2">Você controla</h3>
+<p style="font-size:21px;line-height:1.45;color:#5A4536">Posta aviso, sobe aula nova, arrasta a ordem dos cursos. Do painel, no celular.</p>
+<p style="font-size:21px;line-height:1.45;color:#5A4536">Você me manda a lista uma vez. Depois disso, quem publica é você, sem me acionar.</p>
+<p style="font-size:20px;color:#5A4536;margin-top:auto;padding-top:12px">Você no comando</p>
+</div>
+</div>
+<div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:4px">
+<div style="display:flex;flex-direction:column;justify-content:center;gap:14px;background:#FFFDF9;border-left:5px solid #7A1F2B;padding:26px 30px;border-radius:0 16px 16px 0">
+<h3 style="font-size:29px;font-weight:600;line-height:1.2">O que fica pronto</h3>
+<p style="font-size:22px;line-height:1.45;color:#6B5647">Página de entrada, login, lista de cursos, player da aula, aviso de compra por e-mail e aviso de aula nova. Você não escreve código.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px;padding-top:4px">
+<span style="font-size:19px;color:#7A1F2B;background:#F1DCD8;padding:7px 14px;border-radius:999px">Página de entrada</span>
+<span style="font-size:19px;color:#7A1F2B;background:#F1DCD8;padding:7px 14px;border-radius:999px">Login por código</span>
+<span style="font-size:19px;color:#7A1F2B;background:#F1DCD8;padding:7px 14px;border-radius:999px">Lista de cursos</span>
+<span style="font-size:19px;color:#7A1F2B;background:#F1DCD8;padding:7px 14px;border-radius:999px">Player da aula</span>
+<span style="font-size:19px;color:#7A1F2B;background:#F1DCD8;padding:7px 14px;border-radius:999px">E-mail de compra</span>
+<span style="font-size:19px;color:#7A1F2B;background:#F1DCD8;padding:7px 14px;border-radius:999px">Aviso de aula nova</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;justify-content:center;gap:14px;background:#FFFDF9;border-left:5px solid #E0A144;padding:26px 30px;border-radius:0 16px 16px 0">
+<h3 style="font-size:29px;font-weight:600;line-height:1.2">O que você me passa</h3>
+<p style="font-size:22px;line-height:1.45;color:#6B5647">Os links das aulas no YouTube e o endereço da conta no Yampi. O resto eu monto e deixo pronto pra você usar.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px;padding-top:4px">
+<span style="font-size:19px;color:#8A6420;background:#F3E3C6;padding:7px 14px;border-radius:999px">Links das aulas</span>
+<span style="font-size:19px;color:#8A6420;background:#F3E3C6;padding:7px 14px;border-radius:999px">Endereço da conta no Yampi</span>
+<span style="font-size:19px;color:#8A6420;background:#F3E3C6;padding:7px 14px;border-radius:999px">Lista dos cursos</span>
+</div>
+</div>
+</div>
+</section>
+<section class="slide" id="fim" aria-roledescription="slide" aria-roledescription="slide" data-transition="fade" style="background:#1A110F;color:#F7ECE0;font-family:'Inter Tight', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:44px">
+<svg aria-label="Teclas de piano" width="420" height="1080" viewBox="0 0 420 1080" style="position:absolute;left:1500px;top:0px;width:420px;height:1080px"><rect x="0" y="0" width="420" height="1080" fill="#2A1B17"/><rect x="0" y="0" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="90" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="180" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="270" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="360" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="450" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="540" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="630" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="720" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="810" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="900" width="420" height="88" fill="#F7ECE0"/><rect x="0" y="990" width="420" height="90" fill="#F7ECE0"/><rect x="0" y="62" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="152" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="332" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="422" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="512" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="692" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="782" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="962" width="250" height="56" rx="6" fill="#120B09"/><rect x="0" y="0" width="6" height="1080" fill="#E0A144"/></svg>
+<p style="font-size:26px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#E0A144">Próximo passo</p>
+<h2 style="font-family:'Instrument Serif', Georgia, serif;font-size:120px;font-weight:400;line-height:1.02;width:1240px">Se topou, <span style="color:#E0A144"><i>eu monto.</i></span></h2>
+<p style="font-size:38px;line-height:1.45;color:#C2AB99;width:1100px">Começo pela área de membros com um curso de teste. Você vê no celular como fica, e a partir daí a gente coloca os outros.</p>
+<a href="plataforma-resumo.pdf" download style="display:inline-flex;align-items:center;gap:14px;background:#F3E3C6;color:#1A110F;font-size:28px;font-weight:600;padding:16px 28px;border-radius:999px;text-decoration:none;align-self:flex-start"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A110F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>Resumo em PDF pra levar e ler</a>
+<p style="font-size:40px;line-height:1.4;color:#C2AB99">Marcelo Ribeiro · WhatsApp (31) 99504-5274</p>
+</section>
+</div>
+</main>
+<nav class="barra" aria-label="Navegação">
+  <button type="button" data-ir="-1" aria-label="Slide anterior"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+  <span data-contador aria-live="polite"></span>
+  <button type="button" data-ir="1" aria-label="Próximo slide"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+  <button type="button" data-tela-cheia aria-label="Tela cheia"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
+</nav>
+<script>
+(function () {
+  "use strict";
+  var palco = document.querySelector(".palco");
+  var tela = document.querySelector(".tela");
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var contador = document.querySelector("[data-contador]");
+  var atual = 0;
+
+  function escalar() {
+    var s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    var x = (innerWidth - 1920 * s) / 2, y = (innerHeight - 1080 * s) / 2;
+    tela.style.transform = "translate(" + x + "px," + y + "px) scale(" + s + ")";
+  }
+  function mostrar(n, semHistorico) {
+    atual = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (sl, i) { sl.classList.toggle("ativo", i === atual); sl.setAttribute("aria-hidden", i === atual ? "false" : "true"); });
+    contador.textContent = (atual + 1) + " / " + slides.length;
+    if (!semHistorico) history.replaceState(null, "", "#" + (atual + 1));
+  }
+  function ir(d) { mostrar(atual + d); }
+
+  addEventListener("resize", escalar);
+  addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") { e.preventDefault(); ir(1); }
+    else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); ir(-1); }
+    else if (e.key === "Home") mostrar(0);
+    else if (e.key === "End") mostrar(slides.length - 1);
+  });
+  document.querySelectorAll("[data-ir]").forEach(function (b) {
+    b.addEventListener("click", function (e) { e.stopPropagation(); ir(+b.getAttribute("data-ir")); });
+  });
+  var cheia = document.querySelector("[data-tela-cheia]");
+  if (!document.documentElement.requestFullscreen) cheia.hidden = true;
+  cheia.addEventListener("click", function (e) {
+    e.stopPropagation();
+    if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(function () {});
+  });
+  // toque: arrastar pro lado troca; tocar na metade direita avança, na esquerda volta
+  var x0 = null, y0 = null;
+  palco.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  palco.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) ir(dx < 0 ? 1 : -1);
+    x0 = null;
+  });
+  palco.addEventListener("click", function (e) {
+    if (e.target.closest("a")) return;
+    ir(e.clientX > innerWidth / 2 ? 1 : -1);
+  });
+
+  addEventListener("hashchange", function () {
+    var h = parseInt(location.hash.slice(1), 10);
+    if (!isNaN(h) && h - 1 !== atual) mostrar(h - 1, true);
+  });
+
+  escalar();
+  var n = parseInt(location.hash.slice(1), 10);
+  mostrar(isNaN(n) ? 0 : n - 1, true);
+})();
+</script>
+</body>
+</html>

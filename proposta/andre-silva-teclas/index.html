@@ -63,6 +63,9 @@ code{font:600 .9em var(--sans);color:var(--tinta);background:var(--ambar-fundo);
 .cartao h2 b{font-family:var(--sans);font-weight:800;font-size:.78em;color:var(--vinho);word-break:break-word}
 .cartao p{color:var(--suave);font-size:.95rem}
 .cartao--tempo .cartao__ico{background:var(--vinho-fundo)}
+.cartao--plataforma{grid-template-columns:auto 1fr;align-items:start}
+.cartao--plataforma .cartao__ico{grid-row:span 3;align-self:center}
+.cartao--plataforma .acoes{grid-column:2;margin-top:12px}
 
 /* seções */
 .secao{display:grid;gap:16px}
@@ -216,6 +219,18 @@ code{font:600 .9em var(--sans);color:var(--tinta);background:var(--ambar-fundo);
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Relatório todo mês, no WhatsApp.</b> <span>Quem achou o site no Google e por quais buscas, e quantos chamaram no WhatsApp ou foram pro checkout.</span></p></li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><p><b>Site sempre no ar.</b> <span>Endereço, cadeado e pequenos ajustes de texto, preço e link.</span></p></li>
     </ul>
+  </section>
+
+  <section class="cartao cartao--plataforma" aria-labelledby="t-plataforma">
+    <span class="cartao__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h20v14H2z"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="m10 8 5 3-5 3z"/></svg></span>
+    <h2 id="t-plataforma">A plataforma de cursos, <b>pronta pra mostrar</b></h2>
+    <p>A apresentação mostra como fica a área de membros com seus cursos, seus avisos e seus vídeos, na sua marca e no seu endereço, e o que cada checkout cobra. O resumo em PDF é o mesmo conteúdo em quatro páginas, com o mapa mental, pra ler com calma.</p>
+    <div class="acoes">
+      <a class="btn btn--linha" href="plataforma/">Ver a apresentação
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      <a class="btn btn--linha" href="plataforma/plataforma-resumo.pdf">Resumo em PDF
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg></a>
+    </div>
   </section>
 
   <footer class="fecho">
