@@ -51,6 +51,42 @@
     t.querySelectorAll(".palavra").forEach(function (p) { p.setAttribute("aria-hidden", "true"); });
   });
 
+  // NÚMEROS: contam de zero até o valor do HTML quando a faixa entra na tela,
+  // um atrás do outro. A largura final fica reservada pra o "%" não andar.
+  var numeros = document.querySelector("[data-numeros]");
+  if (numeros && !reduzido && "IntersectionObserver" in window) {
+    var itens = Array.prototype.slice.call(numeros.querySelectorAll("li"));
+    itens.forEach(function (li) {
+      var n = li.querySelector("[data-conta]");
+      n.style.display = "inline-block";
+      // dígito tabular = 1ch; o .05em é o letter-spacing negativo do número
+      var dig = n.textContent.trim().length;
+      n.style.minWidth = "calc(" + dig + "ch - " + (dig * 0.05).toFixed(2) + "em)";
+      n.textContent = "0";
+      li.style.setProperty("--p", 0);
+    });
+    var contar = function (li, atraso) {
+      var n = li.querySelector("[data-conta]");
+      var fim = parseInt(n.getAttribute("data-conta"), 10);
+      var dur = 1900, inicio = null;
+      var passo = function (t) {
+        if (inicio === null) inicio = t;
+        var x = Math.min(1, Math.max(0, (t - inicio) / dur));
+        var e = x === 1 ? 1 : 1 - Math.pow(2, -10 * x);   // sai rápido e assenta devagar
+        n.textContent = Math.round(fim * e);
+        li.style.setProperty("--p", e.toFixed(3));
+        if (x < 1) requestAnimationFrame(passo);
+      };
+      setTimeout(function () { requestAnimationFrame(passo); }, atraso);
+    };
+    var ioNum = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      ioNum.disconnect();
+      itens.forEach(function (li, i) { contar(li, i * 180); });
+    }, { threshold: 0.35 });
+    ioNum.observe(numeros);
+  }
+
   var alvos = document.querySelectorAll("[data-revela], [data-palavras]:not(.hero__titulo)");
   if ("IntersectionObserver" in window && !reduzido) {
     var io = new IntersectionObserver(function (entradas) {
@@ -368,36 +404,57 @@
   }
 
   /* ---------------------------------------------------------------- *
-   * BANNER DA AUTOMAÇÃO: a conversa no celular. A assistente "digita"
-   * antes de cada resposta; no fim, o horário marcado vai pra equipe.
+   * BANNER DA AUTOMAÇÃO: a conversa no celular. Abre já preenchida
+   * (a conversa de sábado), e a de domingo roda sozinha: a assistente
+   * "digita" antes de cada resposta e os cartões em volta do celular
+   * aparecem junto. Quando o visitante toca numa pergunta pronta, o
+   * loop para de vez e o celular passa a responder a ele.
    * ---------------------------------------------------------------- */
   var chat = document.querySelector("[data-chat]");
   if (chat) {
     var corpo = chat.querySelector("[data-chat-corpo]");
     var statusChat = chat.querySelector("[data-chat-status]");
+    var perguntas = chat.querySelector("[data-chat-perguntas]");
+    var selos = Array.prototype.slice.call(document.querySelectorAll("[data-selo]"));
+    var LINK_ZAP = "https://wa.me/5531995045274?text=Ol%C3%A1%2C%20Marcelo%21%20Testei%20a%20assistente%20no%20seu%20site%20e%20quero%20uma%20assim%20no%20WhatsApp%20da%20minha%20empresa.";
+    var ANTES = [
+      { de: "dia", txt: "Sábado" },
+      { de: "cli", txt: "Amei o resultado da hidratação, obrigada!", h: "16:20" },
+      { de: "ia", txt: "Que bom, Patrícia! Qualquer coisa é só chamar aqui.", h: "16:20" },
+      { de: "dia", txt: "Domingo" }
+    ];
     var CONVERSA = [
       { de: "cli", txt: "Oi! Quanto fica a limpeza de pele?", h: "22:47" },
-      { de: "ia", txt: "Oi, Patrícia! A limpeza de pele profunda sai por R$ 180 e leva uns 50 minutos.", h: "22:47" },
+      { de: "ia", txt: "Oi, Patrícia! A limpeza de pele profunda sai por R$ 180 e leva uns 50 minutos.", h: "22:47", selo: [1] },
       { de: "ia", txt: "Quer que eu veja um horário pra você essa semana?", h: "22:47" },
       { de: "cli", txt: "Sexta à tarde dá?", h: "22:48" },
       { de: "ia", txt: "Sexta às 15h está livre. Posso reservar no seu nome?", h: "22:48" },
       { de: "cli", txt: "Pode sim!", h: "22:48" },
-      { de: "ia", txt: "Prontinho, reservado. Te mando um lembrete na quinta.", h: "22:48" },
+      { de: "ia", txt: "Prontinho, reservado. Te mando um lembrete na quinta.", h: "22:48", selo: [2, 3] },
       { de: "aviso", txt: "Horário marcado e passado pra equipe" }
+    ];
+    var RESPOSTAS = [
+      { p: "Abre sábado?", r: ["Abrimos sim, das 9h às 14h.", "Quer que eu veja um horário pra você no sábado?"] },
+      { p: "Aceita cartão?", r: ["Aceita sim! Pix, débito e crédito em até 3x sem juros."] },
+      { p: "Quero falar com alguém", r: ["Claro! Já chamei a Juliana da recepção. Ela te responde por aqui em instantes."], aviso: "Conversa passada pra equipe" }
     ];
     var poe = function (el) {
       corpo.appendChild(el);
-      // só as últimas mensagens cabem no celular
-      while (corpo.children.length > 8) corpo.removeChild(corpo.children[1]);
+      // o que passa do topo some cortado, como num chat; aqui só limpa o DOM
+      while (corpo.children.length > 14) corpo.removeChild(corpo.firstChild);
     };
-    var bolha = function (m) {
-      var el = document.createElement(m.de === "aviso" ? "span" : "p");
-      if (m.de === "aviso") {
-        el.className = "zap-aviso";
+    var bolha = function (m, fixa) {
+      var el = document.createElement(m.de === "aviso" || m.de === "dia" ? "span" : "p");
+      if (fixa) el.classList.add("is-fixa");
+      if (m.de === "dia") {
+        el.classList.add("zap-dia");
+        el.textContent = m.txt;
+      } else if (m.de === "aviso") {
+        el.classList.add("zap-aviso");
         el.innerHTML = '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/></svg>';
         el.appendChild(document.createTextNode(m.txt));
       } else {
-        el.className = "zap-msg zap-msg--" + m.de;
+        el.classList.add("zap-msg", "zap-msg--" + m.de);
         el.textContent = m.txt;
         var hora = document.createElement("time");
         hora.textContent = m.h;
@@ -405,28 +462,103 @@
       }
       return el;
     };
+    var mostraSelos = function (lista) {
+      (lista || []).forEach(function (n, i) {
+        setTimeout(function () {
+          selos.forEach(function (s) { if (+s.getAttribute("data-selo") === n) s.classList.add("is-visivel"); });
+        }, i * 700);
+      });
+    };
+    var abrir = function () {
+      corpo.textContent = "";
+      ANTES.forEach(function (m) { poe(bolha(m, true)); });
+    };
+
+    // a assistente digita e responde. No loop automático (auto = true),
+    // se o visitante assumiu no meio da espera, a volta é abandonada.
+    var assumiu = false, PAROU = {};
+    var digita = function (m, auto) {
+      var dig = document.createElement("span");
+      dig.className = "zap-digitando";
+      dig.innerHTML = "<i></i><i></i><i></i>";
+      poe(dig);
+      statusChat.textContent = "digitando...";
+      statusChat.classList.add("is-digitando");
+      return espera(reduzido ? 250 : 1100 + m.txt.length * 12).then(function () {
+        dig.remove();
+        if (auto && assumiu) throw PAROU;
+        statusChat.textContent = "online";
+        statusChat.classList.remove("is-digitando");
+        poe(bolha(m));
+      });
+    };
+
+    abrir();
+    if (reduzido) {
+      // sem animação: a conversa de domingo já aparece inteira, com os cartões
+      CONVERSA.forEach(function (m) { poe(bolha(m, true)); });
+      selos.forEach(function (s) { s.classList.add("is-visivel"); });
+    }
     emLoopNaTela(chat, function (proximo) {
-      corpo.innerHTML = '<span class="zap-dia">Domingo</span>';
+      if (assumiu) return;
+      abrir();
+      selos.forEach(function (s) { s.classList.remove("is-visivel"); });
       var p = espera(700);
       CONVERSA.forEach(function (m) {
         p = p.then(function () {
+          if (assumiu) throw PAROU;
           if (m.de !== "ia") { poe(bolha(m)); return espera(m.de === "cli" ? 1300 : 3600); }
-          var dig = document.createElement("span");
-          dig.className = "zap-digitando";
-          dig.innerHTML = "<i></i><i></i><i></i>";
-          poe(dig);
-          statusChat.textContent = "digitando...";
-          statusChat.classList.add("is-digitando");
-          return espera(1100 + m.txt.length * 12).then(function () {
-            dig.remove();
-            statusChat.textContent = "online";
-            statusChat.classList.remove("is-digitando");
-            poe(bolha(m));
-            return espera(1000);
-          });
+          return digita(m, true).then(function () { mostraSelos(m.selo); return espera(1000); });
         });
       });
-      p.then(proximo);
+      p.then(proximo, function () {});
     }, 0.3);
+
+    // perguntas prontas
+    var ocupado = false, minuto = 49;
+    var botoes = function (ligar) {
+      perguntas.querySelectorAll("button").forEach(function (b) { b.disabled = !ligar; });
+    };
+    perguntas.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-pergunta]");
+      if (!b || ocupado) return;
+      ocupado = true;
+      if (!assumiu) {
+        assumiu = true;
+        perguntas.classList.add("is-usado");
+        corpo.querySelectorAll(".zap-digitando").forEach(function (d) { d.remove(); });
+        corpo.removeAttribute("aria-hidden");
+        corpo.setAttribute("aria-live", "polite");
+      }
+      var item = RESPOSTAS[+b.getAttribute("data-pergunta")];
+      var h = "22:" + Math.min(59, minuto++);
+      b.remove();
+      botoes(false);
+      poe(bolha({ de: "cli", txt: item.p, h: h }));
+      var p = espera(reduzido ? 0 : 450);
+      item.r.forEach(function (txt) {
+        p = p.then(function () { return digita({ de: "ia", txt: txt, h: h }, false); })
+             .then(function () { return espera(reduzido ? 0 : 350); });
+      });
+      if (item.aviso) p = p.then(function () { poe(bolha({ de: "aviso", txt: item.aviso })); });
+      p.then(function () {
+        ocupado = false;
+        botoes(true);
+        if (!perguntas.querySelector("button")) {
+          // acabaram as perguntas: o espaço vira o convite
+          perguntas.innerHTML = "";
+          var cta = document.createElement("a");
+          cta.className = "zap-cel__cta";
+          cta.href = LINK_ZAP;
+          cta.target = "_blank";
+          cta.rel = "noopener";
+          cta.textContent = "Quero uma assistente assim";
+          perguntas.appendChild(cta);
+        } else {
+          var prox = perguntas.querySelector("button");
+          if (prox && document.activeElement === document.body) prox.focus({ preventScroll: true });
+        }
+      });
+    });
   }
 })();

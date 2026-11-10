@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/home.css?v=20261109c">
+<link rel="stylesheet" href="assets/css/home.css?v=20261110c">
 
 <script type="application/ld+json">
 {
@@ -342,30 +342,77 @@
   </section>
 
   <!-- ==================== AUTOMAÇÃO DE WHATSAPP ====================
-       Banner grande e escuro (09/11/2026): a conversa roda sozinha no celular,
-       a assistente responde e marca o horário. O banner inteiro é um link pra
-       página da automação. Empresa e cliente fictícios, como na página. -->
+       Banner grande e escuro (09/11/2026), refeito em 10/11/2026 pra vender
+       mais: garantias, selo da API oficial, dois botões e a comparação sem e
+       com assistente. O cartão deixou de ser um link só porque o celular
+       agora responde ao toque (perguntas prontas, home.js). Os cartões em
+       volta do celular aparecem conforme a conversa anda. Empresa e cliente
+       fictícios, como na página da automação. -->
   <section class="banner-zap escuro" id="automacao">
     <div class="wrap">
-      <a class="banner-zap__card" href="automacao/" data-revela>
+      <div class="banner-zap__card" data-revela>
         <div class="banner-zap__texto">
           <p class="olho">Automação de WhatsApp</p>
           <h2 class="banner-zap__titulo">Domingo, 22h47.<br> <em>Seu WhatsApp responde.</em></h2>
-          <p class="banner-zap__sub">Uma assistente com IA atende na hora, entende o que o cliente quer, mostra o serviço certo e entrega o cliente pronto pra sua equipe.</p>
-          <span class="botao">Ver como funciona</span>
+          <p class="banner-zap__sub">Uma assistente com IA conversa com o seu cliente, entende o que ele quer, tira a dúvida e marca o horário.</p>
+          <ul class="banner-zap__garantias">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>Responde em segundos</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>Atende de noite, no fim de semana e no feriado</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 11 2 2 4-4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Passa o cliente pronto pra sua equipe</li>
+          </ul>
+          <div class="banner-zap__acoes">
+            <a class="botao botao--zap" href="https://wa.me/5531995045274?text=Ol%C3%A1%2C%20Marcelo%21%20Vi%20a%20automa%C3%A7%C3%A3o%20de%20WhatsApp%20no%20seu%20site%20e%20quero%20entender%20como%20funcionaria%20na%20minha%20empresa." target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 0C7.2 0 0 7.2 0 16c0 2.8.7 5.5 2.1 7.9L0 32l8.3-2.2c2.3 1.3 4.9 1.9 7.7 1.9 8.8 0 16-7.2 16-16S24.8 0 16 0zm0 29.1c-2.5 0-4.9-.7-7-1.9l-.5-.3-5 1.3 1.3-4.8-.3-.5c-1.4-2.2-2.1-4.7-2.1-7.3C2.4 8.5 8.5 2.4 16 2.4S29.6 8.5 29.6 16 23.5 29.1 16 29.1zm7.4-9.8c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.3-2-1.2-1.1-2-2.4-2.3-2.8-.2-.4 0-.6.2-.8l.6-.7c.2-.2.2-.4.4-.6.1-.2 0-.5 0-.7l-1.2-2.8c-.3-.7-.6-.6-.9-.6h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.2.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/></svg><span>Quero no meu WhatsApp</span></a>
+            <a class="botao botao--vazado" href="automacao/"><span>Ver como funciona</span></a>
+          </div>
+          <p class="banner-zap__selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>API oficial do WhatsApp: sem o risco de bloqueio das ferramentas não oficiais.</p>
         </div>
-        <div class="banner-zap__palco" aria-hidden="true">
-          <div class="zap-cel" data-chat>
-            <div class="zap-cel__topo">
-              <span class="zap-cel__avatar">L</span>
-              <span class="zap-cel__quem"><b>Studio Lumi Estética</b><small data-chat-status>online</small></span>
+
+        <div class="banner-zap__palco">
+          <div class="zap-cel-moldura">
+            <div class="zap-cel" data-chat>
+              <div class="zap-cel__topo" aria-hidden="true">
+                <span class="zap-cel__avatar">L</span>
+                <span class="zap-cel__quem"><b>Studio Lumi Estética</b><small data-chat-status>online</small></span>
+              </div>
+              <div class="zap-cel__conversa" data-chat-corpo aria-hidden="true"></div>
+              <div class="zap-cel__perguntas" data-chat-perguntas>
+                <p>Toque pra perguntar</p>
+                <div>
+                  <button type="button" data-pergunta="0">Abre sábado?</button>
+                  <button type="button" data-pergunta="1">Aceita cartão?</button>
+                  <button type="button" data-pergunta="2">Quero falar com alguém</button>
+                </div>
+              </div>
+              <div class="zap-cel__campo" aria-hidden="true"><span>Mensagem</span><i><svg viewBox="0 0 24 24"><path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/></svg></i></div>
             </div>
-            <div class="zap-cel__conversa" data-chat-corpo></div>
-            <div class="zap-cel__campo"><span>Mensagem</span><i><svg viewBox="0 0 24 24"><path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/></svg></i></div>
+            <div class="zap-selos" aria-hidden="true">
+              <p class="zap-selo zap-selo--1" data-selo="1"><svg viewBox="0 0 24 24"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg><b>Respondeu na hora</b><small>domingo, 22:47</small></p>
+              <p class="zap-selo zap-selo--2" data-selo="2"><svg viewBox="0 0 24 24"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="m9 15 2 2 4-4"/></svg><b>Horário reservado</b><small>sexta, 15h</small></p>
+              <p class="zap-selo zap-selo--3" data-selo="3"><svg viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M22 8c0-2.3-.8-4.3-2-6"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/><path d="M4 2C2.8 3.7 2 5.7 2 8"/></svg><b>Lembrete agendado</b><small>na véspera</small></p>
+            </div>
           </div>
           <p class="banner-zap__nota">Conversa de demonstração</p>
         </div>
-      </a>
+
+        <div class="banner-zap__compara">
+          <div class="compara compara--sem">
+            <p class="compara__titulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>Sem assistente</p>
+            <ul>
+              <li>O cliente chama às 22h e só tem resposta no outro dia</li>
+              <li>Ele pergunta o preço em várias empresas e fecha com quem respondeu primeiro</li>
+              <li>Sua equipe repete as mesmas respostas o dia inteiro</li>
+            </ul>
+          </div>
+          <div class="compara compara--com">
+            <p class="compara__titulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Com assistente</p>
+            <ul>
+              <li>Resposta na hora, até domingo à noite</li>
+              <li>Preço, horário e dúvida resolvidos na própria conversa</li>
+              <li>Sua equipe só entra quando o cliente já quer fechar</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -387,11 +434,28 @@
 
     <!-- ==================== EMPRESAS ATENDIDAS ====================
        Clientes marcados como cliente no CRM e escolhidos por ele em
-       09/11/2026. Só a logo, sem dizer o serviço e sem link. -->
+       09/11/2026. Só a logo, sem dizer o serviço e sem link.
+       10/11/2026: o título saiu e entraram os números, contando de zero
+       quando a seção aparece (home.js, bloco NÚMEROS). O valor final já está
+       no HTML, então sem JS ou com movimento reduzido ele aparece parado. -->
   <section class="secao empresas" id="empresas">
     <div class="wrap">
       <p class="olho" data-revela>Empresas atendidas</p>
-      <h2 class="titulo-grande" data-palavras>Negócios que <em>já atendi</em>.</h2>
+      <h2 class="sr">Empresas atendidas</h2>
+      <ul class="numeros" data-numeros>
+        <li>
+          <p class="numeros__valor" aria-hidden="true"><em>+</em><span data-conta="15">15</span></p>
+          <p class="numeros__rotulo"><span class="sr">Mais de 15 </span>empresas atendidas</p>
+        </li>
+        <li>
+          <p class="numeros__valor" aria-hidden="true"><em>+</em><span data-conta="3">3</span></p>
+          <p class="numeros__rotulo"><span class="sr">Mais de 3 </span>anos criando sites, anúncios e vídeos</p>
+        </li>
+        <li>
+          <p class="numeros__valor" aria-hidden="true"><span data-conta="100">100</span><em>%</em></p>
+          <p class="numeros__rotulo"><span class="sr">100% </span>dos clientes satisfeitos</p>
+        </li>
+      </ul>
       <ul class="empresas__grade" data-revela>
           <li class="marca-cli" style="--h:2.2rem"><svg viewBox="104 75 592 603" aria-hidden="true"><use href="#l-bemviver"/></svg><span>Clínica Bem Viver</span></li>
           <li class="marca-cli" style="--h:3.6rem"><svg viewBox="8 7 784 650" aria-hidden="true"><use href="#l-bruno"/></svg><span class="sr">Bruno Repolês Imóveis</span></li>
@@ -474,6 +538,6 @@
   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 0C7.2 0 0 7.2 0 16c0 2.8.7 5.5 2.1 7.9L0 32l8.3-2.2c2.3 1.3 4.9 1.9 7.7 1.9 8.8 0 16-7.2 16-16S24.8 0 16 0zm0 29.1c-2.5 0-4.9-.7-7-1.9l-.5-.3-5 1.3 1.3-4.8-.3-.5c-1.4-2.2-2.1-4.7-2.1-7.3C2.4 8.5 8.5 2.4 16 2.4S29.6 8.5 29.6 16 23.5 29.1 16 29.1zm7.4-9.8c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.3-2-1.2-1.1-2-2.4-2.3-2.8-.2-.4 0-.6.2-.8l.6-.7c.2-.2.2-.4.4-.6.1-.2 0-.5 0-.7l-1.2-2.8c-.3-.7-.6-.6-.9-.6h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.2.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/></svg>
 </a>
 
-<script src="assets/js/home.js?v=20261109c" defer></script>
+<script src="assets/js/home.js?v=20261110c" defer></script>
 </body>
 </html>

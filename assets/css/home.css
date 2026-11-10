@@ -493,27 +493,106 @@ html.js.site-pronto .hero__fundo { transform: none; }
 .m-anim.is-ligada .m-grafico path { stroke-dashoffset: 0; }
 
 /* --- banner da automação de WhatsApp ---------------------------------------- */
+/* Refeito em 10/11/2026. A borda viva é um ::before com máscara que deixa só
+   o anel de 1,5px; o brilho corre por ele girando o --giro. */
+@property --giro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 .banner-zap { padding: clamp(4rem, 8vw, 7rem) 0; }
 .banner-zap__card {
   display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(2rem, 5vw, 5rem);
   padding: clamp(2.2rem, 5vw, 4.5rem); border-radius: 1.75rem; overflow: hidden; position: relative; isolation: isolate;
-  background: radial-gradient(110% 90% at 88% 10%, rgba(212, 180, 122, .18), transparent 55%), #16130e;
-  border: 1px solid var(--linha); transition: border-color .5s;
+  background:
+    radial-gradient(55% 65% at 80% 48%, rgba(37, 211, 102, .17), transparent 70%),
+    radial-gradient(110% 90% at 88% 6%, rgba(212, 180, 122, .16), transparent 55%),
+    #16130e;
 }
-.banner-zap__card:hover { border-color: rgba(212, 180, 122, .4); }
+.banner-zap__card::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; padding: 1.5px; pointer-events: none;
+  background:
+    conic-gradient(from var(--giro), transparent 0 60%, rgba(37, 211, 102, .95) 76%, rgba(212, 180, 122, .9) 86%, transparent 97%),
+    linear-gradient(rgba(242, 237, 228, .13), rgba(242, 237, 228, .13));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
+  animation: borda-gira 7s linear infinite;
+}
+@keyframes borda-gira { to { --giro: 360deg; } }
 .banner-zap__titulo { font-size: clamp(2.3rem, 4.1vw, 3.9rem); font-weight: 500; letter-spacing: -.05em; line-height: 1.02; margin: 1.3rem 0 1.4rem; }
-.banner-zap__sub { color: var(--texto-2); font-size: 1.08rem; max-width: 30rem; margin-bottom: 2.2rem; }
-.banner-zap__card:hover .botao { transform: translateY(-2px); box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .55); }
-.banner-zap__card:hover .botao::after { transform: translateX(4px); }
+.banner-zap__sub { color: var(--texto-2); font-size: 1.08rem; max-width: 30rem; }
+
+.banner-zap__garantias { display: grid; gap: .8rem; margin: 1.8rem 0 2.2rem; }
+.banner-zap__garantias li { display: flex; align-items: center; gap: .8rem; font-weight: 500; font-size: 1rem; }
+.banner-zap__garantias svg {
+  width: 2.1rem; height: 2.1rem; padding: .45rem; flex: none; border-radius: 50%;
+  color: #25d366; background: rgba(37, 211, 102, .1); box-shadow: inset 0 0 0 1px rgba(37, 211, 102, .28);
+}
+
+.banner-zap__acoes { display: flex; flex-wrap: wrap; gap: .75rem; }
+.botao--zap { background: var(--zap); color: #062712; }
+.botao--zap::after { display: none; }
+.botao--zap svg { width: 1.15rem; height: 1.15rem; fill: currentColor; flex: none; }
+.botao--zap:hover { background: #3be07a; box-shadow: 0 16px 34px -14px rgba(37, 211, 102, .6); }
+.botao--vazado { background: transparent; color: var(--texto); box-shadow: inset 0 0 0 1px rgba(242, 237, 228, .32); }
+.botao--vazado:hover { background: rgba(242, 237, 228, .07); box-shadow: inset 0 0 0 1px rgba(242, 237, 228, .6); }
+.banner-zap__selo { display: flex; align-items: flex-start; gap: .55rem; margin-top: 1.4rem; max-width: 30rem; font-size: .84rem; line-height: 1.45; color: var(--mudo); }
+.banner-zap__selo svg { width: 1.1rem; height: 1.1rem; flex: none; color: #25d366; margin-top: .05rem; }
+
 .banner-zap__palco { position: relative; }
 .banner-zap__palco::before {
-  content: ""; position: absolute; inset: 10% -10%; z-index: -1; border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(37, 211, 102, .16), transparent); filter: blur(10px);
+  content: ""; position: absolute; inset: 6% -12%; z-index: -1; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(37, 211, 102, .26), transparent); filter: blur(14px);
 }
 .banner-zap__nota { text-align: center; font-size: .72rem; color: var(--mudo); margin-top: .9rem; }
 
+/* cartões que aparecem em volta do celular conforme a conversa anda */
+.zap-cel-moldura { position: relative; width: min(100%, 330px); margin-inline: auto; }
+.zap-selos { position: absolute; inset: 0; pointer-events: none; }
+.zap-selo {
+  position: absolute; display: grid; grid-template-columns: auto 1fr; column-gap: .6rem; align-items: center;
+  padding: .55rem .9rem .55rem .55rem; border-radius: .95rem; white-space: nowrap;
+  background: rgba(250, 248, 243, .97); color: #16140f;
+  box-shadow: 0 22px 44px -18px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 255, 255, .5);
+  opacity: 0; transform: translateY(12px) scale(.94); transition: opacity .5s var(--suave), transform .7s var(--suave);
+}
+.zap-selo.is-visivel { opacity: 1; transform: none; }
+.zap-selo svg {
+  grid-row: span 2; width: 2.1rem; height: 2.1rem; padding: .45rem; border-radius: 50%;
+  background: #d9fdd3; fill: none; stroke: #008069; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+.zap-selo b { font: 600 .8rem/1.2 var(--fonte); letter-spacing: -.01em; }
+.zap-selo small { font-size: .7rem; line-height: 1.25; color: #6b665c; }
+/* cada cartão fica onde o celular não tem texto: o canto vazio do cabeçalho,
+   a lateral de fora e o campo "Mensagem" */
+.zap-selo--1 { top: -1.1rem; right: -3.4rem; }
+.zap-selo--2 { top: 42%; left: -9.6rem; }
+.zap-selo--3 { bottom: -1.2rem; left: -3.4rem; }
+.zap-cel-moldura + .banner-zap__nota { margin-top: 1.9rem; }
+@media (max-width: 1180px) and (min-width: 861px) {
+  /* aqui não sobra lateral de fora: o do meio desce pro campo, à direita */
+  .zap-selo--1 { right: -1.6rem; } .zap-selo--3 { left: -1.6rem; }
+  .zap-selo--2 { top: auto; left: auto; right: -1.6rem; bottom: 2.6rem; }
+}
+
+/* sem x com assistente, na base do cartão */
+.banner-zap__compara {
+  grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 2rem);
+  padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--linha);
+}
+.compara { padding: clamp(1.2rem, 2.4vw, 1.8rem); border-radius: 1.1rem; }
+.compara--com { background: rgba(37, 211, 102, .07); box-shadow: inset 0 0 0 1px rgba(37, 211, 102, .22); }
+.compara__titulo {
+  display: flex; align-items: center; gap: .6rem; margin-bottom: .6rem;
+  font-size: .74rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--mudo);
+}
+.compara__titulo svg { width: 1.3rem; height: 1.3rem; padding: .2rem; border-radius: 50%; flex: none; }
+.compara--sem .compara__titulo svg { color: #e5867a; background: rgba(229, 134, 122, .12); }
+.compara--com .compara__titulo { color: #6fe3a0; }
+.compara--com .compara__titulo svg { color: #062712; background: var(--zap); }
+.compara li { padding: .75rem 0; border-top: 1px solid var(--linha); font-size: .98rem; line-height: 1.45; }
+.compara li:first-child { border-top: 0; }
+.compara--sem li { color: var(--mudo); }
+.compara--com li { color: var(--texto); }
+
 .zap-cel {
-  width: min(100%, 330px); height: 520px; margin-inline: auto; display: flex; flex-direction: column;
+  width: 100%; height: 575px; display: flex; flex-direction: column;
   border-radius: 2.3rem; overflow: hidden; background: #efeae2;
   border: 9px solid #24201a; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .85), 0 0 0 1px rgba(242, 237, 228, .1);
   font-family: "Segoe UI", Helvetica, Arial, sans-serif; color: #111b21;
@@ -545,9 +624,42 @@ html.js.site-pronto .hero__fundo { transform: none; }
 .zap-cel__campo span { flex: 1; padding: .55rem .8rem; border-radius: 99px; background: #fff; font-size: .74rem; color: #8696a0; }
 .zap-cel__campo i { width: 2.1rem; height: 2.1rem; border-radius: 50%; display: grid; place-items: center; background: #00a884; flex: none; }
 .zap-cel__campo svg { width: 1rem; height: 1rem; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; }
+/* o que já estava na conversa entra sem animação (ela abre preenchida) */
+.zap-cel .is-fixa { animation: none; }
+
+/* perguntas prontas: o visitante toca e a assistente responde */
+.zap-cel__perguntas { flex: none; padding: .55rem .6rem .15rem; background: #f0f2f5; border-top: 1px solid #e3e6e8; }
+.zap-cel__perguntas p { font-size: .58rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #667781; margin-bottom: .4rem; }
+.zap-cel__perguntas div { display: flex; flex-wrap: wrap; gap: .35rem; }
+.zap-cel__perguntas button {
+  font: 600 .7rem/1 "Segoe UI", Helvetica, Arial, sans-serif; color: #008069; cursor: pointer;
+  padding: .45rem .7rem; border-radius: 99px; background: #fff; border: 1px solid #b8e6d6;
+  transition: background .25s, border-color .25s, opacity .25s, transform .25s var(--suave);
+}
+.zap-cel__perguntas button:hover { background: #e7f8f1; border-color: #00a884; transform: translateY(-1px); }
+.zap-cel__perguntas button:focus-visible { outline: 2px solid #00a884; outline-offset: 2px; }
+.zap-cel__perguntas button:disabled { opacity: .45; cursor: default; transform: none; }
+.zap-cel__perguntas:not(.is-usado) button:first-child { animation: pergunta-chama 2.6s ease-in-out infinite; }
+@keyframes pergunta-chama { 0%, 55%, 100% { box-shadow: 0 0 0 0 rgba(0, 168, 132, 0); } 25% { box-shadow: 0 0 0 5px rgba(0, 168, 132, .2); } }
+.zap-cel__cta {
+  display: flex; align-items: center; justify-content: center; gap: .4rem; width: 100%; margin-bottom: .1rem;
+  padding: .6rem .8rem; border-radius: 99px; background: #00a884; color: #fff;
+  font: 700 .74rem/1 "Segoe UI", Helvetica, Arial, sans-serif; animation: msg-entra .4s var(--suave) both;
+}
+.zap-cel__cta:hover { background: #008069; }
+
 @media (max-width: 860px) {
   .banner-zap__card { grid-template-columns: minmax(0, 1fr); }
-  .zap-cel { height: 480px; }
+}
+@media (max-width: 600px) {
+  .banner-zap__card { padding: 1.9rem 1.2rem 1.4rem; border-radius: 1.4rem; }
+  .banner-zap__acoes .botao { width: 100%; justify-content: center; }
+  .banner-zap__compara { grid-template-columns: minmax(0, 1fr); }
+  .compara--sem { padding-inline: 0; }
+  .zap-cel { height: 540px; }
+  /* no celular os cartões saem de cima da conversa e vão pra baixo do aparelho */
+  .zap-selos { position: static; display: grid; justify-items: center; gap: .45rem; margin-top: 1.1rem; }
+  .zap-selo { position: static; width: min(100%, 15rem); }
 }
 
 /* --- como funciona ---------------------------------------------------------- */
@@ -585,6 +697,29 @@ html.js .passos li { transition: opacity .9s var(--suave) var(--atraso, 0ms), tr
 
 /* --- empresas atendidas ---------------------------------------------------- */
 .empresas { background-color: var(--papel-2); }
+
+/* números contando (home.js, bloco NÚMEROS). Três colunas alinhadas com a
+   grade de logos de baixo; o fio de ouro no topo enche junto com a contagem. */
+.numeros { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 clamp(1.2rem, 3vw, 2.5rem); margin-top: clamp(2rem, 4vw, 3rem); }
+.numeros li { position: relative; padding-top: clamp(1.2rem, 2.4vw, 1.8rem); border-top: 1px solid var(--linha); }
+.numeros li::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: var(--ouro);
+  transform: scaleX(var(--p, 1)); transform-origin: left;
+}
+.numeros__valor {
+  display: flex; align-items: baseline; font-size: clamp(3.4rem, 8vw, 6.6rem); font-weight: 500;
+  letter-spacing: -.05em; line-height: .95; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.numeros__valor em { font-family: var(--serifa); font-style: italic; font-weight: 400; letter-spacing: 0; font-size: .82em; color: var(--ouro); }
+.numeros__valor em:first-child { margin-right: .06em; }
+.numeros__rotulo { margin-top: .9rem; color: var(--texto-2); font-size: 1rem; line-height: 1.45; max-width: 15rem; }
+@media (max-width: 600px) {
+  .numeros { grid-template-columns: 1fr; }
+  .numeros li { display: grid; grid-template-columns: 8.2rem minmax(0, 1fr); align-items: center; gap: 1rem; padding: 1.1rem 0; }
+  .numeros li:last-child { border-bottom: 1px solid var(--linha); }
+  .numeros__valor { font-size: 3.3rem; }
+  .numeros__rotulo { margin-top: 0; font-size: .95rem; }
+}
 .empresas__grade {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(3rem, 6vw, 4.5rem);
   border-top: 1px solid var(--linha); border-left: 1px solid var(--linha);
