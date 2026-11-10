@@ -80,6 +80,19 @@
     } else {
       contato.classList.add("is-visivel");
     }
+
+    // cor na foto: só quando metade dela já está na tela, depois da diagonal
+    var molduraFoto = contato.querySelector(".contato__foto");
+    if (molduraFoto) {
+      if ("IntersectionObserver" in window && !reduzido) {
+        var ioCor = new IntersectionObserver(function (en) {
+          if (en[0].isIntersecting) { fotoPronta.then(function () { molduraFoto.classList.add("is-cor"); }); ioCor.disconnect(); }
+        }, { threshold: 0.5 });
+        ioCor.observe(molduraFoto);
+      } else {
+        molduraFoto.classList.add("is-cor");
+      }
+    }
   }
 
   /* ---------------------------------------------------------------- *
@@ -123,6 +136,28 @@
   window.addEventListener("resize", medirTopo);
   medirTopo();
   ajustarTopo();
+
+  /* ---------------------------------------------------------------- *
+   * MENU do celular: o traço abre e fecha; link, Esc ou tela larga fecham
+   * ---------------------------------------------------------------- */
+  var menuBotao = document.querySelector("[data-menu-botao]");
+  var menu = document.querySelector("[data-menu]");
+  function abrirMenu(abrir) {
+    if (!menuBotao || !menu) return;
+    document.documentElement.classList.toggle("menu-aberto", abrir);
+    menuBotao.setAttribute("aria-expanded", abrir ? "true" : "false");
+    menuBotao.setAttribute("aria-label", abrir ? "Fechar menu" : "Abrir menu");
+  }
+  if (menuBotao && menu) {
+    menuBotao.addEventListener("click", function () {
+      abrirMenu(menuBotao.getAttribute("aria-expanded") !== "true");
+    });
+    menu.addEventListener("click", function (e) { if (e.target.closest("a")) abrirMenu(false); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && document.documentElement.classList.contains("menu-aberto")) { abrirMenu(false); menuBotao.focus(); }
+    });
+    window.addEventListener("resize", function () { if (window.innerWidth > 900) abrirMenu(false); });
+  }
 
 
   /* ---------------------------------------------------------------- *
