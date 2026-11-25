@@ -10,17 +10,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Inbox Mestre, versão colorida (11/11/2026, pedido dele com referência de app de produtividade).
-   Marinho e verde continuam da marca; cada seção ganhou uma cor própria, os status viraram pílula
-   colorida e a lateral escura recolhe. Paleta de partida: CRM do ui-ux-pro-max (#2563EB, #F8FAFC). */
+/* Inbox Mestre, cara nova (24/11/2026, pedido dele com referência de CRM de WhatsApp).
+   Lateral clara sobre fundo cinza quente, cartões brancos bem arredondados, ícone verde em círculo
+   claro, camaleão nos cantos. Verde e marinho continuam da marca. A versão colorida anterior está no git. */
 :root{
-  --pagina:#F4F5FA; --fundo:#fff; --tinta:#1B2559; --suave:#565D80; --linha:#E6E8F0; --linha-2:#EEF0F5;
+  --pagina:#F3F3F1; --fundo:#fff; --tinta:#1B2559; --suave:#5F6480; --linha:#E8E8E3; --linha-2:#F0F0EC;
   --botao:#12684F; --botao-h:#0E5641; --verde:#1FAF6B; --verde-claro:#E8F6EE; --selo:#E3F4EB;
-  --destaque:#F1FAF5; --marfim:#F7F5F0; --chip:#F0F1F5; --chip-t:#454C70; --sel:#EAEEFB;
-  --rail:#10163A; --rail-t:#BCC2DC;
-  --c-painel:#7C3AED; --c-conv:#2563EB; --c-funil:#EA580C; --c-fu:#DB2777; --c-serv:#0D9488; --c-eq:#0284C7; --c-regras:#12684F;
+  --destaque:#F1FAF5; --marfim:#F7F5F0; --chip:#EFEFEB; --chip-t:#454C70; --sel:#E9F6EF;
+  --c-painel:#12684F; --c-conv:#12684F; --c-funil:#12684F; --c-fu:#12684F; --c-serv:#12684F; --c-eq:#12684F; --c-regras:#12684F;
   --bad:#B42318; --bad-soft:#FEE2E2;
-  --wa-bg:#efeae2; --wa-out:#d9fdd3; --wa-in:#fff;
+  --wa-bg:#E6F2EB; --wa-out:#d9fdd3; --wa-in:#fff;
   --titulo:"Bricolage Grotesque",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -29,64 +28,75 @@ body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--pagina);
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 input,textarea,select{font:inherit;color:inherit}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--c-conv);outline-offset:2px}
+:focus-visible{outline:2px solid var(--botao);outline-offset:2px}
 .ic{width:18px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .ic-sm{width:15px;height:15px}
 .pixel{image-rendering:pixelated}
 .so-leitor{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.tile{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:#fff;flex-shrink:0;background:var(--cor,var(--tinta))}
+.tile{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:var(--botao);flex-shrink:0;background:color-mix(in srgb,var(--verde) 13%,#fff)}
 .tile .ic{width:16px;height:16px}
 
-/* ---------- Lateral escura e retrátil ---------- */
+/* ---------- Lateral clara ---------- */
 .app{display:grid;grid-template-columns:auto 1fr;height:100vh;height:100dvh}
-.lateral{width:240px;margin:10px 0 10px 10px;border-radius:18px;background:var(--rail);color:var(--rail-t);display:flex;flex-direction:column;padding:14px 10px 10px;gap:2px;overflow-y:auto;overflow-x:hidden;transition:width .22s ease}
-.marca{display:flex;align-items:center;gap:10px;padding:0 4px 12px;min-height:81px}
-.marca .grande{width:70px;height:69px;flex-shrink:0}
-.marca .mini{display:none;width:32px;height:32px;margin:0 auto}
-.marca b{font-family:var(--titulo);font-weight:700;font-size:24px;line-height:.98;letter-spacing:-.02em;color:#fff;white-space:nowrap}
-.conta{font-size:12px;padding:10px 8px 12px;border-top:1px solid rgba(255,255,255,.09);margin-bottom:6px;white-space:nowrap}
-.conta b{display:block;color:#fff;font-size:13px;font-weight:600}
-.nav-item{display:flex;align-items:center;gap:11px;padding:6px 8px;border-radius:12px;color:var(--rail-t);font-weight:600;font-size:14px;text-decoration:none;position:relative;white-space:nowrap}
-.nav-item:hover{background:rgba(255,255,255,.07);color:#fff}
-.nav-item.ativo{background:rgba(255,255,255,.12);color:#fff}
-.nav-item .cont{margin-left:auto;background:#FDBA74;color:#431407;font-size:11.5px;font-weight:700;border-radius:99px;padding:1px 7px;min-width:20px;text-align:center}
+.lateral{width:236px;padding:16px 12px 12px;display:flex;flex-direction:column;gap:2px;overflow-y:auto;overflow-x:hidden;transition:width .22s ease;scrollbar-width:none}
+.lateral::-webkit-scrollbar{display:none}
+.marca{display:flex;align-items:center;gap:8px;padding:0 4px 14px}
+.marca .grande{width:38px;height:37px;flex-shrink:0}
+.marca b{font-family:var(--titulo);font-weight:700;font-size:21px;letter-spacing:-.02em;white-space:nowrap}
+.marca .recolher{margin-left:auto;width:32px;height:32px;display:grid;place-items:center;border-radius:10px;color:var(--suave)}
+.marca .recolher:hover{background:var(--fundo);color:var(--tinta)}
+.marca .recolher .ic{transition:transform .22s ease}
+.conta{display:flex;align-items:center;gap:10px;background:var(--fundo);border-radius:18px;padding:10px 12px;margin-bottom:6px;white-space:nowrap;box-shadow:0 1px 2px rgba(27,37,89,.04)}
+.conta .tile{width:34px;height:34px}
+.conta > div{min-width:0;flex:1}
+.conta b{display:block;font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis}
+.conta span.sub{display:block;font-size:12px;color:var(--suave)}
+.conta .ic{color:var(--suave);width:15px;height:15px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:14px;color:#3B4160;font-weight:500;font-size:14px;text-decoration:none;position:relative;white-space:nowrap}
+.nav-item .ic{color:#5F6480}
+.nav-item:hover{background:rgba(255,255,255,.6)}
+.nav-item.ativo{background:var(--fundo);color:var(--tinta);font-weight:600;box-shadow:0 1px 2px rgba(27,37,89,.06)}
+.nav-item.ativo .ic{color:var(--botao)}
+.nav-item .cont{margin-left:auto;background:var(--verde);color:#fff;font-size:11.5px;font-weight:700;border-radius:99px;padding:1px 7px;min-width:20px;text-align:center}
 .nav-item .cont:empty{display:none}
-.rotulo-nav{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8890B4;padding:14px 10px 4px;font-weight:700;white-space:nowrap}
-.status-ia{margin-top:auto;background:rgba(255,255,255,.07);border-radius:14px;padding:12px;font-size:12.5px;display:flex;gap:10px;align-items:flex-start}
-.status-ia b{display:block;font-size:13px;color:#fff}
-.recolher{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;color:var(--rail-t);font-weight:600;font-size:13px;margin-top:8px;white-space:nowrap}
-.recolher:hover{background:rgba(255,255,255,.07);color:#fff}
-.recolher .ic{transition:transform .22s ease}
-.lateral :focus-visible{outline-color:#fff}
-body.lateral-curta .lateral{width:72px}
-body.lateral-curta .marca{padding:0 0 12px}
-body.lateral-curta .marca .grande,body.lateral-curta .marca b,body.lateral-curta .conta,body.lateral-curta .lateral .rot,body.lateral-curta .status-ia > div{display:none}
-body.lateral-curta .marca .mini{display:block}
-body.lateral-curta .rotulo-nav{font-size:0;padding:0;height:1px;background:rgba(255,255,255,.09);margin:8px 6px}
-body.lateral-curta .nav-item{justify-content:center;padding:6px 0}
-body.lateral-curta .nav-item .cont{position:absolute;top:0;right:4px;margin:0;font-size:10px;min-width:17px;padding:0 4px}
-body.lateral-curta .status-ia{justify-content:center;padding:8px 0}
-body.lateral-curta .recolher{justify-content:center;padding:8px 0}
-body.lateral-curta .recolher .ic{transform:rotate(180deg)}
+.nav-item .em-breve{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--suave);background:var(--chip);border-radius:99px;padding:0 7px}
+.rotulo-nav{font-size:12px;color:#8A8C84;padding:16px 12px 5px;font-weight:600;white-space:nowrap}
+.status-ia{margin-top:auto;background:var(--fundo);border-radius:18px;padding:12px;font-size:12.5px;display:flex;gap:10px;align-items:flex-start;box-shadow:0 1px 2px rgba(27,37,89,.04)}
+.status-ia b{display:block;font-size:13px}
+.status-ia p{color:var(--suave)}
+.ajuda{display:flex;align-items:center;gap:10px;padding:12px 12px 2px;font-size:13px;color:var(--suave);font-weight:500;text-decoration:none}
+.ajuda:hover{color:var(--tinta)}
+body.lateral-curta .lateral{width:76px}
+body.lateral-curta .marca{flex-direction:column;padding:0 0 12px;gap:6px}
+body.lateral-curta .marca b,body.lateral-curta .conta > div,body.lateral-curta .conta > .ic,body.lateral-curta .lateral .rot,body.lateral-curta .status-ia > div,body.lateral-curta .ajuda span{display:none}
+body.lateral-curta .marca .recolher{margin:0}
+body.lateral-curta .marca .recolher .ic{transform:rotate(180deg)}
+body.lateral-curta .conta{justify-content:center;padding:8px 0}
+body.lateral-curta .rotulo-nav{font-size:0;padding:0;height:1px;background:var(--linha);margin:8px 8px}
+body.lateral-curta .nav-item{justify-content:center;padding:9px 0}
+body.lateral-curta .nav-item .cont{position:absolute;top:0;right:6px;margin:0;font-size:10px;min-width:17px;padding:0 4px}
+body.lateral-curta .nav-item .em-breve{display:none}
+body.lateral-curta .status-ia,body.lateral-curta .ajuda{justify-content:center;padding:8px 0}
 
 .principal{display:flex;flex-direction:column;min-width:0;height:100vh;height:100dvh}
-.topo{display:flex;align-items:center;gap:12px;padding:16px 20px 12px}
-.topo h1{font-family:var(--titulo);font-size:24px;font-weight:700;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex-shrink:0}
+.topo{display:flex;align-items:center;gap:12px;padding:22px 28px 10px}
+.topo h1{font-family:var(--titulo);font-size:34px;font-weight:700;letter-spacing:-.025em;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex-shrink:0}
+body[data-v=conversas] .topo{padding:12px 16px 4px}
+body[data-v=conversas] .topo h1{font-size:20px}
 .marca-movel{display:none}
-.selo-demo{font-size:11.5px;font-weight:600;color:#5B21B6;background:#EDE9FE;border-radius:99px;padding:3px 10px;white-space:nowrap;flex-shrink:0}
+#abrir-menu{display:none;flex-shrink:0}
+.fundo-menu{display:none}
+.selo-demo{font-size:11.5px;font-weight:600;color:var(--botao);background:var(--selo);border-radius:99px;padding:3px 10px;white-space:nowrap;flex-shrink:0}
 .selo-demo .curto{display:none}
-.busca{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--fundo);border:1px solid var(--linha);border-radius:12px;padding:8px 12px;color:var(--suave);flex:0 1 280px;min-width:120px}
-.busca:focus-within{border-color:var(--c-conv);outline:2px solid var(--c-conv);outline-offset:1px}
-.busca input{border:0;background:none;outline:0;width:100%;font-size:13.5px;color:var(--tinta)}
-.busca input::placeholder{color:var(--suave)}
+.topo .espaco{flex:1}
 #btn-simular,.topo .icone-btn,.eu,.voltar-site{flex-shrink:0}
-.icone-btn{position:relative;width:36px;height:36px;border-radius:10px;display:grid;place-items:center;border:1px solid var(--linha);background:var(--fundo);color:var(--tinta)}
+.icone-btn{position:relative;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:0;background:var(--fundo);color:var(--tinta)}
 .icone-btn:hover{background:var(--linha-2)}
-.icone-btn .ponto{position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--c-fu)}
+.icone-btn .ponto{position:absolute;top:8px;right:9px;width:7px;height:7px;border-radius:50%;background:var(--verde)}
 .avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;color:#fff;flex-shrink:0;overflow:hidden}
 .av-ia{background:var(--verde-claro)}
 .av-ia img{width:24px;height:24px}
-.av-ini{background:var(--chip);color:var(--tinta);border:1px solid var(--linha)}
+.av-ini{background:var(--chip);color:var(--tinta)}
 img.avatar{object-fit:cover;background:var(--chip)}
 .av-wrap{position:relative;display:inline-block;flex-shrink:0;line-height:0;align-self:flex-start}
 .chat-topo .av-wrap,.ficha-cab .av-wrap{align-self:center}
@@ -97,42 +107,51 @@ img.avatar{object-fit:cover;background:var(--chip)}
 .eu{display:flex;align-items:center;gap:9px;font-size:12.5px}
 .eu b{display:block;font-size:13px}
 .eu small{color:var(--suave)}
-.voltar-site{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--suave);text-decoration:none;padding:7px 10px;border-radius:10px}
+.voltar-site{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--suave);text-decoration:none;padding:7px 10px;border-radius:99px}
 .voltar-site:hover{background:var(--fundo);color:var(--tinta)}
 
-.conteudo{flex:1;overflow-y:auto;padding:4px 20px 28px}
+.conteudo{flex:1;overflow-y:auto;padding:8px 28px 32px}
 .vista{display:none}
 .vista.ativa{display:block;animation:entra .2s ease}
 @keyframes entra{from{opacity:0}to{opacity:1}}
 
 /* ---------- Componentes ---------- */
-.card{background:var(--fundo);border:1px solid var(--linha);border-radius:16px}
-.card-cab{display:flex;align-items:flex-start;gap:10px;padding:16px 18px 0}
-.card-cab h2{font-size:15px;font-weight:700}
+.card{background:var(--fundo);border:1px solid #EDEDE9;border-radius:22px}
+.card-cab{display:flex;align-items:flex-start;gap:10px;padding:18px 20px 0}
+.card-cab h2{font-size:16px;font-weight:600}
 .card-cab p{font-size:13px;color:var(--suave)}
 .card-cab .dir{margin-left:auto}
-.card-corpo{padding:14px 18px 18px}
+.card-corpo{padding:14px 20px 20px}
 .grade{display:grid;gap:14px}
 .kpis{grid-template-columns:repeat(6,minmax(0,1fr))}
-.kpi{padding:14px 16px}
+.kpi{padding:16px 18px}
 .kpi .rot{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--suave);font-weight:600;line-height:1.3}
-.kpi .tile{width:28px;height:28px;border-radius:8px}
+.kpi .tile{width:34px;height:34px}
 .kpi .tile .ic{width:15px;height:15px}
-.kpi .num{font-family:var(--titulo);font-size:28px;font-weight:700;letter-spacing:-.02em;margin:8px 0 2px;font-variant-numeric:tabular-nums}
+.kpi .num{font-family:var(--titulo);font-size:32px;font-weight:700;letter-spacing:-.02em;margin:8px 0 2px;font-variant-numeric:tabular-nums}
 .kpi .var{font-size:12px;color:var(--suave)}
 .dash-a{grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);margin-top:14px}
 .dash-b{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);margin-top:14px}
 
-/* Resumo do dia em gradiente */
-.resumo-dia{position:relative;overflow:hidden;border-radius:20px;padding:22px 24px;margin-bottom:14px;color:#fff;background:linear-gradient(115deg,#1B2559 0%,#3730A3 52%,#7C3AED 100%);display:flex;align-items:center;gap:22px}
-.resumo-dia::after{content:"";position:absolute;right:-60px;top:-80px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.07)}
+/* Resumo do dia: cartão verde claro com o camaleão */
+.resumo-dia{position:relative;overflow:hidden;border-radius:22px;padding:20px 24px;margin-bottom:14px;color:var(--tinta);background:var(--verde-claro);border:1px solid #D3EDE0;display:flex;align-items:center;gap:22px}
 .resumo-dia img{width:69px;height:85px;flex-shrink:0;position:relative;z-index:1}
 .resumo-dia .txt{flex:1;min-width:0;position:relative;z-index:1}
-.resumo-dia .pilula{display:inline-block;font-size:12px;font-weight:600;background:rgba(255,255,255,.16);border-radius:99px;padding:3px 10px;margin-bottom:8px}
-.resumo-dia h2{font-family:var(--titulo);font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
-.resumo-dia p{color:#DCDDF7;margin-top:6px;font-size:14px}
-.resumo-dia .btn{position:relative;z-index:1;background:#fff;border-color:#fff;color:var(--tinta)}
-.resumo-dia .btn:hover{background:#EEF0FF}
+.resumo-dia .pilula{display:inline-block;font-size:12px;font-weight:600;background:#fff;color:var(--botao);border-radius:99px;padding:3px 10px;margin-bottom:8px}
+.resumo-dia h2{font-family:var(--titulo);font-size:25px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.resumo-dia p{color:var(--suave);margin-top:6px;font-size:14px}
+.resumo-dia .btn{position:relative;z-index:1}
+
+/* Abas do Dashboard (Atendimento e Vendas) e linha de filtros */
+.abas-pill{display:inline-flex;gap:4px;margin-bottom:14px;flex-wrap:wrap}
+.abas-pill button{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;padding:8px 16px;border-radius:99px;color:var(--suave)}
+.abas-pill button:hover{background:rgba(255,255,255,.6)}
+.abas-pill button[aria-selected=true]{background:var(--fundo);color:var(--tinta);box-shadow:0 1px 2px rgba(27,37,89,.06)}
+.abas-pill button[aria-selected=true] .ic{color:var(--botao)}
+.dash-topo{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.periodo{display:inline-flex;align-items:center;gap:8px;background:var(--fundo);border-radius:99px;padding:8px 16px;font-size:13.5px;font-weight:600;border:1px solid #EDEDE9}
+.painel-aba{display:none}
+.painel-aba.ativa{display:block}
 
 .chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;border-radius:99px;padding:2px 9px;white-space:nowrap;background:var(--chip);color:var(--chip-t)}
 .chip-solto{white-space:normal!important}
@@ -142,7 +161,7 @@ img.avatar{object-fit:cover;background:var(--chip)}
 .chip-eq{background:#DBEAFE;color:#1E40AF}
 .chip-warn{background:#FFEDD5;color:#9A3412}
 .chip-bad{background:var(--bad-soft);color:#991B1B}
-.btn{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:13.5px;border-radius:10px;padding:8px 14px;border:1.5px solid var(--tinta);background:var(--fundo);color:var(--tinta);white-space:nowrap;text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:13.5px;border-radius:99px;padding:8px 16px;border:1.5px solid var(--tinta);background:var(--fundo);color:var(--tinta);white-space:nowrap;text-decoration:none}
 .btn:hover{background:var(--linha-2)}
 .btn-pri{background:var(--botao);border-color:var(--botao);color:#fff}
 .btn-pri:hover{background:var(--botao-h)}
@@ -193,20 +212,27 @@ img.avatar{object-fit:cover;background:var(--chip)}
 /* ---------- Conversas ---------- */
 .vista-conversas.ativa{display:grid}
 .conteudo:has(#v-conversas.ativa){padding:4px 16px 16px;overflow:hidden}
-.vista-conversas{grid-template-columns:350px minmax(0,1fr) 330px;gap:12px;height:100%;min-height:520px}
-.lista-conv,.chat,.ficha{border:1px solid var(--linha);border-radius:16px;overflow:hidden;background:var(--fundo)}
+.vista-conversas{grid-template-columns:330px minmax(0,1fr) 330px;gap:12px;height:100%;min-height:520px}
+.lista-conv,.chat,.ficha{border:0;border-radius:22px;overflow:hidden;background:var(--fundo)}
 .lista-conv{display:flex;flex-direction:column;min-height:0}
-.lista-topo{padding:12px 14px;border-bottom:1px solid var(--linha)}
-.filtros{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
-.filtros button{font-size:13px;font-weight:600;padding:5px 11px;border-radius:99px;border:1px solid var(--linha);white-space:nowrap;color:var(--suave)}
-.filtros button[aria-pressed=true]{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+.lista-topo{padding:12px 12px 0;display:grid;gap:10px}
+.fluxo-ia{display:flex;align-items:center;gap:8px;width:100%;background:var(--fundo);border:1px solid var(--linha);border-radius:14px;padding:8px 12px;font-size:13.5px;font-weight:600;text-align:left}
+.fluxo-ia i{width:8px;height:8px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 3px rgba(31,175,107,.18);flex-shrink:0}
+.fluxo-ia .ic{margin-left:auto;color:var(--suave);width:15px;height:15px}
+.busca-lista{display:flex;align-items:center;gap:8px;background:var(--chip);border-radius:99px;padding:8px 14px;color:var(--suave)}
+.busca-lista:focus-within{outline:2px solid var(--botao);outline-offset:1px}
+.busca-lista input{border:0;background:none;outline:0;width:100%;font-size:13.5px;color:var(--tinta)}
+.busca-lista input::placeholder{color:var(--suave)}
+.filtros{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--linha);margin:0 -12px;padding:0 12px}
+.filtros button{font-size:12.5px;font-weight:600;padding:8px 7px;white-space:nowrap;color:var(--suave);border-bottom:2px solid transparent;margin-bottom:-1px}
+.filtros button[aria-pressed=true]{color:var(--tinta);border-bottom-color:var(--botao)}
 .convs{overflow-y:auto;flex:1}
 .grupo-cab{display:flex;align-items:center;gap:8px;padding:14px 14px 6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--suave);border-bottom:1px solid var(--linha-2)}
 .grupo-cab::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cor)}
 .grupo-cab .n{font-variant-numeric:tabular-nums;background:var(--chip);color:var(--chip-t);border-radius:99px;padding:0 7px;letter-spacing:0}
 .conv{position:relative;border-bottom:1px solid var(--linha-2)}
 .conv.ia{background:var(--destaque)}
-.conv.sel{background:var(--sel);box-shadow:inset 3px 0 0 var(--c-conv)}
+.conv.sel{background:var(--sel);box-shadow:inset 3px 0 0 var(--botao)}
 .conv-abre{display:flex;gap:11px;padding:12px 14px;width:100%;text-align:left}
 .conv-abre:hover{background:rgba(27,37,89,.035)}
 .conv-abre:focus-visible{outline-offset:-2px}
@@ -277,8 +303,15 @@ img.avatar{object-fit:cover;background:var(--chip)}
 .aviso-ia{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--tinta);background:var(--destaque);padding:8px 14px;border-top:1px solid var(--linha)}
 .aviso-ia img{width:20px;height:20px}
 .aviso-ia button{margin-left:auto;font-weight:700;text-decoration:underline}
-.vazio-chat{flex:1;display:grid;place-items:center;align-content:center;gap:12px;text-align:center;color:var(--suave);padding:30px}
-.vazio-chat img{width:69px;height:85px}
+.mensagens,.vazio-chat{background:var(--wa-bg) url(img/fundo-chat.svg) 0 0/420px 420px}
+.vazio-chat{flex:1;display:grid;place-items:center}
+.vazio-cartao{background:var(--fundo);border-radius:22px;padding:24px 34px 22px;text-align:center;max-width:340px;box-shadow:0 1px 2px rgba(27,37,89,.05);display:grid;justify-items:center;gap:6px}
+.vazio-cartao img{width:64px;height:93px;margin-bottom:4px}
+.vazio-cartao b{font-family:var(--titulo);font-size:19px}
+.vazio-cartao p{font-size:13px;color:var(--suave)}
+.dica-esc{position:absolute;right:16px;bottom:12px;font-size:12px;color:var(--suave);display:flex;align-items:center;gap:8px}
+.dica-esc kbd{font:inherit;font-size:11px;background:var(--fundo);border:1px solid var(--linha);border-radius:6px;padding:1px 7px}
+.chat{position:relative}
 .btn-voltar-chat{display:none}
 
 /* Painel lateral: Estratégia e Ficha */
@@ -316,7 +349,7 @@ img.avatar{object-fit:cover;background:var(--chip)}
 .funil-topo .total{font-size:13.5px;color:var(--suave)}
 .funil-topo .total b{color:var(--tinta)}
 .kanban{display:grid;grid-template-columns:repeat(6,minmax(232px,1fr));gap:12px;overflow-x:auto;padding-bottom:10px}
-.coluna{background:#F9FAFD;border:1px solid var(--linha);border-top:4px solid var(--cor);border-radius:16px;padding:10px;min-height:420px;outline:2px dashed transparent}
+.coluna{background:#EEEEEA;border:0;border-top:4px solid var(--cor);border-radius:20px;padding:10px;min-height:420px;outline:2px dashed transparent}
 .coluna.alvo{background:var(--destaque);outline-color:var(--botao)}
 .col-cab{display:flex;align-items:center;gap:8px;padding:2px 4px 10px;font-weight:700;font-size:13.5px}
 .col-cab i{width:8px;height:8px;border-radius:50%}
@@ -444,9 +477,9 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
 @keyframes avOut{to{opacity:0;transform:translateY(10px)}}
 
 /* ---------- Alternador de ramo (12/11/2026) ---------- */
-.ramos{display:flex;align-items:center;gap:14px;margin:2px 20px 10px;padding:10px 14px;border-radius:18px;border:1.5px solid var(--linha);background:var(--fundo);flex-shrink:0;position:relative}
+.ramos{display:flex;align-items:center;gap:14px;margin:2px 28px 12px;padding:10px 14px;border-radius:22px;border:1px solid #EDEDE9;background:var(--fundo);flex-shrink:0;position:relative}
 .ramos-rot{display:flex;align-items:center;gap:10px;flex-shrink:0;line-height:1.25}
-.ramos-rot .seta{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--verde-claro);color:var(--botao);flex-shrink:0}
+.ramos-rot .seta{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--verde-claro);color:var(--botao);flex-shrink:0}
 .ramos-rot .seta .ic{width:18px;height:18px}
 .ramos-rot b{display:block;font-family:var(--titulo);font-size:16px;letter-spacing:-.01em}
 .ramos-rot small{display:block;font-size:12.5px;color:var(--suave)}
@@ -458,7 +491,7 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
 .ramo:hover{border-color:var(--cor)}
 .ramo[aria-pressed="true"]{background:var(--botao);border-color:var(--botao);color:#fff}
 .ramo[aria-pressed="true"] .ri{background:rgba(255,255,255,.2);color:#fff}
-.ramo:focus-visible{outline:2px solid var(--c-conv);outline-offset:2px}
+.ramo:focus-visible{outline:2px solid var(--botao);outline-offset:2px}
 /* Destaque na abertura: some quando a pessoa escolhe um ramo */
 .ramos.chamar{border-color:var(--verde);background:var(--destaque);box-shadow:0 0 0 4px rgba(31,175,107,.14)}
 .ramos.chamar .seta{animation:seta 1.2s ease-in-out infinite}
@@ -473,6 +506,128 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
 }
 
 .navbaixo{display:none}
+
+/* ---------- Telas novas: Conexões, Automações, Disparos, Contatos, Ferramentas, Configurações ---------- */
+.sub-pagina{color:var(--suave);margin:-2px 0 16px;font-size:14px}
+.secao-tit{font-family:var(--titulo);font-size:20px;font-weight:700;letter-spacing:-.01em;margin:26px 0 12px}
+.linha-btn{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.nota-uso{font-size:13px;color:var(--suave)}
+.nota-uso b{color:var(--tinta)}
+.uso-barra{height:10px;background:var(--linha-2);border-radius:99px;overflow:hidden;margin:6px 0 8px}
+.uso-barra i{display:block;height:100%;background:var(--verde);border-radius:99px}
+.con-grade{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
+.passos{list-style:none;display:grid;gap:12px;margin-bottom:16px}
+.passos li{display:flex;gap:12px;align-items:flex-start}
+.passos li > b{width:26px;height:26px;border-radius:50%;background:var(--selo);color:var(--botao);display:grid;place-items:center;font-size:13px;flex-shrink:0}
+.passos strong{display:block;font-size:14px}
+.passos small{color:var(--suave);font-size:12.5px}
+.canal{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--linha-2);font-size:14px}
+.canal:last-child{border:0}
+.canal b{display:block;font-weight:600}
+.canal small{color:var(--suave);font-size:12.5px}
+.canal .chip{margin-left:auto}
+
+.auto-grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.auto-card{padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.auto-card .topo-card{display:flex;align-items:center;gap:12px}
+.auto-card b{font-size:15px;font-weight:600}
+.auto-card p{font-size:13px;color:var(--suave);flex:1}
+.auto-card .chave{margin-left:auto}
+.auto-card .rodape{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--suave);padding-top:10px;border-top:1px solid var(--linha-2);margin-top:6px}
+.auto-card .rodape b{font-size:12.5px;color:var(--tinta)}
+
+.tabela-rolagem{overflow-x:auto}
+table.tab{width:100%;border-collapse:collapse;font-size:13.5px}
+table.tab th{text-align:left;font-size:12px;color:var(--suave);font-weight:600;padding:0 20px 10px;white-space:nowrap}
+table.tab td{padding:12px 20px;border-top:1px solid var(--linha-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+table.tab tr.clic{cursor:pointer}
+table.tab tr.clic:hover td{background:var(--destaque)}
+table.tab td.nome{display:flex;align-items:center;gap:10px;font-weight:600;white-space:normal}
+table.tab td.nome small{display:block;color:var(--suave);font-weight:500}
+.busca-tab{min-width:260px}
+.cel-etapa{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.cel-etapa i{width:8px;height:8px;border-radius:50%;background:var(--cor)}
+
+.ferr-grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ferr{padding:20px;display:flex;flex-direction:column;gap:6px}
+.ferr .tile{margin-bottom:6px}
+.ferr b{font-size:15.5px;font-weight:600;display:flex;align-items:center;gap:8px}
+.ferr p{font-size:13px;color:var(--suave);flex:1;margin-bottom:10px}
+.ferr .btn{align-self:flex-start}
+.ferr.breve .tile{background:var(--chip);color:var(--suave)}
+.ferr-camaleao{display:flex;align-items:center;gap:18px;padding:18px 22px;margin-top:14px;background:var(--verde-claro);border-color:#D3EDE0}
+.ferr-camaleao b{display:block;font-size:15px}
+.ferr-camaleao p{font-size:13px;color:var(--suave)}
+.ferr-camaleao .btn{margin-left:auto}
+
+.cfg{display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;align-items:start}
+.cfg-nav{display:grid;gap:2px;position:sticky;top:0}
+.cfg-nav .rotulo-nav:first-child{padding-top:0}
+.cfg-nav button{display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:14px;color:#3B4160;font-weight:500;font-size:14px;text-align:left}
+.cfg-nav button .ic{color:#5F6480}
+.cfg-nav button:hover{background:rgba(255,255,255,.6)}
+.cfg-nav button[aria-current=true]{background:var(--fundo);color:var(--tinta);font-weight:600;box-shadow:0 1px 2px rgba(27,37,89,.06)}
+.cfg-nav button[aria-current=true] .ic{color:var(--botao)}
+.cfg-corpo{min-width:0}
+.cfg-pane{display:none;gap:14px}
+.cfg-pane.ativa{display:grid}
+.cfg-pane .grade{margin:0}
+.perfil-foto{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.form2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.plano-topo{display:flex;align-items:center;gap:20px;padding:22px 24px;background:var(--verde-claro);border-radius:22px;border:1px solid #D3EDE0}
+.plano-topo img{width:62px;height:79px;flex-shrink:0}
+.plano-topo h2{font-family:var(--titulo);font-size:26px;letter-spacing:-.02em;line-height:1.1}
+.plano-topo p{color:var(--suave);font-size:14px}
+.plano-topo .preco{margin-left:auto;text-align:right;font-family:var(--titulo);font-size:28px;font-weight:700}
+.plano-topo .preco small{display:block;font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:12.5px;font-weight:500;color:var(--suave)}
+.resp-rapida{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--linha-2);align-items:flex-start}
+.resp-rapida:last-child{border:0}
+.resp-rapida code{font-family:inherit;font-size:12.5px;font-weight:700;background:var(--selo);color:var(--botao);border-radius:8px;padding:2px 9px;white-space:nowrap}
+.resp-rapida p{font-size:13.5px;flex:1}
+.modelo{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;padding:14px 0;border-bottom:1px solid var(--linha-2)}
+.modelo:last-child{border:0}
+.modelo b{font-size:14px}
+.modelo small{grid-column:1;color:var(--suave);font-size:12.5px}
+.modelo .chip{grid-row:1/3;grid-column:2;align-self:center}
+.modelo .msg-modelo{grid-column:1/-1;background:var(--marfim);border-radius:12px;padding:9px 12px;font-size:13px}
+
+/* Dashboard, aba Vendas */
+.vd-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+.vd-dica{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--linha-2);font-size:13.5px;align-items:flex-start}
+.vd-dica:last-child{border:0}
+.vd-dica .tile{width:30px;height:30px}
+.vd-trouxe-num{font-family:var(--titulo);font-size:38px;font-weight:700;letter-spacing:-.02em;line-height:1.05}
+.vd-trouxe-num small{font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--suave);display:block;margin-top:4px;letter-spacing:0}
+
+@media (max-width:1280px){
+  .con-grade,.auto-grade,.ferr-grade{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vd-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:980px){
+  .con-grade,.auto-grade,.ferr-grade{grid-template-columns:minmax(0,1fr)}
+  .cfg{grid-template-columns:minmax(0,1fr);gap:12px}
+  .cfg-nav{display:flex;overflow-x:auto;position:static;gap:6px;scrollbar-width:none;padding-bottom:2px}
+  .cfg-nav .rotulo-nav{display:none}
+  .cfg-nav button{white-space:nowrap;background:var(--fundo);padding:7px 14px;border-radius:99px;gap:8px}
+  .form2{grid-template-columns:1fr}
+  .plano-topo{flex-wrap:wrap}
+  .plano-topo .preco{margin-left:0;text-align:left;width:100%}
+  .ferr-camaleao{flex-wrap:wrap}
+  .ferr-camaleao .btn{margin-left:0}
+  .topo{padding:12px 14px 6px}
+  .topo h1{font-size:22px}
+  .dash-topo{margin-top:4px}
+  .vd-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .busca-tab{min-width:0;width:100%;margin:10px 0 0}
+  .modelo{grid-template-columns:minmax(0,1fr)}
+  .modelo .chip{grid-row:auto;grid-column:1;justify-self:start}
+}
+
+.check.fixo{cursor:default;border-color:#BFE3CF;background:var(--destaque)}
+.check.fixo .caixa{background:var(--botao);border-color:var(--botao)}
+.check.fixo .caixa .ic{opacity:1}
+.feed-item .bola{background:color-mix(in srgb,var(--cor,var(--suave)) 14%,#fff);color:var(--cor,var(--suave));border-radius:50%}
+.sinc{border-radius:22px}
 
 /* ---------- Responsivo ---------- */
 @media (max-width:1280px){
@@ -489,12 +644,20 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
 }
 @media (max-width:980px){
   .app{grid-template-columns:1fr}
-  .lateral{display:none}
+  .lateral,body.lateral-curta .lateral{position:fixed;top:0;bottom:0;left:0;width:min(290px,86vw);z-index:60;background:var(--pagina);padding:16px 12px 12px;transform:translateX(-102%);transition:transform .25s ease;box-shadow:none;visibility:hidden}
+  body.menu-aberto .lateral{transform:none;visibility:visible;box-shadow:12px 0 40px -12px rgba(27,37,89,.35)}
+  .fundo-menu{display:block;position:fixed;inset:0;background:rgba(27,37,89,.38);z-index:55;opacity:0;pointer-events:none;transition:opacity .25s}
+  body.menu-aberto .fundo-menu{opacity:1;pointer-events:auto}
+  body.menu-aberto{overflow:hidden}
+  .lateral .recolher{display:none}
+  body.lateral-curta .marca b,body.lateral-curta .conta > div,body.lateral-curta .conta > .ic,body.lateral-curta .lateral .rot,body.lateral-curta .status-ia > div,body.lateral-curta .ajuda span{display:revert}
+  body.lateral-curta .marca{flex-direction:row;padding:0 4px 14px}
+  body.lateral-curta .nav-item{justify-content:flex-start;padding:9px 12px}
   .principal{height:auto;min-height:100dvh;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
   .conteudo{overflow:visible;padding:4px 14px 30px}
   .conteudo:has(#v-conversas.ativa){padding:0;overflow:visible}
   .topo{padding:10px 14px;position:sticky;top:0;z-index:20;gap:10px;background:var(--pagina)}
-  .marca-movel{display:block;width:32px;height:32px;flex-shrink:0}
+  #abrir-menu{display:grid}
   .topo h1{font-size:19px;flex:1}
   .busca,#btn-sino{display:none}
   #btn-simular .longo{display:none}
@@ -503,11 +666,12 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
   .resumo-dia{flex-direction:column;align-items:flex-start;padding:18px;gap:12px}
   .resumo-dia .txt{width:100%}
   .resumo-dia h2{font-size:22px}
-  .navbaixo{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--fundo);border-top:1px solid var(--linha);padding:6px 4px calc(6px + env(safe-area-inset-bottom));overflow-x:auto;scrollbar-width:none;gap:2px}
-  .navbaixo a{flex:1 0 64px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11.5px;font-weight:600;color:var(--suave);text-decoration:none;padding:6px 2px;border-radius:12px;position:relative}
-  .navbaixo a .ic{color:var(--cor)}
-  .navbaixo a.ativo{color:var(--tinta);background:color-mix(in srgb,var(--cor) 12%,#fff)}
-  .navbaixo .cont{position:absolute;top:2px;left:calc(50% + 6px);background:#FDBA74;color:#431407;font-size:10.5px;font-weight:700;border-radius:99px;padding:0 5px;min-width:17px;text-align:center}
+  .navbaixo{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--pagina);border-top:1px solid var(--linha);padding:6px 8px calc(6px + env(safe-area-inset-bottom));gap:4px}
+  .navbaixo a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;font-weight:500;color:var(--suave);text-decoration:none;padding:6px 2px;border-radius:14px;position:relative}
+  .navbaixo a .ic{color:var(--suave)}
+  .navbaixo a.ativo{color:var(--botao);font-weight:600;background:var(--fundo)}
+  .navbaixo a.ativo .ic{color:var(--botao)}
+  .navbaixo .cont{position:absolute;top:2px;left:calc(50% + 6px);background:var(--verde);color:#fff;font-size:10.5px;font-weight:700;border-radius:99px;padding:0 5px;min-width:17px;text-align:center}
   .navbaixo .cont:empty{display:none}
   .vista-conversas{grid-template-columns:minmax(0,1fr);height:auto;min-height:0;gap:0}
   .lista-conv{border-radius:0;border-width:1px 0 0}
@@ -543,46 +707,61 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
   .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .kpi .num{font-size:24px}
 }
+@media (max-width:980px){
+  .topo .espaco{display:none}
+  .topo h1{flex:0 1 auto}
+  .selo-demo{margin-right:auto}
+}
+@media (max-width:560px){
+  #btn-simular{padding:9px 11px}
+  #btn-simular span{display:none}
+  .selo-demo{padding:2px 8px}
+}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 <meta name="robots" content="noindex">
 </head>
 <body>
 <div class="app">
-  <aside class="lateral">
+  <div class="fundo-menu" id="fundo-menu"></div>
+  <aside class="lateral" id="lateral">
     <div class="marca">
-      <img class="pixel grande" src="img/cabeca-frente.png" width="70" height="69" alt="">
-      <img class="mini" src="img/cabeca-frente-32.png" width="32" height="32" alt="Inbox Mestre">
-      <b>Inbox<br>Mestre</b>
+      <img class="pixel grande" src="img/cabeca-frente.png" width="38" height="37" alt="Inbox Mestre">
+      <b>Inbox Mestre</b>
+      <button class="recolher" id="recolher" aria-expanded="true" aria-label="Recolher menu"><svg class="ic ic-sm" aria-hidden="true"><use href="#i-chevron-left"/></svg><span class="rot so-leitor">Recolher menu</span></button>
     </div>
-    <div class="conta"><b id="conta-nome">Clínica Bella Vita</b><span id="conta-sub">Central de atendimento</span></div>
+    <div class="conta"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-building-2"/></svg></span><div><b id="conta-nome">Clínica Bella Vita</b><span class="sub" id="conta-sub">Plano Avançado</span></div><svg class="ic" aria-hidden="true"><use href="#i-chevrons-up-down"/></svg></div>
     <nav aria-label="Seções">
-    <a class="nav-item" href="#painel" data-v="painel" title="Painel" style="--cor:var(--c-painel)"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-layout-dashboard"/></svg></span><span class="rot">Painel</span></a>
-    <a class="nav-item" href="#conversas" data-v="conversas" title="Conversas" style="--cor:var(--c-conv)"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-message-circle"/></svg></span><span class="rot">Conversas</span><span class="cont" id="cont-conv" title="Precisam de alguém da equipe"></span></a>
-    <a class="nav-item" href="#funil" data-v="funil" title="Funil" style="--cor:var(--c-funil)"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-kanban"/></svg></span><span class="rot">Funil</span></a>
-    <a class="nav-item" href="#followups" data-v="followups" title="Follow-ups" style="--cor:var(--c-fu)"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg></span><span class="rot">Follow-ups</span></a>
-    <div class="rotulo-nav" role="separator" data-r="rotuloNav">Clínica</div>
-    <a class="nav-item" href="#servicos" data-v="servicos" title="Serviços" data-rt="itensNav" style="--cor:var(--c-serv)"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></span><span class="rot" data-r="itensNav">Serviços</span></a>
-    <a class="nav-item" href="#equipe" data-v="equipe" title="Equipe e rodízio" style="--cor:var(--c-eq)"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span><span class="rot">Equipe e rodízio</span></a>
-    <a class="nav-item" href="#assistente" data-v="assistente" title="Regras da assistente" style="--cor:var(--c-regras)"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-sliders-horizontal"/></svg></span><span class="rot">Regras da assistente</span></a>
+    <div class="rotulo-nav" role="presentation">Menu</div>
+    <a class="nav-item" href="#painel" data-v="painel" title="Dashboard"><svg class="ic" aria-hidden="true"><use href="#i-layout-dashboard"/></svg><span class="rot">Dashboard</span></a>
+    <a class="nav-item" href="#conexoes" data-v="conexoes" title="Conexões"><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg><span class="rot">Conexões</span></a>
+    <a class="nav-item" href="#conversas" data-v="conversas" title="Conversas"><svg class="ic" aria-hidden="true"><use href="#i-message-circle"/></svg><span class="rot">Conversas</span><span class="cont" id="cont-conv" title="Precisam de alguém da equipe"></span></a>
+    <a class="nav-item" href="#automacoes" data-v="automacoes" title="Automações"><svg class="ic" aria-hidden="true"><use href="#i-workflow"/></svg><span class="rot">Automações</span></a>
+    <a class="nav-item" href="#disparos" data-v="disparos" title="Disparos"><svg class="ic" aria-hidden="true"><use href="#i-megaphone"/></svg><span class="rot">Disparos</span></a>
+    <a class="nav-item" href="#contatos" data-v="contatos" title="Contatos"><svg class="ic" aria-hidden="true"><use href="#i-contact"/></svg><span class="rot">Contatos</span></a>
+    <a class="nav-item" href="#funil" data-v="funil" title="CRM"><svg class="ic" aria-hidden="true"><use href="#i-kanban"/></svg><span class="rot">CRM</span></a>
+    <a class="nav-item" href="#servicos" data-v="servicos" title="Serviços" data-rt="itensNav"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg><span class="rot" data-r="itensNav">Serviços</span></a>
+    <a class="nav-item" href="#ferramentas" data-v="ferramentas" title="Ferramentas"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg><span class="rot">Ferramentas</span></a>
+    <div class="rotulo-nav" role="presentation">Conta</div>
+    <a class="nav-item" href="#config" data-v="config" title="Configurações"><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg><span class="rot">Configurações</span></a>
     </nav>
     <div class="status-ia">
       <span class="avatar av-ia"><img class="pixel" src="img/cabeca-frente-32.png" alt=""></span>
       <div><b>Assistente ativa</b><p>Respondendo 24 horas. Última resposta há <span id="ult-resp">8 s</span>.</p></div>
     </div>
-    <button class="recolher" id="recolher" aria-expanded="true" aria-label="Recolher menu"><svg class="ic ic-sm" aria-hidden="true"><use href="#i-chevron-left"/></svg><span class="rot">Recolher menu</span></button>
+    <a class="ajuda" href="../" title="Voltar pra apresentação"><svg class="ic" aria-hidden="true"><use href="#i-life-buoy"/></svg><span>Ajuda e tutoriais</span></a>
   </aside>
 
   <div class="principal">
     <header class="topo">
-      <img class="marca-movel" src="img/cabeca-frente-32.png" width="32" height="32" alt="Inbox Mestre">
-      <h1 id="titulo">Painel</h1>
+      <button class="icone-btn" id="abrir-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="lateral"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button>
+      <h1 id="titulo">Dashboard</h1>
       <span class="selo-demo"><span class="longo">Dados de demonstração</span><span class="curto">Demo</span></span>
-      <label class="busca"><svg class="ic ic-sm"><use href="#i-search"/></svg><span class="so-leitor">Buscar</span><input id="busca" type="search" placeholder="Buscar contato, serviço ou conversa"></label>
-      <button class="btn btn-pri" id="btn-simular" aria-label="Simular novo contato"><svg class="ic ic-sm"><use href="#i-zap"/></svg><span>Simular<span class="longo"> novo contato</span></span></button>
-      <button class="icone-btn" aria-label="Avisos" id="btn-sino"><svg class="ic"><use href="#i-bell"/></svg><span class="ponto"></span></button>
+      <span class="espaco"></span>
+      <button class="btn btn-pri" id="btn-simular" aria-label="Simular novo contato"><svg class="ic ic-sm" aria-hidden="true"><use href="#i-zap"/></svg><span>Simular<span class="longo"> novo contato</span></span></button>
+      <button class="icone-btn" aria-label="Avisos" id="btn-sino"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg><span class="ponto"></span></button>
       <div class="eu"><span class="avatar" id="eu-av" style="background:#3D6A5E">RE</span><div><b id="eu-nome">Recepção</b><small id="eu-sub">Clínica Bella Vita</small></div></div>
-      <a class="voltar-site" href="../" aria-label="Voltar pra apresentação"><svg class="ic ic-sm"><use href="#i-chevron-left"/></svg><span>Apresentação</span></a>
+      <a class="voltar-site" href="../" aria-label="Voltar pra apresentação"><svg class="ic ic-sm" aria-hidden="true"><use href="#i-chevron-left"/></svg><span>Apresentação</span></a>
     </header>
 
     <div class="ramos chamar" id="ramos" role="group" aria-label="Escolha o tipo de negócio">
@@ -593,6 +772,14 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
     <main class="conteudo">
       <!-- PAINEL -->
       <section class="vista" id="v-painel">
+        <div class="dash-topo">
+          <div class="abas-pill" role="tablist" aria-label="Visão do dashboard">
+            <button role="tab" id="ab-atend" aria-selected="true" data-pa="atend"><svg class="ic ic-sm" aria-hidden="true"><use href="#i-message-circle"/></svg>Atendimento</button>
+            <button role="tab" id="ab-vendas" aria-selected="false" data-pa="vendas"><svg class="ic ic-sm" aria-hidden="true"><use href="#i-trending-up"/></svg>Vendas</button>
+          </div>
+          <span class="periodo"><svg class="ic ic-sm" aria-hidden="true"><use href="#i-calendar"/></svg>Últimos 30 dias</span>
+        </div>
+        <div class="painel-aba ativa" id="pa-atend" role="tabpanel" aria-labelledby="ab-atend">
         <div class="resumo-dia">
           <img class="pixel" src="img/pensando.png" width="69" height="85" alt="">
           <div class="txt"><span class="pilula" id="rd-data">Hoje</span>
@@ -604,7 +791,7 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
         <div class="grade dash-a">
           <div class="card">
             <div class="card-cab"><div><h2>Contatos por dia</h2><p>Últimos 30 dias, separados pelo horário de chegada</p></div>
-              <div class="dir legenda"><span><i style="background:#5EC4B6"></i><em id="leg-hor" style="font-style:normal">Horário da clínica</em></span><span><i style="background:#1B2559"></i>Fora do horário</span></div></div>
+              <div class="dir legenda"><span><i style="background:#1FAF6B"></i><em id="leg-hor" style="font-style:normal">Horário da clínica</em></span><span><i style="background:#1B2559"></i>Fora do horário</span></div></div>
             <div class="card-corpo"><div class="grafico" id="g-dias"></div><div class="resumo-graf" id="r-dias"></div></div>
           </div>
           <div class="card">
@@ -616,7 +803,7 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
           <div class="card">
             <div class="card-cab"><div><h2>Quando os contatos chamam</h2><p>Contatos por dia da semana e horário</p></div></div>
             <div class="card-corpo"><div class="calor" id="g-calor"></div>
-              <div class="rampa">Menos<span class="tira"><i style="background:#E6F7F4"></i><i style="background:#BDEBE3"></i><i style="background:#7FD6C8"></i><i style="background:#2FB5A3"></i><i style="background:#0F766E"></i></span>Mais<span style="margin-left:auto" id="r-calor"></span></div></div>
+              <div class="rampa">Menos<span class="tira"><i style="background:#E8F6EE"></i><i style="background:#BFE8D3"></i><i style="background:#7FD0A8"></i><i style="background:#2FB57D"></i><i style="background:#12684F"></i></span>Mais<span style="margin-left:auto" id="r-calor"></span></div></div>
           </div>
           <div class="card">
             <div class="card-cab"><div><h2>De onde vêm os contatos</h2><p>Origem do primeiro contato</p></div></div>
@@ -637,23 +824,40 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
             <div class="card-corpo"><div class="feed" id="agenda"></div></div>
           </div>
         </div>
+      </div>
+        <div class="painel-aba" id="pa-vendas" role="tabpanel" aria-labelledby="ab-vendas">
+          <div class="grade kpis vd-kpis" id="vd-kpis"></div>
+          <div class="grade dash-a">
+            <div class="card"><div class="card-cab"><div><h2>Fechamentos por dia</h2><p>Últimos 30 dias, entre o que a assistente começou e a equipe fechou</p></div></div>
+              <div class="card-corpo"><div class="grafico" id="vd-dias"></div><div class="resumo-graf" id="vd-r"></div></div></div>
+            <div class="card"><div class="card-cab"><div><h2>Fechamentos por pessoa</h2><p>Quem recebeu o contato pelo rodízio</p></div></div>
+              <div class="card-corpo"><div class="hbar" id="vd-resp"></div></div></div>
+          </div>
+          <div class="grade dash-b">
+            <div class="card"><div class="card-cab"><div><h2>Fechamentos por origem</h2><p>De onde vieram os contatos que fecharam</p></div></div><div class="card-corpo"><div class="hbar" id="vd-origem"></div></div></div>
+            <div class="card"><div class="card-cab"><div><h2>O que a assistente trouxe</h2><p>Contatos que só foram atendidos porque ela respondeu na hora</p></div></div><div class="card-corpo" id="vd-trouxe"></div></div>
+            <div class="card"><div class="card-cab"><div><h2>O camaleão avisa</h2><p>O que vale olhar hoje</p></div></div><div class="card-corpo" id="vd-dicas"></div></div>
+          </div>
+        </div>
       </section>
 
       <!-- CONVERSAS -->
       <section class="vista vista-conversas" id="v-conversas">
         <div class="lista-conv">
           <div class="lista-topo">
+            <button class="fluxo-ia" id="fluxo-ia" type="button"><i></i><span id="fluxo-txt">2 conversas com a assistente agora</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+            <label class="busca-lista"><svg class="ic ic-sm" aria-hidden="true"><use href="#i-search"/></svg><span class="so-leitor">Buscar conversa</span><input id="busca" type="search" placeholder="Buscar conversa"></label>
             <div class="filtros" id="filtros" role="group" aria-label="Filtrar conversas">
               <button aria-pressed="true" data-f="aberto">Em aberto</button>
               <button aria-pressed="false" data-f="naolidas">Não lidas</button>
-              <button aria-pressed="false" data-f="ia">Com a assistente</button>
-              <button aria-pressed="false" data-f="eq">Com a equipe</button>
+              <button aria-pressed="false" data-f="ia">Assistente</button>
+              <button aria-pressed="false" data-f="eq">Equipe</button>
               <button aria-pressed="false" data-f="todas">Todas</button>
             </div>
           </div>
           <div class="convs" id="convs"></div>
         </div>
-        <div class="chat" id="chat"><div class="vazio-chat"><img class="pixel" src="img/pensando.png" alt="">Escolha uma conversa</div></div>
+        <div class="chat" id="chat"><div class="vazio-chat"><div class="vazio-cartao"><img class="pixel" src="img/camaleao.png" width="64" height="93" alt=""><b>Conversas</b><p>Escolha uma conversa na lista para ler o histórico e responder.</p></div></div><div class="dica-esc"><kbd>Esc</kbd>fecha a conversa aberta</div></div>
         <aside class="ficha" id="ficha" aria-label="Estratégia e ficha do contato">
           <div class="ficha-abas" role="tablist">
             <button role="tab" id="aba-estr" aria-controls="ficha-corpo" aria-selected="true" data-aba="estr"><svg class="ic ic-sm"><use href="#i-sparkles"/></svg>Estratégia</button>
@@ -673,8 +877,12 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
         <div class="kanban" id="kanban"></div>
       </section>
 
-      <!-- FOLLOW-UPS -->
-      <section class="vista" id="v-followups">
+      <!-- AUTOMAÇÕES -->
+      <section class="vista" id="v-automacoes">
+        <div class="card sinc"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-workflow"/></svg></span><div><b>O que roda sozinho</b><br><small>Cada automação liga e desliga aqui. Tudo que a assistente manda sai em horário comercial e para na hora quando o contato diz não.</small></div></div>
+        <div class="auto-grade" id="auto-grade"></div>
+        <h3 class="secao-tit">Follow-up automático</h3>
+        
         <div class="grade kpis fu-kpis" id="fu-kpis"></div>
         <div class="grade fu-grade">
           <div class="card">
@@ -692,6 +900,7 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
             </div>
           </div>
         </div>
+      
       </section>
 
       <!-- SERVIÇOS -->
@@ -700,8 +909,83 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
         <div class="serv-grade" id="serv-grade"></div>
       </section>
 
-      <!-- EQUIPE -->
-      <section class="vista" id="v-equipe">
+      <!-- NOVAS TELAS -->
+      <section class="vista" id="v-conexoes">
+        <div class="grade con-grade">
+          <div class="card">
+            <div class="card-cab"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-message-circle"/></svg></span><div><h2>WhatsApp principal</h2><p id="con-sub">Atendimento</p></div><span class="dir chip chip-ia"><svg class="ic" aria-hidden="true"><use href="#i-badge-check"/></svg>Conectado pela API oficial</span></div>
+            <div class="card-corpo">
+              <div class="dado"><span>Número</span><b>(31) 9 ••••-0000</b></div>
+              <div class="dado"><span>Nome de exibição</span><b id="con-nome">Clínica Bella Vita</b></div>
+              <div class="dado"><span>Qualidade do número</span><b><span class="chip chip-ia">Alta</span></b></div>
+              <div class="dado"><span>Assistente</span><b>Ativa, 24 horas</b></div>
+              <h3 class="subtitulo">Mensagens neste mês</h3>
+              <div class="uso-barra"><i style="width:41%"></i></div>
+              <p class="nota-uso"><b>412</b> mensagens enviadas, de 1.000 que a Meta deixa de graça por mês.</p>
+              <div class="linha-btn"><button class="btn" data-aviso="Na demonstração o número é de exemplo."><svg class="ic ic-sm" aria-hidden="true"><use href="#i-refresh-cw"/></svg>Reconectar</button><button class="btn btn-leve" data-aviso="Desligar a assistente deixa as conversas só com a equipe."><svg class="ic ic-sm" aria-hidden="true"><use href="#i-pause"/></svg>Pausar assistente</button></div>
+            </div>
+          </div>
+          <div class="card con-passo">
+            <div class="card-cab"><div><h2>Conectar outro número</h2><p>Leva uns 5 minutos, na janela oficial da Meta</p></div></div>
+            <div class="card-corpo">
+              <ol class="passos">
+                <li><b>1</b><div><strong>Clique em Conectar</strong><small>Abre a janela da Meta e você entra no seu Facebook.</small></div></li>
+                <li><b>2</b><div><strong>Escolha a conta da empresa</strong><small>Ou crie uma na hora, com o nome do seu negócio.</small></div></li>
+                <li><b>3</b><div><strong>Confirme o número</strong><small>Por SMS ou ligação. Quem usa o app WhatsApp Business pode continuar nele pelo celular.</small></div></li>
+                <li><b>4</b><div><strong>Pronto</strong><small>A assistente começa a atender e as conversas aparecem aqui.</small></div></li>
+              </ol>
+              <button class="btn btn-pri" data-aviso="Na demonstração a conexão é só de exemplo. Na conta real, abre a janela oficial da Meta."><svg class="ic ic-sm" aria-hidden="true"><use href="#i-plug"/></svg>Conectar WhatsApp</button>
+              <p class="nota-uso" style="margin-top:12px">Só a API oficial da Meta. Nada de programa que imita o WhatsApp Web.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-cab"><div><h2>Outros canais</h2><p>Todos chegariam na mesma caixa de conversas</p></div></div>
+            <div class="card-corpo" id="con-canais"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="vista" id="v-disparos">
+        <div class="card sinc"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-megaphone"/></svg></span><div><b>Mensagens em lote, do jeito que a Meta aceita</b><br><small>Só para quem autorizou receber, com modelo aprovado pela Meta e em horário comercial. Quem pede pra sair some da lista na hora.</small></div></div>
+        <div class="grade kpis fu-kpis" id="dp-kpis"></div>
+        <div class="card"><div class="card-cab"><div><h2>Campanhas</h2><p>Exemplos de uso</p></div><button class="dir btn btn-pri" data-aviso="Na demonstração as campanhas são só de exemplo."><svg class="ic ic-sm" aria-hidden="true"><use href="#i-plus"/></svg>Nova campanha</button></div>
+          <div class="card-corpo" style="padding:10px 0 4px"><div class="tabela-rolagem"><table class="tab" id="tab-dp"></table></div></div></div>
+      </section>
+
+      <section class="vista" id="v-contatos">
+        <div class="card"><div class="card-cab"><div><h2>Todos os contatos</h2><p id="ct-sub"></p></div>
+          <label class="dir busca-lista busca-tab"><svg class="ic ic-sm" aria-hidden="true"><use href="#i-search"/></svg><span class="so-leitor">Buscar contato</span><input id="busca-ct" type="search" placeholder="Buscar por nome ou telefone"></label></div>
+          <div class="card-corpo" style="padding:10px 0 4px"><div class="tabela-rolagem"><table class="tab" id="tab-ct"></table></div></div></div>
+      </section>
+
+      <section class="vista" id="v-ferramentas">
+        <p class="sub-pagina">Atalhos e integrações que entram junto com o seu plano, e o que vem por aí.</p>
+        <div class="ferr-grade" id="ferr-grade"></div>
+        <div class="card ferr-camaleao"><img class="pixel" src="img/camaleao.png" width="52" height="75" alt=""><div><b>Falta uma ferramenta que o seu negócio usa?</b><p>Conte pra gente. As integrações que mais pedirem entram primeiro.</p></div><button class="btn" data-aviso="Na demonstração este botão é só de exemplo."><svg class="ic ic-sm" aria-hidden="true"><use href="#i-message-square-text"/></svg>Sugerir integração</button></div>
+      </section>
+
+      <section class="vista" id="v-config">
+        <div class="cfg">
+          <nav class="cfg-nav" aria-label="Configurações">
+            <div class="rotulo-nav" role="presentation">Conta</div>
+            <button data-p="perfil"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Perfil</button>
+            <button data-p="equipe"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Equipe e rodízio</button>
+            <button data-p="plano"><svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg>Meu plano</button>
+            <button data-p="notificacoes"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg>Notificações</button>
+            <div class="rotulo-nav" role="presentation">Atendimento</div>
+            <button data-p="assistente"><svg class="ic" aria-hidden="true"><use href="#i-sliders-horizontal"/></svg>Regras da assistente</button>
+            <button data-p="respostas"><svg class="ic" aria-hidden="true"><use href="#i-message-square-quote"/></svg>Respostas rápidas</button>
+            <button data-p="templates"><svg class="ic" aria-hidden="true"><use href="#i-layout-template"/></svg>Modelos de mensagem</button>
+          </nav>
+          <div class="cfg-corpo">
+            <div class="cfg-pane" id="p-perfil">
+              <div class="card"><div class="card-cab"><div><h2>Dados pessoais</h2><p>Valem em todas as áreas do sistema</p></div></div>
+                <div class="card-corpo"><div class="perfil-foto"><span class="avatar" id="pf-av" style="width:64px;height:64px;font-size:20px">RE</span><button class="btn btn-leve" data-aviso="Na demonstração a foto é de exemplo."><svg class="ic ic-sm" aria-hidden="true"><use href="#i-upload"/></svg>Trocar foto</button></div>
+                  <div class="form2"><div class="edita"><label for="pf-nome">Nome</label><input id="pf-nome" value=""></div><div class="edita"><label for="pf-wa">WhatsApp (opcional)</label><input id="pf-wa" value="+55 31 99999-9999"></div></div></div></div>
+              <div class="card"><div class="card-cab"><div><h2>Acesso</h2></div></div>
+                <div class="card-corpo"><div class="dado"><span>E-mail</span><b>recepcao@suaempresa.com.br</b></div><div class="dado"><span>Senha</span><b>••••••••</b></div><div class="linha-btn"><button class="btn btn-leve" data-aviso="Na demonstração o acesso é de exemplo."><svg class="ic ic-sm" aria-hidden="true"><use href="#i-mail"/></svg>Alterar e-mail</button><button class="btn btn-leve" data-aviso="Na demonstração o acesso é de exemplo."><svg class="ic ic-sm" aria-hidden="true"><use href="#i-lock"/></svg>Alterar senha</button></div></div></div>
+            </div>
+            <div class="cfg-pane" id="p-equipe">
         <div class="grade eq-grade">
           <div class="card">
             <div class="card-cab"><div><h2 data-r="rodTit">Rodízio das profissionais</h2><p>Quem recebe o próximo contato</p></div></div>
@@ -713,10 +997,10 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
             <div class="card-corpo" style="overflow-x:auto"><table class="eq" id="tab-eq"></table></div>
           </div>
         </div>
-      </section>
-
-      <!-- ASSISTENTE -->
-      <section class="vista" id="v-assistente">
+      </div>
+            <div class="cfg-pane" id="p-plano"></div>
+            <div class="cfg-pane" id="p-notificacoes"></div>
+            <div class="cfg-pane" id="v-assistente">
         <div class="grade as-grade">
           <div class="card largo regras-livres">
             <div class="card-cab"><div><h2>Regras escritas por vocês</h2><p>Escreva do jeito que explicaria pra uma atendente nova. A assistente segue.</p></div></div>
@@ -751,25 +1035,28 @@ table.eq td.nome small{display:block;color:var(--suave);font-weight:500}
             <div class="card-corpo"><div class="base" id="base"></div></div>
           </div>
         </div>
+      </div>
+            <div class="cfg-pane" id="p-respostas"></div>
+            <div class="cfg-pane" id="p-templates"></div>
+          </div>
+        </div>
       </section>
     </main>
   </div>
 </div>
 
-<nav class="navbaixo" id="navbaixo" aria-label="Seções">
-  <a href="#painel" data-v="painel" style="--cor:var(--c-painel)"><svg class="ic"><use href="#i-layout-dashboard"/></svg>Painel</a>
-  <a href="#conversas" data-v="conversas" style="--cor:var(--c-conv)"><svg class="ic"><use href="#i-message-circle"/></svg>Conversas<span class="cont" id="cont-conv-m"></span></a>
-  <a href="#funil" data-v="funil" style="--cor:var(--c-funil)"><svg class="ic"><use href="#i-kanban"/></svg>Funil</a>
-  <a href="#followups" data-v="followups" style="--cor:var(--c-fu)"><svg class="ic"><use href="#i-repeat"/></svg>Follow-ups</a>
-  <a href="#servicos" data-v="servicos" style="--cor:var(--c-serv)"><svg class="ic"><use href="#i-sparkles"/></svg><span data-r="itensNav">Serviços</span></a>
-  <a href="#equipe" data-v="equipe" style="--cor:var(--c-eq)"><svg class="ic"><use href="#i-users"/></svg>Equipe</a>
-  <a href="#assistente" data-v="assistente" style="--cor:var(--c-regras)"><svg class="ic"><use href="#i-sliders-horizontal"/></svg>Regras</a>
+<nav class="navbaixo" id="navbaixo" aria-label="Seções principais">
+  <a href="#painel" data-v="painel"><svg class="ic" aria-hidden="true"><use href="#i-layout-dashboard"/></svg>Dashboard</a>
+  <a href="#conversas" data-v="conversas"><svg class="ic" aria-hidden="true"><use href="#i-message-circle"/></svg>Conversas<span class="cont" id="cont-conv-m"></span></a>
+  <a href="#funil" data-v="funil"><svg class="ic" aria-hidden="true"><use href="#i-kanban"/></svg>CRM</a>
+  <a href="#automacoes" data-v="automacoes"><svg class="ic" aria-hidden="true"><use href="#i-workflow"/></svg>Automações</a>
 </nav>
 
 <div id="dica" aria-hidden="true"></div>
 <div class="avisos" id="avisos" role="status" aria-live="polite"></div>
 
 <script src="../assets/icones.js?v=2"></script>
+<script src="icones-crm.js?v=1"></script>
 <script>
 /* Alternador de ramo: o ramo escolhido vai em ?ramo=<id>; o padrão é a clínica (a demo original). */
 window.RAMOS_LISTA = [
@@ -785,6 +1072,7 @@ window.RAMOS_LISTA = [
   document.write('<script src="ramos/' + window.RAMO_ID + '.js?v=1"><\/script>');
 })();
 </script>
-<script src="crm.js?v=6"></script>
+<script src="telas.js?v=1"></script>
+<script src="crm.js?v=8"></script>
 </body>
 </html>

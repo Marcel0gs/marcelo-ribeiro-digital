@@ -60,15 +60,20 @@ function avisa(titulo, texto, icone = 'bell') {
 }
 
 /* ---------- Navegação ---------- */
-const TITULOS = { painel: 'Painel', conversas: 'Conversas', funil: 'Funil', followups: 'Follow-ups', servicos: R.v.itensTit, equipe: 'Equipe e rodízio', assistente: 'Regras da assistente' };
+const TITULOS = { painel: 'Dashboard', conexoes: 'Conexões', conversas: 'Conversas', automacoes: 'Automações', disparos: 'Disparos', contatos: 'Contatos', funil: 'CRM', servicos: R.v.itensTit, ferramentas: 'Ferramentas', config: 'Configurações' };
+const ALIAS = { followups: 'automacoes', equipe: 'config', assistente: 'config' };
 const renderizado = {};
 function vai() {
   let v = location.hash.replace('#', '') || 'painel';
+  if (v === 'equipe' || v === 'assistente') cfgPane = v;
+  if (ALIAS[v]) v = ALIAS[v];
   if (!TITULOS[v]) v = 'painel';
+  document.body.dataset.v = v;
   document.querySelectorAll('.vista').forEach(s => s.classList.toggle('ativa', s.id === 'v-' + v));
   document.querySelectorAll('[data-v]').forEach(a => { const on = a.dataset.v === v; a.classList.toggle('ativo', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
   $('#titulo').textContent = TITULOS[v];
   if (!renderizado[v]) { RENDER[v](); renderizado[v] = true; }
+  if (v === 'config') abreCfg(cfgPane);
   if (v === 'conversas' && !selecionada && innerWidth > 980) { const p = primeiraEmAberto(); if (p) abreConversa(p.id); }
   if (v !== 'conversas') document.body.classList.remove('chat-cheio');
   $('.conteudo').scrollTop = 0; window.scrollTo(0, 0);
@@ -114,7 +119,7 @@ function renderDias() {
   DIAS.forEach((x, i) => {
     const x0 = mL + i * bw + gap / 2;
     const yCom = y(x.com), yTop = y(x.com + x.fora);
-    s += `<rect x="${x0}" y="${yCom}" width="${w}" height="${mT + ph - yCom}" fill="#5EC4B6"/>`;
+    s += `<rect x="${x0}" y="${yCom}" width="${w}" height="${mT + ph - yCom}" fill="#1FAF6B"/>`;
     const h2 = Math.max(yCom - yTop - 2, 0), r = Math.min(3, w / 2, h2);
     s += `<path d="M${x0},${yCom - 2} V${yTop + r} Q${x0},${yTop} ${x0 + r},${yTop} H${x0 + w - r} Q${x0 + w},${yTop} ${x0 + w},${yTop + r} V${yCom - 2} Z" fill="#1B2559"/>`;
     if (i % 5 === 4 || i === 29) s += `<text x="${x0 + w / 2}" y="${H - 6}" text-anchor="middle">${i === 29 ? 'Hoje' : x.d.getDate() + '/' + (x.d.getMonth() + 1)}</text>`;
@@ -158,7 +163,7 @@ function renderCalor() {
   const util = [1, 4, 5, 7, 5, 6, 8, 8, 5], fds = [1, 3, 6, 5, 3, 3, 5, 8, 6];
   const m = dias.map((_, d) => horas.map((_, h) => Math.round((d < 5 ? util[h] : fds[h]) * (d === 6 ? .8 : 1) * (.8 + r() * .45))));
   const max = Math.max(...m.flat());
-  const rampa = ['#E6F7F4', '#BDEBE3', '#7FD6C8', '#2FB5A3', '#0F766E'];
+  const rampa = ['#E8F6EE', '#BFE8D3', '#7FD0A8', '#2FB57D', '#12684F'];
   let pico = { v: 0 };
   let s = '<span></span>' + horas.map(h => `<span class="rc">${h}</span>`).join('');
   m.forEach((linha, d) => {
@@ -222,6 +227,7 @@ const primeiraEmAberto = () => precisam().sort(porOrdem)[0] || LEADS.filter(FILT
 function atualizaContador() {
   const n = precisam().length || '';
   $('#cont-conv').textContent = n; $('#cont-conv-m').textContent = n;
+  const nia = LEADS.filter(comIA).length; $('#fluxo-txt').textContent = nia + (nia === 1 ? ' conversa com a assistente agora' : ' conversas com a assistente agora');
   $('#rd-titulo').textContent = n ? `${n} ${n > 1 ? 'conversas precisam' : 'conversa precisa'} de você` : 'Nenhuma conversa esperando a equipe';
 }
 
@@ -528,8 +534,9 @@ function renderAssistente() {
 }
 
 const RENDER = {
-  painel: () => { renderKpis(); renderDias(); renderFunil(); renderOrigem(); renderCalor(); renderFeed(); renderAgenda(); renderTopServ(); },
-  conversas: renderConversas, funil: renderKanban, followups: renderFollowups, servicos: renderServicos, equipe: renderEquipe, assistente: renderAssistente,
+  painel: () => { renderKpis(); renderDias(); renderFunil(); renderOrigem(); renderCalor(); renderFeed(); renderAgenda(); renderTopServ(); ligaAbasPainel(); },
+  conversas: renderConversas, funil: renderKanban, automacoes: () => { renderAutoGrade(); renderFollowups(); }, servicos: renderServicos,
+  conexoes: renderConexoes, disparos: renderDisparos, contatos: renderContatos, ferramentas: renderFerramentas, config: renderConfig,
 };
 
 /* ---------- Simulação de um contato novo ---------- */
@@ -579,7 +586,7 @@ async function simular() {
   if (l.status === 'eq' && l.resp === corretor) {
     l.chegou = true;
     rodizio = rodizio.filter(r => r !== corretor).concat(corretor);
-    if (renderizado.equipe) renderRodizio();
+    if (renderizado.config) renderRodizio();
     addFeed(['user-check', 'eq', `<b>${l.nome}</b> passada para ${nomeC}, com o resumo`, 'agora']);
     avisa(`${l.nome} passada para ${nomeC}`, `${base.motivo}. A sugestão de resposta está na aba Estratégia.`, 'user-check');
     if (selecionada === l.id) { aba = 'estr'; setAba('estr'); }
@@ -596,7 +603,7 @@ function lateralCurta(curta) {
   const b = $('#recolher'); b.setAttribute('aria-expanded', !curta); b.setAttribute('aria-label', curta ? 'Abrir menu' : 'Recolher menu');
   b.querySelector('.rot').textContent = curta ? 'Abrir menu' : 'Recolher menu';
 }
-try { lateralCurta(localStorage.getItem('im-lateral') === 'curta'); } catch (e) { lateralCurta(false); }
+try { lateralCurta(innerWidth > 980 && localStorage.getItem('im-lateral') === 'curta'); } catch (e) { lateralCurta(false); }
 $('#recolher').onclick = () => {
   const curta = !document.body.classList.contains('lateral-curta');
   lateralCurta(curta);
@@ -607,13 +614,13 @@ $('#rd-data').textContent = 'Hoje, ' + new Date().toLocaleDateString('pt-BR', { 
 /* ---------- Ramo: textos que mudam e alternador ---------- */
 document.querySelectorAll('[data-r]').forEach(e => { const t = R.v[e.dataset.r]; if (t != null) e.textContent = t; });
 document.querySelectorAll('[data-rt]').forEach(e => { const t = R.v[e.dataset.rt]; if (t != null) e.title = t; });
-$('#conta-nome').textContent = R.empresa; $('#conta-sub').textContent = R.central;
+$('#conta-nome').textContent = R.empresa;
 {
   const eu = EQUIPE[R.logado];
   $('#eu-av').textContent = eu.sigla; $('#eu-av').style.background = eu.cor;
   $('#eu-nome').textContent = eu.nome; $('#eu-sub').textContent = R.empresa;
 }
-$('#busca').placeholder = R.v.busca;
+$('#busca').placeholder = 'Buscar conversa';
 $('#leg-hor').textContent = R.horario;
 $('#ver-itens').textContent = 'Ver ' + R.v.itensNav.toLowerCase();
 $('#regras-txt').value = R.livre;
@@ -640,6 +647,29 @@ document.title = 'Inbox Mestre | Demonstração (' + R.empresa + ')';
   const ativo = lista.querySelector('[aria-pressed="true"]');
   if (ativo && ativo.scrollIntoView) ativo.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 })();
+
+/* Menu em gaveta no celular: abre pelo botão do topo, fecha ao escolher uma tela, tocar fora ou apertar Esc */
+function menuMovel(abrir) {
+  document.body.classList.toggle('menu-aberto', abrir);
+  $('#abrir-menu').setAttribute('aria-expanded', abrir);
+}
+$('#abrir-menu').onclick = () => menuMovel(!document.body.classList.contains('menu-aberto'));
+$('#fundo-menu').onclick = () => menuMovel(false);
+$('#lateral').addEventListener('click', e => { if (e.target.closest('a')) menuMovel(false); });
+addEventListener('hashchange', () => menuMovel(false));
+addEventListener('keydown', e => { if (e.key === 'Escape') menuMovel(false); });
+addEventListener('resize', () => { if (innerWidth > 980) menuMovel(false); });
+
+/* Esc fecha a conversa aberta (volta ao cartão do camaleão) */
+const CHAT_VAZIO = $('#chat').innerHTML;
+addEventListener('keydown', e => {
+  if (e.key !== 'Escape' || !selecionada || document.body.dataset.v !== 'conversas') return;
+  if ($('#ficha').classList.contains('aberta')) return;
+  selecionada = null; document.body.classList.remove('chat-cheio');
+  $('#chat').innerHTML = CHAT_VAZIO; $('#ficha-corpo').innerHTML = '';
+  renderLista();
+});
+ligaAvisos();
 
 /* Início */
 atualizaContador();
